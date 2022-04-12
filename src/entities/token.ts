@@ -156,5 +156,27 @@ export const WETH = {
     18,
     'WONE',
     'Wrapped ONE'
+  ),
+  [ChainId.CRONOS]: new Token(
+      ChainId.CRONOS,
+      '0x5c7f8a570d578ed84e63fdfa7b1ee72deae1ae23',
+      18,
+      'WCRO',
+      'Wrapped CRO'
+  ),
+  [ChainId.OPTIMISM]: new Token(
+      ChainId.OPTIMISM,
+      '0x4200000000000000000000000000000000000006',
+      18,
+      'WETH',
+      'Wrapped Ether'
+  ),
+  [ChainId.MOONRIVER]: new Token(
+      ChainId.MOONRIVER,
+      '0x98878B06940aE243284CA214f92Bb71a2b032B8A',
+      18,
+      ' WMOVR',
+      ' Wrapped MOVR'
   )
+
 }
