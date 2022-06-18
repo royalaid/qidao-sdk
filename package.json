@@ -1,8 +1,8 @@
 {
-  "name": "@royalaid/sushiswap-sdk",
+  "name": "@qidao/sdk",
   "license": "MIT",
-  "version": "1.0.3",
-  "description": "🛠 An SDK for building applications on top of Sushiswap.",
+  "version": "5.0.3",
+  "description": "🛠 An SDK for building applications with SushiSwap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
