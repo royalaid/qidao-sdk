@@ -1,8 +1,8 @@
 {
   "name": "@qidao/sdk",
   "license": "MIT",
-  "version": "5.0.4",
-  "description": "🛠 An SDK for building applications on top of Sushiswap.",
+  "version": "5.0.6",
+  "description": "🛠 An SDK for building applications on top of QiDao Protocol.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
