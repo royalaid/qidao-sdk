@@ -2,8 +2,8 @@
 
 import JSBI from 'jsbi'
 
-import { ChainId, SolidityType } from 'constants'
-import { validateSolidityTypeInstance } from 'utils'
+import { ChainId, SolidityType } from '../constants'
+import { validateSolidityTypeInstance } from '../utils'
 
 /**
  * A currency is any fungible financial instrument on Ethereum, including Ether and all ERC20 tokens.
