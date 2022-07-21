@@ -39,7 +39,7 @@ export class Currency {
 
   public static readonly SYSCOIN: Currency = new Currency(18, 'WSYS', 'Wrapped Syscoin')
 
-  public static readonly METIS: Currency = new Currency(18, 'WETH', 'Wrapped Metis')
+  public static readonly METIS: Currency = new Currency(18, 'METIS', 'Wrapped Metis')
 
   public static readonly MOONBEAM: Currency = new Currency(18, 'WGLMR', 'Wrapped GLMR')
 
