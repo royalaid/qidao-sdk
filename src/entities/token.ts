@@ -92,4 +92,5 @@ export const WETH = {
   [ChainId.CELO]: new Token(ChainId.CELO, '0x3Ad443d769A07f287806874F8E5405cE3Ac902b9', 18, 'WCELO', 'Wrapped Celo'),
   [ChainId.AURORA]: new Token(ChainId.AURORA, '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.BOBA]: new Token(ChainId.BOBA, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.CUBE]: new Token(ChainId.CUBE, '0x9d3f61338d6eb394e378d28c1fd17d5909ac6591', 18, 'WCUBE', 'Wrapped Cube'),
 }

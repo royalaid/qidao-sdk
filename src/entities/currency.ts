@@ -57,6 +57,8 @@ export class Currency {
 
   public static readonly BOBA: Currency = new Currency(18, 'WETH', 'Wrapped Ether')
 
+  public static readonly CUBE: Currency = new Currency(18, 'WCUBE', 'Wrapped Cube')
+
   public static readonly NATIVE = {
     [ChainId.MAINNET]: Currency.ETHER,
     [ChainId.ROPSTEN]: Currency.ETHER,
@@ -90,7 +92,8 @@ export class Currency {
     [ChainId.KLAYTN]: Currency.KLAYTN,
     [ChainId.CELO]: Currency.CELO,
     [ChainId.AURORA]: Currency.AURORA,
-    [ChainId.BOBA]: Currency.BOBA
+    [ChainId.BOBA]: Currency.BOBA,
+    [ChainId.CUBE]: Currency.CUBE
   }
 
   /**

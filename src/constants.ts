@@ -36,7 +36,8 @@ export enum ChainId {
     KLAYTN = 8217,
     CELO = 42220,
     AURORA = 1313161554,
-    BOBA = 288
+    BOBA = 288,
+    CUBE = 1818
 }
 
 export enum TradeType {
@@ -85,7 +86,8 @@ export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
     [ChainId.KLAYTN]: '',
     [ChainId.CELO]: '',
     [ChainId.AURORA]: '',
-    [ChainId.BOBA]: ''
+    [ChainId.BOBA]: '',
+    [ChainId.CUBE]: ''
 }
 
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
@@ -121,7 +123,8 @@ export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
     [ChainId.KLAYTN]: '',
     [ChainId.CELO]: '',
     [ChainId.AURORA]: '',
-    [ChainId.BOBA]: ''
+    [ChainId.BOBA]: '',
+    [ChainId.CUBE]: ''
 }
 
 export const SUSHI_ADDRESS: { [chainId in ChainId]: string } = {
@@ -157,7 +160,8 @@ export const SUSHI_ADDRESS: { [chainId in ChainId]: string } = {
     [ChainId.KLAYTN]: '',
     [ChainId.CELO]: '',
     [ChainId.AURORA]: '',
-    [ChainId.BOBA]: ''
+    [ChainId.BOBA]: '',
+    [ChainId.CUBE]: ''
 }
 
 export const MASTERCHEF_ADDRESS: { [chainId in ChainId]: string } = {
@@ -193,7 +197,8 @@ export const MASTERCHEF_ADDRESS: { [chainId in ChainId]: string } = {
     [ChainId.KLAYTN]: '',
     [ChainId.CELO]: '',
     [ChainId.AURORA]: '',
-    [ChainId.BOBA]: ''
+    [ChainId.BOBA]: '',
+    [ChainId.CUBE]: ''
 }
 
 export const BAR_ADDRESS: { [chainId in ChainId]: string } = {
@@ -229,7 +234,8 @@ export const BAR_ADDRESS: { [chainId in ChainId]: string } = {
     [ChainId.KLAYTN]: '',
     [ChainId.CELO]: '',
     [ChainId.AURORA]: '',
-    [ChainId.BOBA]: ''
+    [ChainId.BOBA]: '',
+    [ChainId.CUBE]: ''
 }
 
 export const MAKER_ADDRESS: { [chainId in ChainId]: string } = {
@@ -265,7 +271,8 @@ export const MAKER_ADDRESS: { [chainId in ChainId]: string } = {
     [ChainId.KLAYTN]: '',
     [ChainId.CELO]: '',
     [ChainId.AURORA]: '',
-    [ChainId.BOBA]: ''
+    [ChainId.BOBA]: '',
+    [ChainId.CUBE]: ''
 }
 
 export const TIMELOCK_ADDRESS: { [chainId in ChainId]: string } = {
@@ -301,7 +308,8 @@ export const TIMELOCK_ADDRESS: { [chainId in ChainId]: string } = {
     [ChainId.KLAYTN]: '',
     [ChainId.CELO]: '',
     [ChainId.AURORA]: '',
-    [ChainId.BOBA]: ''
+    [ChainId.BOBA]: '',
+    [ChainId.CUBE]: ''
 }
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
