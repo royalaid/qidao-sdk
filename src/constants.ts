@@ -3,6 +3,10 @@ import JSBI from 'jsbi'
 // exports for external consumption
 export type BigintIsh = JSBI | bigint | string
 
+export const FTM_ZAPPER_ADDRESS = '0xE2379CB4c4627E5e9dF459Ce08c2342C696C4c1f'
+export const AVAX_ZAPPER_ADDRESS = '0x1d0a9E2c445EB8f99767eF289832637921e6F6a5'
+export const OG_MATIC_VAULT = '0xa3Fa99A148fA48D14Ed51d610c367C61876997F1'
+
 export enum ChainId {
     MAINNET = 1,
     ROPSTEN = 3,

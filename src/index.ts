@@ -12,3 +12,5 @@ export {
 
 export * from './errors'
 export * from './entities'
+export * from './vaultInfo'
+export * from './contracts'
