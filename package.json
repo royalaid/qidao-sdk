@@ -25,34 +25,33 @@
     "postinstall": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\""
   },
   "dependencies": {
-    "@uniswap/v2-core": "^1.0.0",
-    "big.js": "^5.2.2",
-    "decimal.js-light": "^2.5.0",
-    "ethers": "^5.6.9",
-    "jsbi": "^3.1.1",
-    "tiny-invariant": "^1.1.0",
-    "tiny-warning": "^1.0.3",
-    "toformat": "^2.0.0"
+    "big.js": "5.2.2",
+    "decimal.js-light": "2.5.1",
+    "ethers": "5.6.9",
+    "jsbi": "3.2.5",
+    "tiny-invariant": "1.2.0",
+    "tiny-warning": "1.0.3",
+    "toformat": "2.0.0"
   },
   "peerDependencies": {
-    "@ethersproject/address": "^5.0.0-beta",
-    "@ethersproject/contracts": "^5.0.0-beta",
-    "@ethersproject/networks": "^5.0.0-beta",
-    "@ethersproject/providers": "^5.0.0-beta",
-    "@ethersproject/solidity": "^5.0.0-beta"
+    "@ethersproject/address": "5.6.1",
+    "@ethersproject/contracts": "5.6.2",
+    "@ethersproject/networks": "5.6.4",
+    "@ethersproject/providers": "5.6.8",
+    "@ethersproject/solidity": "5.6.1"
   },
   "devDependencies": {
-    "@ethersproject/address": "^5.0.2",
-    "@ethersproject/contracts": "^5.0.2",
-    "@ethersproject/networks": "^5.0.2",
-    "@ethersproject/providers": "^5.0.5",
-    "@ethersproject/solidity": "^5.0.2",
-    "@typechain/ethers-v5": "^10.1.0",
-    "@types/big.js": "^4.0.5",
-    "@types/jest": "^24.0.25",
-    "microbundle": "^0.15.1",
-    "typechain": "^8.1.0",
-    "typescript": "^4.7.4"
+    "@ethersproject/address": "5.6.1",
+    "@ethersproject/contracts": "5.6.2",
+    "@ethersproject/networks": "5.6.4",
+    "@ethersproject/providers": "5.6.8",
+    "@ethersproject/solidity": "5.6.1",
+    "@typechain/ethers-v5": "10.1.0",
+    "@types/big.js": "4.0.5",
+    "@types/jest": "28.1.6",
+    "microbundle": "0.15.1",
+    "typechain": "8.1.0",
+    "typescript": "4.7.4"
   },
   "engines": {
     "node": ">= 16"
