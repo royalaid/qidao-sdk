@@ -3,30 +3,36 @@
   "license": "MIT",
   "version": "5.1.0",
   "description": "🛠 An SDK for building applications on top of QiDao Protocol.",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "source": "./src/index.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.js"
+  },
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/src/index.d.ts",
   "files": [
     "dist"
   ],
   "repository": "https://github.com/royalaid/sushiswap-sdk",
   "keywords": [],
   "scripts": {
-    "lint": "tsdx lint src test",
-    "build": "tsdx build",
-    "start": "tsdx watch",
-    "test": "tsdx test",
-    "prepublishOnly": "tsdx build",
+    "build": "microbundle",
+    "start": "microbundle watch",
+    "prepublishOnly": "microbundle",
     "postinstall": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\""
   },
   "dependencies": {
     "@uniswap/v2-core": "^1.0.0",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
+    "ethers": "^5.6.9",
     "jsbi": "^3.1.1",
     "tiny-invariant": "^1.1.0",
     "tiny-warning": "^1.0.3",
-    "toformat": "^2.0.0",
-    "ethers": "^5.6.9"
+    "toformat": "^2.0.0"
   },
   "peerDependencies": {
     "@ethersproject/address": "^5.0.0-beta",
@@ -44,12 +50,12 @@
     "@typechain/ethers-v5": "^10.1.0",
     "@types/big.js": "^4.0.5",
     "@types/jest": "^24.0.25",
-    "tsdx": "^0.14.1",
+    "microbundle": "^0.15.1",
     "typechain": "^8.1.0",
     "typescript": "^4.7.4"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">= 16"
   },
   "prettier": {
     "printWidth": 120,
