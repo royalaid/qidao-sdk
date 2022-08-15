@@ -1,3 +1,5 @@
+// noinspection JSNonASCIINames,NonAsciiCharacters
+
 import JSBI from 'jsbi'
 
 import { ChainId, SolidityType } from '../constants'
@@ -35,6 +37,28 @@ export class Currency {
 
   public static readonly CRO: Currency = new Currency(18, 'CRO', 'Cronos')
 
+  public static readonly SYSCOIN: Currency = new Currency(18, 'WSYS', 'Wrapped Syscoin')
+
+  public static readonly METIS: Currency = new Currency(18, 'METIS', 'Wrapped Metis')
+
+  public static readonly MOONBEAM: Currency = new Currency(18, 'WGLMR', 'Wrapped GLMR')
+
+  public static readonly MILKOMEDA: Currency = new Currency(18, 'WADA', 'Wrapped ADA')
+
+  public static readonly KAVA: Currency = new Currency(18, 'WKAVA', 'Wrapped Kava')
+
+  public static readonly IOTEX: Currency = new Currency(18, 'WIOTX', 'Wrapped IoTeX')
+
+  public static readonly KLAYTN: Currency = new Currency(18, 'WKLAY', 'Wrapped Klaytn')
+
+  public static readonly CELO: Currency = new Currency(18, 'WCELO', 'Wrapped Celo')
+
+  public static readonly AURORA: Currency = new Currency(18, 'WETH', 'Wrapped Ether')
+
+  public static readonly BOBA: Currency = new Currency(18, 'WETH', 'Wrapped Ether')
+
+  public static readonly CUBE: Currency = new Currency(18, 'WCUBE', 'Wrapped Cube')
+
   public static readonly NATIVE = {
     [ChainId.MAINNET]: Currency.ETHER,
     [ChainId.ROPSTEN]: Currency.ETHER,
@@ -59,6 +83,17 @@ export class Currency {
     [ChainId.CRONOS]: Currency.CRO,
     [ChainId.MOONRIVER]: Currency.MOVR,
     [ChainId.OPTIMISM]: Currency.ETHER,
+    [ChainId.SYSCOIN]: Currency.SYSCOIN,
+    [ChainId.METIS]: Currency.METIS,
+    [ChainId.MOONBEAM]: Currency.MOONBEAM,
+    [ChainId.MILKOMEDA]: Currency.MILKOMEDA,
+    [ChainId.KAVA]: Currency.KAVA,
+    [ChainId.IOTEX]: Currency.IOTEX,
+    [ChainId.KLAYTN]: Currency.KLAYTN,
+    [ChainId.CELO]: Currency.CELO,
+    [ChainId.AURORA]: Currency.AURORA,
+    [ChainId.BOBA]: Currency.BOBA,
+    [ChainId.CUBE]: Currency.CUBE
   }
 
   /**
