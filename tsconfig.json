@@ -1,6 +1,7 @@
 {
   "include": ["src/**/*", "test"],
   "compilerOptions": {
+    "declarationDir": "dist",
     "target": "esnext",
     "module": "esnext",
     "importHelpers": true,
