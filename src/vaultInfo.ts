@@ -91,7 +91,7 @@ export type VaultShortName =
     | 'op'
     | 'metis'
 
-export default interface COLLATERAL {
+export interface COLLATERAL {
   aaveId?: string
   connect(
     address: string,
