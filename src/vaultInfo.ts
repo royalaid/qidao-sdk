@@ -34,6 +34,7 @@ export type VaultShortName =
     | 'bal'
     | 'bal-old'
     | 'beefy-aave-avax'
+    | 'beefy-aave-dai'
     | 'beefy-bifi'
     | 'beefy-scream-dai'
     | 'beefy-scream-eth'
@@ -435,6 +436,16 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             token: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000042', 18, 'OP', 'Optimism'),
             minimumCDR: 130,
         },
+        {
+            shortName: 'beefy-aave-dai',
+            vaultAddress: '0xB89c1b3d9f335B9d8Bb16016F3d60160AE71041f',
+            chainId: ChainId.OPTIMISM,
+            connect: StableQiVault__factory.connect,
+            contractAbi: StableQiVault__factory.abi,
+            token: new Token(ChainId.OPTIMISM, '0x4D153F47F03c237F6360a6eccd185b4aE09c63D0', 18, 'mooAaveDAI', 'Beefy OP Aave Dai'),
+            minimumCDR: 110,
+        },
+
     ],
     [ChainId.MOONRIVER]: [
         {
