@@ -34,6 +34,7 @@ export type VaultShortName =
     | 'bal'
     | 'bal-old'
     | 'beefy-aave-avax'
+    | 'beefy-aave-dai'
     | 'beefy-bifi'
     | 'beefy-scream-dai'
     | 'beefy-scream-eth'
@@ -435,6 +436,16 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             token: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000042', 18, 'OP', 'Optimism'),
             minimumCDR: 130,
         },
+        {
+            shortName: 'beefy-aave-dai',
+            vaultAddress: '0xB89c1b3d9f335B9d8Bb16016F3d60160AE71041f',
+            chainId: ChainId.OPTIMISM,
+            connect: StableQiVault__factory.connect,
+            contractAbi: StableQiVault__factory.abi,
+            token: new Token(ChainId.OPTIMISM, '0x4D153F47F03c237F6360a6eccd185b4aE09c63D0', 18, 'mooAaveDAI', 'Beefy OP Aave Dai'),
+            minimumCDR: 110,
+        },
+
     ],
     [ChainId.MOONRIVER]: [
         {
@@ -729,7 +740,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             vaultAddress: '0x57Cbf36788113237D64E46f25A88855c3dff1691',
             connect: CrosschainQiStablecoinV2__factory.connect,
             chainId: ChainId.MATIC,
-            subgraph: '',
             minimumCDR: 110,
             token: new Token(ChainId.MATIC, '0x7d60F21072b585351dFd5E8b17109458D97ec120', 18, 'sdam3CRV', 'Stake DAO am3CRV Strategy'),
         },
@@ -737,7 +747,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'fxs',
             vaultAddress: '0xff2c44Fb819757225a176e825255a01B3B8BB051',
             chainId: ChainId.MATIC,
-            subgraph: '',
             connect: CrosschainQiStablecoin__factory.connect,
             minimumCDR: 130,
             token: new Token(ChainId.MATIC, '0x1a3acf6D19267E2d3e7f898f42803e90C9219062', 18, 'FXS', 'Frax Share'),
@@ -747,7 +756,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             vaultAddress: '0x7d36999a69f2B99BF3FB98866cBbE47aF43696C8',
             chainId: ChainId.MATIC,
             depreciated: true,
-            subgraph: '',
             minimumCDR: 130,
             connect: CrosschainQiStablecoinSlim__factory.connect,
             token: new Token(ChainId.MATIC, '0xfe4546feFe124F30788c4Cc1BB9AA6907A7987F9', 18, 'cxETH', 'CelsiusX ETH'),
@@ -757,7 +765,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             vaultAddress: '0x506533B9C16eE2472A6BF37cc320aE45a0a24F11',
             chainId: ChainId.MATIC,
             depreciated: true,
-            subgraph: '',
             minimumCDR: 130,
             connect: CrosschainQiStablecoinSlim__factory.connect,
             token: new Token(ChainId.MATIC, '0x64875Aaa68d1d5521666C67d692Ee0B926b08b2F', 18, 'cxADA', 'CelsiusX Wrapped ADA'),
@@ -767,7 +774,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             vaultAddress: '0x7CbF49E4214C7200AF986bc4aACF7bc79dd9C19a',
             chainId: ChainId.MATIC,
             depreciated: true,
-            subgraph: '',
             minimumCDR: 130,
             connect: CrosschainQiStablecoinSlim__factory.connect,
             token: new Token(ChainId.MATIC, '0x9Bd9aD490dD3a52f096D229af4483b94D63BE618', 18, 'cxDOGE', 'CelsiusX Wrapped DOGE'),
@@ -776,7 +782,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'vghst',
             vaultAddress: '0x1F0aa72b980d65518e88841bA1dA075BD43fa933',
             chainId: ChainId.MATIC,
-            subgraph: '',
             minimumCDR: 130,
             connect: CrosschainQiStablecoinSlim__factory.connect,
             token: new Token(ChainId.MATIC, '0x51195e21BDaE8722B29919db56d95Ef51FaecA6C', 18, 'vGHST', 'Gotchi Vault GHST'),
@@ -785,7 +790,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'celsius',
             vaultAddress: '0x178f1c95C85Fe7221C7A6a3d6F12B7Da3253eeAe',
             chainId: ChainId.MATIC,
-            subgraph: '',
             depreciated: true,
             minimumCDR: 135,
             connect: CrosschainQiStablecoinV2__factory.connect,
@@ -795,7 +799,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'sand',
             vaultAddress: '0x1DCc1f864A4Bd0b8f4Ad33594B758b68e9Fa872c',
             chainId: ChainId.MATIC,
-            subgraph: '',
             minimumCDR: 135,
             connect: CrosschainQiStablecoinSlim__factory.connect,
             token: new Token(ChainId.MATIC, '0xBbba073C31bF03b8ACf7c28EF0738DeCF3695683', 18, 'SAND', 'The Sandbox Game'),
@@ -804,7 +807,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'wmatic',
             vaultAddress: '0x305f113ff78255d4F8524c8F50C7300B91B10f6A',
             chainId: ChainId.MATIC,
-            subgraph: '',
             minimumCDR: 120,
             connect: CrosschainQiStablecoinSlim__factory.connect,
             token: new Token(ChainId.MATIC, '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270', 18, 'WMATIC', 'Wrapped Matic'),
@@ -813,7 +815,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'xxdai',
             vaultAddress: '0xaa19d0e397c964a35e6e80262c692dbfC9C23451',
             chainId: ChainId.MATIC,
-            subgraph: '',
             minimumCDR: 110,
             token: new Token(ChainId.MATIC, '0xf52B3250E026E0307d7d717AE0f331baAA4F83a8', 18, 'xxDAI', 'Tetu xxDAI'),
             contractAbi: StableQiVault__factory.abi,
@@ -823,7 +824,6 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'xxlink',
             vaultAddress: '0x11826d20B6A16A22450978642404dA95B4640123',
             chainId: ChainId.MATIC,
-            subgraph: '',
             minimumCDR: 150,
             contractAbi: StableQiVault__factory.abi,
             connect: StableQiVault__factory.connect,
