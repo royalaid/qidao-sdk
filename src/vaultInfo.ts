@@ -130,6 +130,26 @@ export function isV2QiVault(collateral: COLLATERAL | COLLATERAL_V2): collateral 
 }
 
 export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[] } = {
+    [ChainId.MAINNET]: [
+     {
+            shortName: 'weth',
+            vaultAddress: '0x98eb27E5F24FB83b7D129D789665b08C258b4cCF',
+            chainId: ChainId.MAINNET,
+            token: new Token(ChainId.MAINNET, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether'),
+            contractAbi: StableQiVault__factory.abi,
+            connect: StableQiVault__factory.connect,
+            minimumCDR: 120,
+        },
+        {
+            shortName: 'wbtc',
+            vaultAddress: '0x8C45969aD19D297c9B85763e90D0344C6E2ac9d1',
+            chainId: ChainId.MAINNET,
+            token: new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WETH', 'Wrapped Ether'),
+            contractAbi: StableQiVault__factory.abi,
+            connect: StableQiVault__factory.connect,
+            minimumCDR: 120,
+        }
+    ],
     [ChainId.FANTOM]: [
         {
             shortName: 'ftm',
