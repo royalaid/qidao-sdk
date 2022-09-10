@@ -458,7 +458,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         },
         {
             shortName: 'beefy-aave-wbtc',
-            vaultAddress: ,
+            vaultAddress: '0xAB91c51b55F7Dd7B34F2FD7217506fD5b632B2B9',
             chainId: ChainId.OPTIMISM,
             connect: StableQiVault__factory.connect,
             contractAbi: StableQiVault__factory.abi,
