@@ -35,6 +35,8 @@ export type VaultShortName =
     | 'bal-old'
     | 'beefy-aave-avax'
     | 'beefy-aave-dai'
+    | 'beefy-aave-weth'
+    | 'beefy-aave-wbtc'
     | 'beefy-bifi'
     | 'beefy-scream-dai'
     | 'beefy-scream-eth'
@@ -445,6 +447,24 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             token: new Token(ChainId.OPTIMISM, '0x4D153F47F03c237F6360a6eccd185b4aE09c63D0', 18, 'mooAaveDAI', 'Beefy OP Aave Dai'),
             minimumCDR: 110,
         },
+     {
+            shortName: 'beefy-aave-weth',
+            vaultAddress: '0xF9CE2522027bD40D3b1aEe4abe969831FE3BeAf5',
+            chainId: ChainId.OPTIMISM,
+            connect: StableQiVault__factory.connect,
+            contractAbi: StableQiVault__factory.abi,
+            token: new Token(ChainId.OPTIMISM, '0x7eE71053102d54Fc843BaEBaf07277C2b6dB64f1', 18, 'mooAaveWETH', 'Beefy OP Aave WETH'),
+            minimumCDR: 135,
+        },
+        {
+            shortName: 'beefy-aave-wbtc',
+            vaultAddress: '0xAB91c51b55F7Dd7B34F2FD7217506fD5b632B2B9',
+            chainId: ChainId.OPTIMISM,
+            connect: StableQiVault__factory.connect,
+            contractAbi: StableQiVault__factory.abi,
+            token: new Token(ChainId.OPTIMISM, '0x8e2cdf8c6477439b7c989e86b917d80871b92339', 18, 'mooAaveWBTC', 'Beefy OP Aave WBTC'),
+            minimumCDR: 135,
+        }
 
     ],
     [ChainId.MOONRIVER]: [
