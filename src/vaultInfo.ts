@@ -80,12 +80,15 @@ export type VaultShortName =
     | 'weth'
     | 'weth-old'
     | 'yveth'
+    | 'yvlink'
+    | 'yvcrv-eth-steth'
     | 'yvwdai'
     | 'yvwftm'
     | 'yvwbtc'
     | 'yvyfi'
     | 'celsius'
     | 'sand'
+    | 'stake-dao-crv-eth-steth'
     | 'wmatic'
     | 'xboo'
     | 'dodo'
@@ -144,10 +147,46 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
             shortName: 'wbtc',
             vaultAddress: '0x8C45969aD19D297c9B85763e90D0344C6E2ac9d1',
             chainId: ChainId.MAINNET,
-            token: new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WETH', 'Wrapped Ether'),
+            token: new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped Bitcoin'),
             contractAbi: StableQiVault__factory.abi,
             connect: StableQiVault__factory.connect,
             minimumCDR: 120,
+        },
+        {
+            shortName: 'stake-dao-crv-eth-steth',
+            vaultAddress: '0xcc61Ee649A95F2E2f0830838681f839BDb7CB823',
+            chainId: ChainId.MAINNET,
+            token: new Token(ChainId.MAINNET, '0xbC10c4F7B9FE0B305e8639B04c536633A3dB7065', 18, 'sdsteCRV)', 'Stake DAO Curve.fi ETH/stETH'),
+            contractAbi: StableQiVault__factory.abi,
+            connect: StableQiVault__factory.connect,
+            minimumCDR: 125,
+        },
+        {
+            shortName: 'yvcrv-eth-steth',
+            vaultAddress: '0x82E90EB7034C1DF646bD06aFb9E67281AAb5ed28',
+            chainId: ChainId.MAINNET,
+            token: new Token(ChainId.MAINNET, '0xdCD90C7f6324cfa40d7169ef80b12031770B4325', 18, 'yvcurve-eth-steth', 'Yearn Curve ETH/STETH'),
+            contractAbi: StableQiVault__factory.abi,
+            connect: StableQiVault__factory.connect,
+            minimumCDR:125,
+        },
+        {
+            shortName: 'yveth',
+            vaultAddress: '0xEcbd32bD581e241739be1763DFE7a8fFcC844ae1',
+            chainId: ChainId.MAINNET,
+            token: new Token(ChainId.MAINNET, '0xa258C4606Ca8206D8aA700cE2143D7db854D168c', 18, 'YVETH', 'Yearn WETH'),
+            contractAbi: StableQiVault__factory.abi,
+            connect: StableQiVault__factory.connect,
+            minimumCDR: 125,
+        },
+        {
+            shortName: 'yvlink',
+            vaultAddress: '0x60d133c666919B54a3254E0d3F14332cB783B733',
+            chainId: ChainId.MAINNET,
+            token: new Token(ChainId.MAINNET, '0x671a912C10bba0CFA74Cfc2d6Fba9BA1ed9530B2', 18, 'YVLINK', 'Yearn Link'),
+            contractAbi: StableQiVault__factory.abi,
+            connect: StableQiVault__factory.connect,
+            minimumCDR: 140,
         }
     ],
     [ChainId.FANTOM]: [
