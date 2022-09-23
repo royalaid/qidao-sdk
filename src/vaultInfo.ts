@@ -1,6 +1,5 @@
 import { Provider } from '@ethersproject/providers'
 import { constants, Signer } from 'ethers'
-import {isEqual} from 'lodash'
 import {
   CrosschainNativeQiStablecoin,
   CrosschainQiStablecoin,
@@ -136,14 +135,15 @@ export interface COLLATERAL {
   vaultAddress: string
   shortName: VaultShortName
   contractAbi: VaultContractAbi
+  version: 1
 }
 
-export interface COLLATERAL_V2 extends COLLATERAL {
+export interface COLLATERAL_V2 extends Omit<COLLATERAL, 'version'> {
+  version: 2
 }
 
 export function isV2QiVault(collateral: COLLATERAL | COLLATERAL_V2): collateral is COLLATERAL_V2 {
-  const v2VaultContracts = [StableQiVault__factory.abi]
-  return v2VaultContracts.some(x => isEqual(x,(collateral as COLLATERAL_V2).contractAbi))
+  return collateral.version === 2
 }
 
 export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[] } = {
@@ -156,6 +156,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 120,
+      version: 2
     },
     {
       shortName: 'wbtc',
@@ -165,6 +166,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 120,
+      version: 2
     },
     {
       shortName: 'stake-dao-crv-eth-steth',
@@ -180,6 +182,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 125,
+      version: 2
     },
     {
       shortName: 'yvcrv-eth-steth',
@@ -195,6 +198,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 125,
+      version: 2
     },
     {
       shortName: 'yveth',
@@ -204,6 +208,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 125,
+      version: 2
     },
     {
       shortName: 'yvlink',
@@ -213,6 +218,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 140,
+      version: 2
     },
   ],
   [ChainId.FANTOM]: [
@@ -226,6 +232,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainNativeQiStablecoin__factory.abi,
       connect: CrosschainNativeQiStablecoin__factory.connect,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-fantom-vaults',
+      version: 1
     },
     {
       shortName: 'yvwftm',
@@ -236,6 +243,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-yvwftm-vaults',
+      version: 1
     },
     {
       shortName: 'yvwbtc',
@@ -251,6 +259,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 135,
       contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
       connect: CrosschainQiStablecoinSlimV2__factory.connect,
+      version: 1
     },
     {
       shortName: 'yvyfi',
@@ -260,6 +269,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 135,
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
+      version: 1
     },
     {
       shortName: 'yveth',
@@ -275,6 +285,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 135,
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
+      version: 1
     },
     {
       shortName: 'yvwdai',
@@ -285,6 +296,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-yvdai-vaults',
+      version: 1
     },
     {
       shortName: 'ftmweth',
@@ -295,6 +307,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-fantom-eth-vaults',
+      version: 1
     },
     {
       shortName: 'aave',
@@ -304,6 +317,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 130,
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
+      version: 1
     },
     {
       shortName: 'sushi',
@@ -313,6 +327,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 130,
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
+      version: 1
     },
     {
       shortName: 'link',
@@ -322,6 +337,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 130,
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
+      version: 1
     },
     {
       shortName: 'btc',
@@ -331,6 +347,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 130,
       contractAbi: CrosschainQiStablecoinwbtc__factory.abi,
       connect: CrosschainQiStablecoinwbtc__factory.connect,
+      version: 1
     },
     {
       shortName: 'beefy-scream-wbtc',
@@ -347,6 +364,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       depreciated: true,
+      version: 1
     },
     {
       shortName: 'beefy-scream-dai',
@@ -363,6 +381,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       depreciated: true,
+      version: 1
     },
     {
       shortName: 'beefy-scream-eth',
@@ -379,6 +398,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       depreciated: true,
+      version: 1
     },
     {
       shortName: 'beefy-scream-ftm',
@@ -395,6 +415,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       depreciated: true,
+      version: 1
     },
     {
       shortName: 'beefy-scream-link',
@@ -411,6 +432,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       depreciated: true,
+      version: 1
     },
     {
       shortName: 'beefy-spooky-btc-ftm',
@@ -427,6 +449,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Beefy SpookySwap BTC-FTM LP'
       ),
       minimumCDR: 135,
+      version: 1
     },
     /* {
             shortName: "beefy-spooky-dai-ftm",
@@ -440,6 +463,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
                 "Moo Boo DAI-FTM"
             ),
             minimumCDR: 135,
+            version: 1
         }, */
     {
       shortName: 'beefy-spooky-eth-ftm',
@@ -456,6 +480,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Beefy SpookySwap ETH-FTM LP'
       ),
       minimumCDR: 135,
+      version: 1
     },
     /* {
             shortName: "beefy-spooky-ftm-usdc",
@@ -469,6 +494,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
                 "Moo Boo FTM-USDC"
             ),
             minimumCDR: 135,
+            version: 1
         }, */
     {
       shortName: 'beefy-bifi',
@@ -484,6 +510,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 140,
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
+      version: 1
     },
     {
       shortName: 'xboo',
@@ -493,6 +520,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 155,
+      version: 2
     },
   ],
   [ChainId.AVALANCHE]: [
@@ -510,6 +538,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 135,
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
+      version: 1
     },
     {
       shortName: 'sdav3crv',
@@ -525,6 +554,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
       connect: CrosschainQiStablecoinSlimV2__factory.connect,
       minimumCDR: 110,
+      version: 1
     },
     {
       shortName: 'avaxwbtc',
@@ -534,6 +564,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
       connect: CrosschainQiStablecoinSlimV2__factory.connect,
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'avaxweth',
@@ -543,6 +574,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'avax',
@@ -552,6 +584,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
       minimumCDR: 135,
+      version: 1
     },
   ],
   [ChainId.ARBITRUM]: [
@@ -570,6 +603,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Wrapped Ether (OLD)'
       ),
       minimumCDR: 135,
+      version: 1
     },
     {
       shortName: 'weth',
@@ -579,6 +613,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.ARBITRUM, '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1', 18, 'WETH', 'Wrapped Ether'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'wbtc',
@@ -588,6 +623,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoinSlimV2__factory.connect,
       token: new Token(ChainId.ARBITRUM, '0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f', 8, 'WBTC', 'Wrapped Bitcoin'),
       minimumCDR: 130,
+      version: 1
     },
   ],
   [ChainId.OPTIMISM]: [
@@ -599,6 +635,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000006', 18, 'WETH', 'Wrapped Ether'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'wbtc',
@@ -608,6 +645,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoinSlimV2__factory.connect,
       token: new Token(ChainId.OPTIMISM, '0x68f180fcCe6836688e9084f035309E29Bf0A2095', 8, 'WBTC', 'Wrapped BTC'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'op',
@@ -617,6 +655,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       token: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000042', 18, 'OP', 'Optimism'),
       minimumCDR: 130,
+      version: 2
     },
     {
       shortName: 'beefy-aave-dai',
@@ -632,6 +671,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Beefy OP Aave Dai'
       ),
       minimumCDR: 110,
+      version: 2
     },
     {
       shortName: 'beefy-aave-weth',
@@ -647,6 +687,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Beefy OP Aave WETH'
       ),
       minimumCDR: 135,
+      version: 2
     },
     {
       shortName: 'beefy-aave-wbtc',
@@ -662,6 +703,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Beefy OP Aave WBTC'
       ),
       minimumCDR: 135,
+      version: 2
     },
   ],
   [ChainId.MOONRIVER]: [
@@ -673,6 +715,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoin__factory.connect,
       token: new Token(ChainId.MOONRIVER, '0x639A647fbe20b6c8ac19E48E2de44ea792c62c5C', 18, 'ETH', 'Ethereum'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'moo-solar-eth-usdc',
@@ -689,6 +732,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Beefy Solarbeam ETH-USDC LP'
       ),
       minimumCDR: 135,
+      version: 1
     },
     {
       shortName: 'movr',
@@ -699,6 +743,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainNativeQiStablecoin__factory.connect,
       token: new Token(ChainId.MOONRIVER, '0x98878B06940aE243284CA214f92Bb71a2b032B8A', 18, 'MOVR', 'Moonriver'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'moo-solar-movr-usdc',
@@ -715,6 +760,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Beefy Solarbeam MOVR-USDC LP'
       ),
       minimumCDR: 135,
+      version: 1
     },
   ],
   [ChainId.HARMONY]: [
@@ -727,6 +773,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       depreciated: true,
       token: new Token(ChainId.HARMONY, '0x6983D1E6DEf3690C4d616b13597A09e6193EA013', 18, '1ETH', 'Wrapped Ethereum'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'one',
@@ -737,6 +784,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainNativeQiStablecoin__factory.connect,
       token: new Token(ChainId.HARMONY, '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a', 18, 'ONE', 'Harmony (ONE)'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'btc_old',
@@ -753,6 +801,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'Wrapped Bitcoin OLD'
       ),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'btc',
@@ -763,6 +812,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoin__factory.connect,
       token: new Token(ChainId.HARMONY, '0x3095c7557bCb296ccc6e363DE01b760bA031F2d9', 8, '1WBTC', 'Wrapped Bitcoin'),
       minimumCDR: 130,
+      version: 1
     },
   ],
   [ChainId.BSC]: [
@@ -774,6 +824,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.BSC, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'Wrapped BNB', 'WBNB'),
       minimumCDR: 135,
+      version: 1
     },
     {
       shortName: 'cake',
@@ -783,6 +834,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       chainId: ChainId.BSC,
       token: new Token(ChainId.BSC, '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', 18, 'PancakeSwap Token', 'CAKE'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'dodo',
@@ -792,6 +844,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 150,
+      version: 2
     },
   ],
   [ChainId.XDAI]: [
@@ -803,6 +856,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoin__factory.connect,
       token: new Token(ChainId.XDAI, '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1', 18, 'Wrapped Ether', 'WETH'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'gno',
@@ -812,6 +866,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.XDAI, '0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb', 18, 'Gnosis', 'GNO'),
       minimumCDR: 130,
+      version: 1
     },
   ],
   [ChainId.MATIC]: [
@@ -825,6 +880,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       minimumCDR: 150,
       contractAbi: Erc20Stablecoin__factory.abi,
       connect: Erc20Stablecoin__factory.connect,
+      version: 1
     },
     {
       shortName: 'camwmatic',
@@ -842,6 +898,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       ),
       minimumCDR: 135,
       aaveId: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf12700xd05e3e715d945b59290df0ae8ef85c1bdb684744',
+      version: 1
     },
     {
       shortName: 'weth',
@@ -853,6 +910,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(ChainId.MATIC, '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', 18, 'WETH', 'Wrapped Ether'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'camweth',
@@ -871,6 +929,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       ),
       minimumCDR: 135,
       aaveId: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f6190xd05e3e715d945b59290df0ae8ef85c1bdb684744',
+      version: 1
     },
     {
       shortName: 'camaave',
@@ -889,6 +948,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: Erc20Stablecoin__factory.abi,
       connect: Erc20Stablecoin__factory.connect,
       aaveId: '0xd6df932a45c0f255f85145f286ea0b292b21c90b0xd05e3e715d945b59290df0ae8ef85c1bdb684744',
+      version: 1
     },
     {
       shortName: 'aave',
@@ -899,6 +959,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(ChainId.MATIC, '0xD6DF932A45C0f255f85145f286eA0b292B21C90B', 18, 'AAVE', 'Aave'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'link',
@@ -909,6 +970,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(ChainId.MATIC, '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39', 18, 'LINK', 'ChainLink Token'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'crv',
@@ -919,6 +981,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(ChainId.MATIC, '0x172370d5Cd63279eFa6d502DAB29171933a610AF', 18, 'CRV', 'Curve Dao Token'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'wbtc',
@@ -929,6 +992,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20QiStablecoinwbtc__factory.connect,
       token: new Token(ChainId.MATIC, '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6', 8, 'WBTC', 'Wrapped BTC'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'camwbtc',
@@ -946,6 +1010,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       aaveId: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd60xd05e3e715d945b59290df0ae8ef85c1bdb684744',
       contractAbi: Erc20QiStablecoincamwbtc__factory.abi,
       connect: Erc20QiStablecoincamwbtc__factory.connect,
+      version: 1
     },
     {
       shortName: 'bal-old',
@@ -957,6 +1022,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       token: new Token(ChainId.MATIC, '0x9a71012B13CA4d3D0Cdc72A177DF3ef03b0E76A3', 18, 'BAL OLD', 'Balancer'),
       minimumCDR: 130,
       depreciated: true,
+      version: 1
     },
     {
       shortName: 'dquick-old',
@@ -968,6 +1034,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       token: new Token(ChainId.MATIC, '0xf28164A485B0B2C90639E47b0f377b4a438a16B1', 18, 'dQUICK OLD', 'Dragon QUICK'),
       minimumCDR: 130,
       depreciated: true,
+      version: 1
     },
     {
       shortName: 'bal',
@@ -978,6 +1045,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(ChainId.MATIC, '0x9a71012B13CA4d3D0Cdc72A177DF3ef03b0E76A3', 18, 'BAL', 'Balancer'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'dquick',
@@ -988,6 +1056,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(ChainId.MATIC, '0xf28164A485B0B2C90639E47b0f377b4a438a16B1', 18, 'dQUICK', 'Dragon QUICK'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'ghst',
@@ -998,6 +1067,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(ChainId.MATIC, '0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7', 18, 'GHST', 'Aavegotchi GHST'),
       minimumCDR: 130,
+      version: 1
     },
     {
       shortName: 'camdai',
@@ -1015,6 +1085,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       ),
       minimumCDR: 110,
       aaveId: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a0630xd05e3e715d945b59290df0ae8ef85c1bdb684744',
+      version: 1
     },
     {
       shortName: 'sdam3crv',
@@ -1030,6 +1101,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'sdam3CRV',
         'Stake DAO am3CRV Strategy'
       ),
+      version: 1
     },
     {
       shortName: 'fxs',
@@ -1039,6 +1111,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       connect: CrosschainQiStablecoin__factory.connect,
       minimumCDR: 130,
       token: new Token(ChainId.MATIC, '0x1a3acf6D19267E2d3e7f898f42803e90C9219062', 18, 'FXS', 'Frax Share'),
+      version: 1
     },
     {
       shortName: 'cxeth',
@@ -1050,6 +1123,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.MATIC, '0xfe4546feFe124F30788c4Cc1BB9AA6907A7987F9', 18, 'cxETH', 'CelsiusX ETH'),
+      version: 1
     },
     {
       shortName: 'cxada',
@@ -1067,6 +1141,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'cxADA',
         'CelsiusX Wrapped ADA'
       ),
+      version: 1
     },
     {
       shortName: 'cxdoge',
@@ -1084,6 +1159,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
         'cxDOGE',
         'CelsiusX Wrapped DOGE'
       ),
+      version: 1
     },
     {
       shortName: 'vghst',
@@ -1093,6 +1169,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.MATIC, '0x51195e21BDaE8722B29919db56d95Ef51FaecA6C', 18, 'vGHST', 'Gotchi Vault GHST'),
+      version: 1
     },
     {
       shortName: 'celsius',
@@ -1103,6 +1180,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinV2__factory.abi,
       connect: CrosschainQiStablecoinV2__factory.connect,
       token: new Token(ChainId.MATIC, '0xd85d1e945766fea5eda9103f918bd915fbca63e6', 4, 'CEL', 'Celsius'),
+      version: 1
     },
     {
       shortName: 'sand',
@@ -1112,6 +1190,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.MATIC, '0xBbba073C31bF03b8ACf7c28EF0738DeCF3695683', 18, 'SAND', 'The Sandbox Game'),
+      version: 1
     },
     {
       shortName: 'wmatic',
@@ -1121,6 +1200,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: CrosschainQiStablecoinSlim__factory.abi,
       connect: CrosschainQiStablecoinSlim__factory.connect,
       token: new Token(ChainId.MATIC, '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270', 18, 'WMATIC', 'Wrapped Matic'),
+      version: 1
     },
     {
       shortName: 'xxdai',
@@ -1130,6 +1210,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       token: new Token(ChainId.MATIC, '0xf52B3250E026E0307d7d717AE0f331baAA4F83a8', 18, 'xxDAI', 'Tetu xxDAI'),
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
+      version: 2
     },
     {
       shortName: 'xxlink',
@@ -1139,6 +1220,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       token: new Token(ChainId.MATIC, '0x6c5e2E7dF0372f834B7F40D16Ff4333Cf49Af235', 18, 'xxLINK', 'Tetu xxLINK'),
+      version: 2
     },
   ],
   [ChainId.METIS]: [
@@ -1150,6 +1232,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 155,
+      version: 2
     },
     {
       shortName: 'weth',
@@ -1159,6 +1242,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 130,
+      version: 2
     },
     {
       shortName: 'wbtc',
@@ -1168,6 +1252,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 130,
+      version: 2
     },
   ],
 }
