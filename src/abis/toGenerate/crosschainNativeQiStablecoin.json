@@ -298,8 +298,7 @@
         "name": "TransferVault",
         "type": "event"
     },
-    {
-        "anonymous": false,
+    { "anonymous": false,
         "inputs": [
             {
                 "indexed": false,
@@ -316,11 +315,6 @@
         ],
         "name": "WithdrawCollateral",
         "type": "event"
-    },
-    {
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "fallback"
     },
     {
         "constant": true,
