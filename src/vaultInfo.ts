@@ -95,6 +95,7 @@ export type VaultShortName =
   | 'xxlink'
   | 'op'
   | 'metis'
+  | 'knc'
 
 type VaultContractAbi =
   | typeof Erc20Stablecoin__factory.abi
@@ -1222,6 +1223,16 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       token: new Token(ChainId.MATIC, '0x6c5e2E7dF0372f834B7F40D16Ff4333Cf49Af235', 18, 'xxLINK', 'Tetu xxLINK'),
       version: 2
     },
+    {
+      shortName: 'knc',
+      vaultAddress: '0xa3b0A659f2147D77A443f70D96b3cC95E7A26390',
+      chainId: ChainId.MATIC,
+      token: new Token(ChainId.MATIC, '0x1c954e8fe737f99f68fa1ccda3e51ebdb291948c', 18, 'KNC', 'Kyber Network Crystal'),
+      contractAbi: StableQiVault__factory.abi,
+      connect: StableQiVault__factory.connect,
+      minimumCDR: 140,
+      version: 2
+    }
   ],
   [ChainId.METIS]: [
     {
