@@ -818,6 +818,8 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       frontend: FRONTEND.MAI,
       version: 1
     },
+  ],
+  [ChainId.MOONBEAM]: [
     {
       connect: StableQiVault__factory.connect,
       chainId: ChainId.MOONBEAM,
@@ -851,7 +853,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | COLLATERAL_V2)[
       vaultAddress: "0x3756465c5b1C1C4cEe473880c9726E20875284f1",
       contractAbi: StableQiVault__factory.abi,
       version: 2,
-    },
+    }
   ],
   [ChainId.HARMONY]: [
     {
