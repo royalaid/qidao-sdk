@@ -218,7 +218,7 @@ export interface GAUGE_VALID_COLLATERAL_V2 extends COLLATERAL_V2 {
 }
 
 
-export function isV2QiVault(collateral: COLLATERAL | COLLATERAL_V2): collateral is COLLATERAL_V2 {
+export function isV2QiVault(collateral: COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2): collateral is COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2 {
   return collateral.version === 2
 }
 
