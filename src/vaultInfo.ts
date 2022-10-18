@@ -32,6 +32,7 @@ export type SnapshotCanonicalChoiceName =
   | 'AAVE (Polygon)'
   | 'LINK (Polygon)'
   | 'xxLINK (Polygon)'
+  | 'KNC (Polygon)'
   | 'CRV (Polygon)'
   | 'BAL (Polygon)'
   | 'GHST (Polygon)'
@@ -44,6 +45,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Compounding Aave WBTC (Polygon)'
   | 'WETH (Fantom)'
   | 'WFTM (Fantom)'
+  | 'LINK (Fantom)'
   | 'WBTC (Fantom)'
   | 'SUSHI (Fantom)'
   | 'AAVE (Fantom)'
@@ -326,6 +328,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-fantom-vaults',
       frontend: FRONTEND.MAI,
       version: 1,
+      snapshotName: 'WFTM (Fantom)'
     },
     {
       shortName: 'yvwftm',
@@ -447,6 +450,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       connect: CrosschainQiStablecoin__factory.connect,
       frontend: FRONTEND.MAI,
       version: 1,
+      snapshotName: 'LINK (Fantom)'
     },
     {
       shortName: 'btc',
@@ -859,6 +863,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     {
       shortName: 'eth',
       vaultAddress: '0x4a0474E3262d4DB3306Cea4F207B5d66eC8E0AA9',
+      depreciated: true,
       chainId: ChainId.MOONRIVER,
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
@@ -1466,9 +1471,11 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       connect: StableQiVault__factory.connect,
       minimumCDR: 140,
       frontend: FRONTEND.MAI,
+      snapshotName: 'KNC (Polygon)',
       version: 2,
     },
     {
+      shortName: 'LSMMVT',
       connect: StableQiVault__factory.connect,
       chainId: ChainId.MATIC,
       minimumCDR: 135,
@@ -1479,18 +1486,17 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
         'MaticX',
         'Liquid Staking Matic'
       ),
-      shortName: 'LSMMVT',
       frontend: FRONTEND.MANHATTAN,
       vaultAddress: '0x4b7509ce029656341D0B59D387D9B5312E41615a',
       contractAbi: StableQiVault__factory.abi,
       version: 2,
     },
     {
+      shortName: 'STMMVT',
       connect: StableQiVault__factory.connect,
       chainId: ChainId.MATIC,
       minimumCDR: 135,
       token: new Token(ChainId.MATIC, '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4', 18, 'stMatic', 'Staked Matic'),
-      shortName: 'STMMVT',
       frontend: FRONTEND.MANHATTAN,
       vaultAddress: '0x34fa22892256216a659D4f635354250b4D771458',
       contractAbi: StableQiVault__factory.abi,
