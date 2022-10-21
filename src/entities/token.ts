@@ -1,5 +1,5 @@
 import invariant from 'tiny-invariant'
-import { ChainId } from '../constants'
+import {ChainId, WFTM_ADDRESS} from '../constants'
 import { validateAndParseAddress } from '../utils'
 import { Currency } from './currency'
 
@@ -62,7 +62,7 @@ export const WNATIVE = {
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.FANTOM]: new Token(ChainId.FANTOM, '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83', 18, 'WFTM', 'Wrapped FTM'),
+  [ChainId.FANTOM]: new Token(ChainId.FANTOM, WFTM_ADDRESS, 18, 'WFTM', 'Wrapped FTM'),
   [ChainId.FANTOM_TESTNET]: new Token(ChainId.FANTOM_TESTNET, '0xf1277d1Ed8AD466beddF92ef448A132661956621', 18, 'FTM', 'Wrapped FTM'),
   [ChainId.MATIC]: new Token(ChainId.MATIC, '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270', 18, 'WMATIC', 'Wrapped Matic'),
   [ChainId.MATIC_TESTNET]: new Token(ChainId.MATIC_TESTNET, '0x5B67676a984807a212b1c59eBFc9B3568a474F0a', 18, 'WMATIC', 'Wrapped Matic'),

@@ -23,7 +23,22 @@ import {
   Erc20QiStablecoincamwbtc__factory,
 } from './contracts'
 import { Token } from './entities'
-import { ChainId, OG_MATIC_VAULT } from './constants'
+import {
+  CAMAAVE_VAULT_ADDRESS, CAMDAI_VAULT_ADDRESS, CAMWBTC_VAULT_ADDRESS,
+  CAMWETH_VAULT_ADDRESS,
+  CAMWMATIC_VAULT_ADDRESS,
+  ChainId, MOO_BIFI_FTM_VAULT_ADDRESS,
+  MOO_SCREAM_DAI_VAULT_ADDRESS,
+  MOO_SCREAM_ETH_VAULT_ADDRESS, MOO_SCREAM_LINK_VAULT_ADDRESS,
+  MOO_SCREAM_WBTC_VAULT_ADDRESS,
+  MOO_SCREAM_WFTM_VAULT_ADDRESS, MOO_WAVAX_VAULT_ADDRESS,
+  OG_MATIC_VAULT, WFTM_ADDRESS,
+  YVDAI_VAULT_ADDRESS,
+  YVWBTC_VAULT_ADDRESS,
+  YVWETH_VAULT_ADDRESS,
+  YVWFTM_VAULT_ADDRESS,
+  YVYFI_VAULT_ADDRESS
+} from './constants'
 
 export type SnapshotCanonicalChoiceName =
   | 'Wrapped MATIC (Polygon)'
@@ -320,7 +335,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'ftm',
       vaultAddress: '0x1066b8FC999c1eE94241344818486D5f944331A0',
       chainId: ChainId.FANTOM,
-      token: new Token(ChainId.FANTOM, '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83', 18, 'FTM', 'Fantom'),
+      token: new Token(ChainId.FANTOM, WFTM_ADDRESS, 18, 'FTM', 'Fantom'),
       minimumCDR: 130,
       native: true,
       contractAbi: CrosschainNativeQiStablecoin__factory.abi,
@@ -332,7 +347,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yvwftm',
-      vaultAddress: '0x7efB260662a6FA95c1CE1092c53Ca23733202798',
+      vaultAddress: YVWFTM_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(ChainId.FANTOM, '0x0DEC85e74A92c52b7F708c4B10207D9560CEFaf0', 18, 'yvWFTM', 'Yearn Fantom'),
       minimumCDR: 135,
@@ -345,7 +360,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yvwbtc',
-      vaultAddress: '0x571F42886C31f9b769ad243e81D06D0D144BE7B4',
+      vaultAddress: YVWBTC_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -363,7 +378,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yvyfi',
-      vaultAddress: '0x6d6029557a06961aCC5F81e1ffF5A474C54e32Fd',
+      vaultAddress: YVYFI_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(ChainId.FANTOM, '0x2C850cceD00ce2b14AA9D658b7Cad5dF659493Db', 18, 'yvYFI', 'Yearn Vault YFI'),
       minimumCDR: 135,
@@ -375,7 +390,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yveth',
-      vaultAddress: '0x7aE52477783c4E3e5c1476Bbb29A8D029c920676',
+      vaultAddress: YVWETH_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -393,7 +408,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yvwdai',
-      vaultAddress: '0x682E473FcA490B0adFA7EfE94083C1E63f28F034',
+      vaultAddress: YVDAI_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(ChainId.FANTOM, '0x637eC617c86D24E421328e6CAEa1d92114892439', 18, 'yvDAI', 'Yearn DAI'),
       minimumCDR: 110,
@@ -466,7 +481,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'beefy-scream-wbtc',
-      vaultAddress: '0x5563Cc1ee23c4b17C861418cFF16641D46E12436',
+      vaultAddress: MOO_SCREAM_WBTC_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -484,7 +499,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'beefy-scream-dai',
-      vaultAddress: '0xBf0ff8ac03f3E0DD7d8faA9b571ebA999a854146',
+      vaultAddress: MOO_SCREAM_DAI_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -502,7 +517,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'beefy-scream-eth',
-      vaultAddress: '0xC1c7eF18ABC94013F6c58C6CdF9e829A48075b4e',
+      vaultAddress: MOO_SCREAM_ETH_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -520,7 +535,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'beefy-scream-ftm',
-      vaultAddress: '0x3609A304c6A41d87E895b9c1fd18c02ba989Ba90',
+      vaultAddress: MOO_SCREAM_WFTM_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -538,7 +553,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'beefy-scream-link',
-      vaultAddress: '0x8e5e4D08485673770Ab372c05f95081BE0636Fa2',
+      vaultAddress: MOO_SCREAM_LINK_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -622,7 +637,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
         }, */
     {
       shortName: 'beefy-bifi',
-      vaultAddress: '0x75D4aB6843593C111Eeb02Ff07055009c836A1EF',
+      vaultAddress: MOO_BIFI_FTM_VAULT_ADDRESS,
       chainId: ChainId.FANTOM,
       token: new Token(
         ChainId.FANTOM,
@@ -654,7 +669,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
   [ChainId.AVALANCHE]: [
     {
       shortName: 'beefy-aave-avax',
-      vaultAddress: '0xfA19c1d104F4AEfb8d5564f02B3AdCa1b515da58',
+      vaultAddress: MOO_WAVAX_VAULT_ADDRESS,
       chainId: ChainId.AVALANCHE,
       token: new Token(
         ChainId.AVALANCHE,
@@ -1084,7 +1099,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'camwmatic',
       chainId: ChainId.MATIC,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-amwmatic-vaults',
-      vaultAddress: '0x88d84a85A87ED12B8f098e8953B322fF789fCD1a',
+      vaultAddress: CAMWMATIC_VAULT_ADDRESS,
       contractAbi: Erc20Stablecoin__factory.abi,
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(
@@ -1118,7 +1133,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'camweth',
       chainId: ChainId.MATIC,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/mai-finance-cam-weth-vaults',
-      vaultAddress: '0x11A33631a5B5349AF3F165d2B7901A4d67e561ad',
+      vaultAddress: CAMWETH_VAULT_ADDRESS,
 
       contractAbi: Erc20Stablecoin__factory.abi,
       connect: Erc20Stablecoin__factory.connect,
@@ -1139,7 +1154,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'camaave',
       chainId: ChainId.MATIC,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/mai-finance-cam-aave-vaults',
-      vaultAddress: '0x578375c3af7d61586c2C3A7BA87d2eEd640EFA40',
+      vaultAddress: CAMAAVE_VAULT_ADDRESS,
       token: new Token(
         ChainId.MATIC,
         '0xeA4040B21cb68afb94889cB60834b13427CFc4EB',
@@ -1212,7 +1227,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'camwbtc',
       chainId: ChainId.MATIC,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-cam-wbtc-vaults',
-      vaultAddress: '0x7dDA5e1A389E0C1892CaF55940F5fcE6588a9ae0',
+      vaultAddress: CAMWBTC_VAULT_ADDRESS,
       token: new Token(
         ChainId.MATIC,
         '0xBa6273A78a23169e01317bd0f6338547F869E8Df',
@@ -1296,7 +1311,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'camdai',
       chainId: ChainId.MATIC,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-camdai-vaults',
-      vaultAddress: '0xD2FE44055b5C874feE029119f70336447c8e8827',
+      vaultAddress: CAMDAI_VAULT_ADDRESS,
       contractAbi: CrosschainQiStablecoin__factory.abi,
       connect: CrosschainQiStablecoin__factory.connect,
       token: new Token(
