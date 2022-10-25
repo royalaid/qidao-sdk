@@ -75,6 +75,7 @@ function beefyZapperInfo({
     zapperAddress: zapperAddress,
     underlying: underlying,
     underlyingPriceSourceAddress: underlyingPriceSourceAddress,
+    mooAssetAddress,
     collateralScaling,
     underlyingScaling,
     zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) =>

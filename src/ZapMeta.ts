@@ -15,6 +15,7 @@ export default interface ZapMeta {
     vaultType: 'YEARN' | 'BEEFY'
     underlying: Token
     underlyingPriceSourceAddress: string
+    mooAssetAddress: string,
     zapperAddress: string
     zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => any
     zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => any
