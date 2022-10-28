@@ -1,7 +1,7 @@
 {
   "name": "@qidao/sdk",
   "license": "MIT",
-  "version": "5.1.29",
+  "version": "5.1.30",
   "description": "🛠 An SDK for building applications on top of QiDao Protocol.",
   "main": "./dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -22,7 +22,7 @@
   "scripts": {
     "build": "microbundle",
     "start": "microbundle watch",
-    "prepublishOnly": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\" && microbundle"
+    "prepack": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\" && microbundle"
   },
   "dependencies": {
     "big.js": "5.2.2",
