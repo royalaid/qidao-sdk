@@ -27,13 +27,13 @@ import {
   CAMAAVE_VAULT_ADDRESS, CAMDAI_VAULT_ADDRESS, CAMWBTC_VAULT_ADDRESS,
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
-  ChainId, MOO_BIFI_FTM_VAULT_ADDRESS,
+  ChainId, LINK_ADDRESS, MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_SCREAM_DAI_VAULT_ADDRESS,
   MOO_SCREAM_ETH_VAULT_ADDRESS, MOO_SCREAM_LINK_VAULT_ADDRESS,
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
   MOO_SCREAM_WFTM_VAULT_ADDRESS, MOO_WAVAX_VAULT_ADDRESS,
-  OG_MATIC_VAULT, WFTM_ADDRESS,
-  YVDAI_VAULT_ADDRESS,
+  OG_MATIC_VAULT, STETH_ADDRESS, WETH_ADDRESS, WFTM_ADDRESS,
+  YVDAI_VAULT_ADDRESS, YVETH_VAULT_ADDRESS, YVLINK_VAULT_ADDRESS,
   YVWBTC_VAULT_ADDRESS,
   YVWETH_VAULT_ADDRESS,
   YVWFTM_VAULT_ADDRESS,
@@ -220,6 +220,7 @@ export interface COLLATERAL {
   contractAbi: VaultContractAbi
   frontend: FRONTEND
   version: 1
+  fallbackUnderlyingAddress?: string
 }
 
 export interface GAUGE_VALID_COLLATERAL extends COLLATERAL {
@@ -249,7 +250,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'weth',
       vaultAddress: '0x98eb27E5F24FB83b7D129D789665b08C258b4cCF',
       chainId: ChainId.MAINNET,
-      token: new Token(ChainId.MAINNET, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether'),
+      token: new Token(ChainId.MAINNET, WETH_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 120,
@@ -271,6 +272,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'stake-dao-crv-eth-steth',
+      fallbackUnderlyingAddress: STETH_ADDRESS,
       vaultAddress: '0xcc61Ee649A95F2E2f0830838681f839BDb7CB823',
       chainId: ChainId.MAINNET,
       token: new Token(
@@ -289,6 +291,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yvcrv-eth-steth',
+      fallbackUnderlyingAddress: STETH_ADDRESS,
       vaultAddress: '0x82E90EB7034C1DF646bD06aFb9E67281AAb5ed28',
       chainId: ChainId.MAINNET,
       token: new Token(
@@ -307,7 +310,8 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yveth',
-      vaultAddress: '0xEcbd32bD581e241739be1763DFE7a8fFcC844ae1',
+      vaultAddress: YVETH_VAULT_ADDRESS,
+      fallbackUnderlyingAddress: WETH_ADDRESS,
       chainId: ChainId.MAINNET,
       token: new Token(ChainId.MAINNET, '0xa258C4606Ca8206D8aA700cE2143D7db854D168c', 18, 'YVETH', 'Yearn WETH'),
       contractAbi: StableQiVault__factory.abi,
@@ -319,7 +323,8 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'yvlink',
-      vaultAddress: '0x60d133c666919B54a3254E0d3F14332cB783B733',
+      vaultAddress: YVLINK_VAULT_ADDRESS,
+      fallbackUnderlyingAddress: LINK_ADDRESS,
       chainId: ChainId.MAINNET,
       token: new Token(ChainId.MAINNET, '0x671a912C10bba0CFA74Cfc2d6Fba9BA1ed9530B2', 18, 'YVLINK', 'Yearn Link'),
       contractAbi: StableQiVault__factory.abi,
