@@ -1,7 +1,7 @@
 {
   "name": "@qidao/sdk",
   "license": "MIT",
-  "version": "5.1.32",
+  "version": "5.1.33",
   "description": "🛠 An SDK for building applications on top of QiDao Protocol.",
   "main": "./dist/index.js",
   "umd:main": "dist/index.umd.js",
