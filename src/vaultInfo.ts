@@ -97,6 +97,7 @@ export type SnapshotCanonicalChoiceName =
   | 'WETH (Ethereum)'
   | 'StakeDAO Curve ETH/stETH (Eth)'
   | 'Yearn Curve ETH/stETH (Ethereum)'
+  | 'MAI DAI Arrakis Polygon'
 
 export type VaultShortName =
   | 'aave'
@@ -174,6 +175,7 @@ export type VaultShortName =
   | 'GLMVT'
   | 'LSMMVT'
   | 'STMMVT'
+  | 'maidai'
 
 type VaultContractAbi =
   | typeof Erc20Stablecoin__factory.abi
@@ -1516,6 +1518,17 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       minimumCDR: 140,
       frontend: FRONTEND.MAI,
       snapshotName: 'KNC (Polygon)',
+      version: 2,
+    },
+    {
+      shortName: 'maidai',
+      vaultAddress: '0xa914f68b81449EeC0013D055AB961A3c1652BB27',
+      chainId: ChainId.MATIC,
+      token: new Token(ChainId.MATIC, '0xB197f73B582f76cfc96d269a3A99A3604316BA47', 18, 'aMAIDAI', 'Arrakis Mai/Dai'),
+      contractAbi: StableQiVault__factory.abi,
+      connect: StableQiVault__factory.connect,
+      minimumCDR: 102,
+      frontend: FRONTEND.MAI,
       version: 2,
     },
     {
