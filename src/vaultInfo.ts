@@ -27,7 +27,7 @@ import {
   CAMAAVE_VAULT_ADDRESS, CAMDAI_VAULT_ADDRESS, CAMWBTC_VAULT_ADDRESS,
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
-  ChainId, LINK_ADDRESS, MOO_BIFI_FTM_VAULT_ADDRESS,
+  ChainId, LINK_ADDRESS, METIS_WBTC_ADDRESS, MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_SCREAM_DAI_VAULT_ADDRESS,
   MOO_SCREAM_ETH_VAULT_ADDRESS, MOO_SCREAM_LINK_VAULT_ADDRESS,
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
@@ -1589,7 +1589,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'wbtc',
       vaultAddress: '0xB89c1b3d9f335B9d8Bb16016F3d60160AE71041f',
       chainId: ChainId.METIS,
-      token: new Token(ChainId.METIS, '0xa5B55ab1dAF0F8e1EFc0eB1931a957fd89B918f4', 8, 'WBTC', 'Wrapped BTC'),
+      token: new Token(ChainId.METIS, METIS_WBTC_ADDRESS, 8, 'WBTC', 'Wrapped BTC'),
       contractAbi: StableQiVault__factory.abi,
       connect: StableQiVault__factory.connect,
       minimumCDR: 130,
@@ -1608,6 +1608,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'm.WBTC (Metis)',
+      fallbackUnderlyingAddress: METIS_WBTC_ADDRESS
     },
   ],
 }
