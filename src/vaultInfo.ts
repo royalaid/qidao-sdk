@@ -90,6 +90,7 @@ export type SnapshotCanonicalChoiceName =
   | 'METIS (Metis)'
   | 'WETH (Metis)'
   | 'WBTC (Metis)'
+  | 'm.WBTC (Metis)'
   | 'Yearn WETH (Ethereum)'
   | 'Yearn LINK (Ethereum)'
   | 'WBTC (Ethereum)'
@@ -167,6 +168,7 @@ export type VaultShortName =
   | 'xxlink'
   | 'op'
   | 'metis'
+  | 'mbtc'
   | 'knc'
   | 'xSMVT'
   | 'GLMVT'
@@ -1559,6 +1561,18 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'WBTC (Metis)',
+    },
+    {
+      shortName: 'mwbtc',
+      vaultAddress: '0x5A03716bd1f338D7849f5c9581AD5015ce0020B0',
+      chainId: ChainId.METIS,
+      token: new Token(ChainId.METIS, '0x433e43047b95cb83517abd7c9978bdf7005e9938', 8, 'm.WBTC', 'Metis Wrapped BTC'),
+      contractAbi: StableQiVault__factory.abi,
+      connect: StableQiVault__factory.connect,
+      minimumCDR: 130,
+      frontend: FRONTEND.MAI,
+      version: 2,
+      snapshotName: 'm.WBTC (Metis)',
     },
   ],
 }
