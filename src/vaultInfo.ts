@@ -861,7 +861,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     {
       shortName: 'beefy-aave-weth',
       vaultAddress: '0xF9CE2522027bD40D3b1aEe4abe969831FE3BeAf5',
-      fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006'
+      fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
       chainId: ChainId.OPTIMISM,
       connect: StableQiVault__factory.connect,
       contractAbi: StableQiVault__factory.abi,
@@ -1485,7 +1485,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       shortName: 'xxdai',
       vaultAddress: '0xaa19d0e397c964a35e6e80262c692dbfC9C23451',
       chainId: ChainId.MATIC,
-      fallbackUnderlyingAddress: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063'
+      fallbackUnderlyingAddress: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
       minimumCDR: 110,
       token: new Token(ChainId.MATIC, '0xf52B3250E026E0307d7d717AE0f331baAA4F83a8', 18, 'xxDAI', 'Tetu xxDAI'),
       contractAbi: StableQiVault__factory.abi,
