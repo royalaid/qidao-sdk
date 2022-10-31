@@ -168,7 +168,7 @@ export type VaultShortName =
   | 'xxlink'
   | 'op'
   | 'metis'
-  | 'mbtc'
+  | 'mwbtc'
   | 'knc'
   | 'xSMVT'
   | 'GLMVT'
