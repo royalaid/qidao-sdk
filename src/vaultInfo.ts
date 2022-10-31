@@ -1522,7 +1522,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     },
     {
       shortName: 'maidai',
-      vaultAddress: '0xa914f68b81449EeC0013D055AB961A3c1652BB27',
+      vaultAddress: '0xCE0f1a5F4F2bC526A1495716184D719Ba93d8ebA',
       chainId: ChainId.MATIC,
       token: new Token(ChainId.MATIC, '0xB197f73B582f76cfc96d269a3A99A3604316BA47', 18, 'aMAIDAI', 'Arrakis Mai/Dai'),
       contractAbi: StableQiVault__factory.abi,
