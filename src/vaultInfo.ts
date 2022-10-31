@@ -1529,6 +1529,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       connect: StableQiVault__factory.connect,
       minimumCDR: 102,
       frontend: FRONTEND.MAI,
+      fallbackUnderlyingAddress: OG_MATIC_VAULT,
       version: 2,
     },
     {
