@@ -24,6 +24,7 @@ import {
 } from './contracts'
 import { Token } from './entities'
 import {
+  AAVE_ADDRESS,
   CAMAAVE_VAULT_ADDRESS, CAMDAI_VAULT_ADDRESS, CAMWBTC_VAULT_ADDRESS,
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
@@ -1180,7 +1181,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       chainId: ChainId.MATIC,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/mai-finance-cam-aave-vaults',
       vaultAddress: CAMAAVE_VAULT_ADDRESS,
-      fallbackUnderlyingAddress: "0x87ee36f780ae843A78D5735867bc1c13792b7b11",
+      fallbackUnderlyingAddress: AAVE_ADDRESS,
       token: new Token(
         ChainId.MATIC,
         '0xeA4040B21cb68afb94889cB60834b13427CFc4EB',
@@ -1204,7 +1205,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       vaultAddress: '0x87ee36f780ae843A78D5735867bc1c13792b7b11',
       contractAbi: Erc20Stablecoin__factory.abi,
       connect: Erc20Stablecoin__factory.connect,
-      token: new Token(ChainId.MATIC, '0xD6DF932A45C0f255f85145f286eA0b292B21C90B', 18, 'AAVE', 'Aave'),
+      token: new Token(ChainId.MATIC, AAVE_ADDRESS, 18, 'AAVE', 'Aave'),
       minimumCDR: 130,
       frontend: FRONTEND.MAI,
       version: 1,
