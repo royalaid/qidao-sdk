@@ -21,9 +21,8 @@
   "keywords": [],
   "scripts": {
     "checkTokens": "node src/scripts/validateCoinGeckoFallbackTokens.mjs",
-    "build": "microbundle",
-    "start": "microbundle watch",
-    "prepack": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\" && microbundle"
+    "build": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\" && microbundle",
+    "start": "microbundle watch"
   },
   "dependencies": {
     "big.js": "5.2.2",
