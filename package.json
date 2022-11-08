@@ -52,6 +52,7 @@
     "@types/jest": "28.1.6",
     "@types/lodash": "^4.14.185",
     "ethers": "5.7.0",
+    "isomorphic-fetch":" ^3.0.0",
     "microbundle": "0.15.1",
     "p-queue": "^7.3.0",
     "typechain": "8.1.0",
