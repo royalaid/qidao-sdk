@@ -20,6 +20,7 @@
   "repository": "https://github.com/royalaid/sushiswap-sdk",
   "keywords": [],
   "scripts": {
+    "checkTokens": "node src/scripts/validateCoinGeckoFallbackTokens.mjs",
     "build": "microbundle",
     "start": "microbundle watch",
     "prepack": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\" && microbundle"
@@ -53,6 +54,7 @@
     "@types/lodash": "^4.14.185",
     "ethers": "5.7.0",
     "microbundle": "0.15.1",
+    "p-queue": "^7.3.0",
     "typechain": "8.1.0",
     "typescript": "4.7.4"
   },
