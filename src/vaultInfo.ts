@@ -246,7 +246,7 @@ export function isV2QiVault(collateral: COLLATERAL | COLLATERAL_V2 | GAUGE_VALID
 }
 
 export function isGaugeValid(collateral: COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2): collateral is GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2{
-  return (collateral as GAUGE_VALID_COLLATERAL).snapshotName !== undefined
+  return ((collateral as GAUGE_VALID_COLLATERAL).snapshotName !== undefined && !collateral.depreciated)
 }
 
 export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[] } = {
@@ -1597,6 +1597,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       minimumCDR: 130,
       frontend: FRONTEND.MAI,
       version: 2,
+      depreciated: true,
       snapshotName: 'WBTC (Metis)',
     },
     {
