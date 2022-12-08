@@ -1,5 +1,8 @@
 import { BigNumber, Contract, Signer } from 'ethers'
 import BeefyZapperABI from './abis/BeefyZapper.json'
+import QiZappahABI from './abis/QiZappah.json'
+import ThreeStepQiZappah from './abis/ThreeStepQiZappah.json'
+
 import {
   CAMAAVE_VAULT_ADDRESS, CAMDAI_VAULT_ADDRESS, CAMWBTC_VAULT_ADDRESS,
   CAMWETH_VAULT_ADDRESS,
@@ -10,15 +13,15 @@ import {
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
   MOO_SCREAM_WFTM_VAULT_ADDRESS,
   MOO_WAVAX_VAULT_ADDRESS,
-  WFTM_ADDRESS,
+  WFTM_ADDRESS, WSTETH_VAULT_ADDRESS,
   YVDAI_VAULT_ADDRESS,
-  YVWBTC_VAULT_ADDRESS,
+  YVWBTC_VAULT_ADDRESS, YVWETH_OPTIMISM_VAULT_ADDRESS,
   YVWETH_VAULT_ADDRESS,
   YVWFTM_VAULT_ADDRESS,
   YVYFI_VAULT_ADDRESS
 } from './constants'
 import { Token } from './entities'
-import ZapMeta, { CamMeta, ScalingInfo } from './ZapMeta'
+import ZapMeta, {CamMeta, QiZapMeta, QiZapThreeStepMeta, ScalingInfo} from './ZapMeta'
 
 const ftmZapperAddress = '0xE2379CB4c4627E5e9dF459Ce08c2342C696C4c1f'
 const avaxZapperAddress = '0x1d0a9E2c445EB8f99767eF289832637921e6F6a5'
@@ -101,7 +104,6 @@ function beefyZapperInfo({
   }
 }
 
-
 export const ZAP_META: { [c in ChainId]?: { [s in string]: ZapMeta } } = {
   [ChainId.AVALANCHE]: {
     [MOO_WAVAX_VAULT_ADDRESS]: beefyZapperInfo({
@@ -132,7 +134,7 @@ export const ZAP_META: { [c in ChainId]?: { [s in string]: ZapMeta } } = {
       vaultType: 'YEARN',
       zapperAddress: ftmZapperAddress,
       underlying: new Token(ChainId.FANTOM, '0x321162cd933e2be498cd2267a90534a804051b11', 8, 'WBTC', 'Wrapped Bitcoin'),
-      underlyingPriceSourceAddress: '0xdb382c87344eB3008989569e907e759eCFDEb624',
+      underlyingPriceSourceAddress: '0x8e94C22142F4A64b99022ccDd994f4e9EC86E4B4',
       collateralScaling: { priceScalingFactor: { scalingFactor: 1e10, scaleVia: 'mul' } },
       underlyingScaling: { liquidationScalingFactor: { scalingFactor: 1e10, scaleVia: 'div' } },
       mooAssetAddress: '0xd817a100ab8a29fe3dbd925c2eb489d67f758da9',
@@ -214,10 +216,88 @@ export const ZAP_META: { [c in ChainId]?: { [s in string]: ZapMeta } } = {
   },
 }
 
-export const CAMZAPPER_ADDRESS: { [chainId in ChainId]?: string } = {
-  [ChainId.MATIC]: '0xd8d22817D216164D09Ca5909A70bEcA608D65Aa9',
+export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta | QiZapThreeStepMeta } } = {
+  [ChainId.OPTIMISM]:
+    {
+      [WSTETH_VAULT_ADDRESS]: {
+        underlyingPriceSourceAddress: '0x41878779a388585509657CE5Fb95a80050502186',
+        perfToken: '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878',
+        underlying: new Token(ChainId.OPTIMISM, '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb', 18, 'wstETH', 'Wrapped liquid staked Ether 2.0'),
+        zapperAddress: '0x1D864EDCA89b99580C46CEC4091103D7fb85aDCF',
+        zapInFunction: (
+          amount: BigNumber,
+          vaultIndex: BigNumber,
+          signer: Signer,
+        ) => {
+          const zapperAddress = '0x1D864EDCA89b99580C46CEC4091103D7fb85aDCF'
+          const perfToken = '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878'
+          const assetAddress = '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb'
+          const mooAssetVaultAddress = WSTETH_VAULT_ADDRESS
+          const zapperContract = new Contract(zapperAddress, ThreeStepQiZappah, signer)
+          return zapperContract.beefyZapToVault(amount, vaultIndex, assetAddress, perfToken, mooAssetVaultAddress, {
+              gasLimit: 3500000,
+            })
+        },
+        zapOutFunction: (
+          amount: BigNumber,
+          vaultIndex: BigNumber,
+          signer: Signer,
+        ) => {
+          const zapperAddress = '0x1D864EDCA89b99580C46CEC4091103D7fb85aDCF'
+          const assetAddress = '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb'
+          const perfToken = '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878'
+          const mooAssetVaultAddress = WSTETH_VAULT_ADDRESS
+          const zapperContract = new Contract(zapperAddress, ThreeStepQiZappah, signer)
+          return zapperContract.beefyZapFromVault(amount, vaultIndex, assetAddress, perfToken,  mooAssetVaultAddress, {
+            gasLimit: 3500000,
+          })
+        },
+      },
+      [YVWETH_OPTIMISM_VAULT_ADDRESS]: {
+        underlyingPriceSourceAddress: '0x13e3ee699d1909e989722e753853ae30b17e08c5',
+        perfToken: '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982',
+        underlying: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000006', 18, 'WETH', 'Wrapped Ether'),
+        mooAssetAddress: '0xA628c54C850ff1077b5C954491D19EccE7e321fF',
+        zapperAddress: '0xB0aed7923f7fBEAf5bb2caa4A049A51d638Be2c9',
+        zapInFunction: (
+          amount: BigNumber,
+          vaultIndex: BigNumber,
+          signer: Signer,
+        ) => {
+          const zapperAddress = '0xB0aed7923f7fBEAf5bb2caa4A049A51d638Be2c9'
+          const assetAddress = '0x4200000000000000000000000000000000000006'
+          const mooAssetAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
+          const perfToken = '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982'
+          const mooAssetVaultAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
+          const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
+          return zapperContract.beefyZapToVault(amount, vaultIndex, assetAddress,
+            mooAssetAddress, perfToken, mooAssetVaultAddress, {
+            gasLimit: 3500000,
+          })
+        },
+        zapOutFunction: (
+          amount: BigNumber,
+          vaultIndex: BigNumber,
+          signer: Signer,
+        ) => {
+          const zapperAddress = '0xB0aed7923f7fBEAf5bb2caa4A049A51d638Be2c9'
+          const assetAddress = '0x4200000000000000000000000000000000000006'
+          const mooAssetAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
+          const perfToken = '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982'
+          const mooAssetVaultAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
+          const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
+          return zapperContract.beefyZapFromVault(amount, vaultIndex, assetAddress,
+            mooAssetAddress, perfToken, mooAssetVaultAddress, {
+              gasLimit: 3500000,
+            })
+        },
+      }
+    }
 }
 
+export const CAMZAPPER_ADDRESS = {
+  [ChainId.MATIC]: '0xd8d22817D216164D09Ca5909A70bEcA608D65Aa9',
+}
 
 export const CAM_META: { [c in ChainId]?: { [s in string]: CamMeta } } = {
   [ChainId.MATIC]: {

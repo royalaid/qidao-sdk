@@ -33,9 +33,9 @@ import {
   MOO_SCREAM_ETH_VAULT_ADDRESS, MOO_SCREAM_LINK_VAULT_ADDRESS,
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
   MOO_SCREAM_WFTM_VAULT_ADDRESS, MOO_WAVAX_VAULT_ADDRESS,
-  OG_MATIC_VAULT, STETH_ADDRESS, WETH_ADDRESS, WFTM_ADDRESS,
+  OG_MATIC_VAULT, STETH_ADDRESS, WETH_ADDRESS, WFTM_ADDRESS, WSTETH_VAULT_ADDRESS,
   YVDAI_VAULT_ADDRESS, YVETH_VAULT_ADDRESS, YVLINK_VAULT_ADDRESS,
-  YVWBTC_VAULT_ADDRESS,
+  YVWBTC_VAULT_ADDRESS, YVWETH_OPTIMISM_VAULT_ADDRESS,
   YVWETH_VAULT_ADDRESS,
   YVWFTM_VAULT_ADDRESS,
   YVYFI_VAULT_ADDRESS
@@ -99,6 +99,8 @@ export type SnapshotCanonicalChoiceName =
   | 'StakeDAO Curve ETH/stETH (Eth)'
   | 'Yearn Curve ETH/stETH (Ethereum)'
   | 'MAI DAI Arrakis Polygon'
+  | 'Wrapped Staked ETH (Optimism)'
+  | 'Yearn vault ETH (Optimism)'
 
 export type VaultShortName =
   | 'aave'
@@ -177,6 +179,8 @@ export type VaultShortName =
   | 'LSMMVT'
   | 'STMMVT'
   | 'maidai'
+  | 'yvweth'
+  | 'wsteth'
 
 type VaultContractAbi =
   | typeof Erc20Stablecoin__factory.abi
@@ -899,6 +903,44 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       version: 2,
       snapshotName: 'Beefy Aave BTC (Optimism)',
     },
+    {
+      shortName: 'wsteth',
+      vaultAddress: WSTETH_VAULT_ADDRESS,
+      fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
+      chainId: ChainId.OPTIMISM,
+      connect: StableQiVault__factory.connect,
+      contractAbi: StableQiVault__factory.abi,
+      token: new Token(
+        ChainId.OPTIMISM,
+        '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878',
+        18,
+        'wstETH',
+        'Wrapped liquid staked Ether 2.0'
+      ),
+      minimumCDR: 135,
+      frontend: FRONTEND.MAI,
+      version: 2,
+      snapshotName: 'Wrapped Staked ETH (Optimism)',
+    },
+    {
+      shortName: 'yvweth',
+      vaultAddress: YVWETH_OPTIMISM_VAULT_ADDRESS,
+      fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
+      chainId: ChainId.OPTIMISM,
+      connect: StableQiVault__factory.connect,
+      contractAbi: StableQiVault__factory.abi,
+      token: new Token(
+        ChainId.OPTIMISM,
+        '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982',
+        18,
+        'yvWETH',
+        'WETH yVault'
+      ),
+      minimumCDR: 135,
+      frontend: FRONTEND.MAI,
+      version: 2,
+      snapshotName: 'Yearn vault ETH (Optimism)',
+    }
   ],
   [ChainId.MOONRIVER]: [
     {

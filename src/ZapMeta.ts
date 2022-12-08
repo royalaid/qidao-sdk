@@ -29,3 +29,22 @@ export interface CamMeta {
     amTokenAddress: string
     camTokenAddress: string
 }
+
+export interface QiZapThreeStepMeta {
+    underlying: Token
+    underlyingPriceSourceAddress: string
+    perfToken: string
+    zapperAddress: string
+    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => any
+    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => any
+}
+
+export interface QiZapMeta {
+    underlying: Token
+    underlyingPriceSourceAddress: string
+    mooAssetAddress: string,
+    perfToken: string
+    zapperAddress: string
+    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => any
+    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => any
+}
