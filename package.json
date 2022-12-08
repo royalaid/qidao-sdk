@@ -22,6 +22,7 @@
   "scripts": {
     "checkTokens": "node src/scripts/validateCoinGeckoFallbackTokens.mjs",
     "build": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\" && microbundle",
+    "prepack": "typechain  --discriminate-types --target ethers-v5 --out-dir src/contracts \"src/abis/toGenerate/**/*.json\" && microbundle",
     "start": "microbundle watch"
   },
   "dependencies": {
