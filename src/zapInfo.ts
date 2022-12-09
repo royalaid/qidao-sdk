@@ -255,9 +255,9 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
       },
       [YVWETH_OPTIMISM_VAULT_ADDRESS]: {
         underlyingPriceSourceAddress: '0x13e3ee699d1909e989722e753853ae30b17e08c5',
-        perfToken: '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982',
         underlying: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000006', 18, 'WETH', 'Wrapped Ether'),
-        mooAssetAddress: '0xA628c54C850ff1077b5C954491D19EccE7e321fF',
+        mooAssetAddress: '0x5B977577Eb8a480f63e11FC615D6753adB8652Ae',
+        perfToken: '0x881Dace37C6fa4a5364Bf4806D0e9F8DAD8098e8',
         zapperAddress: '0xB0aed7923f7fBEAf5bb2caa4A049A51d638Be2c9',
         zapInFunction: (
           amount: BigNumber,
@@ -266,9 +266,9 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
         ) => {
           const zapperAddress = '0xB0aed7923f7fBEAf5bb2caa4A049A51d638Be2c9'
           const assetAddress = '0x4200000000000000000000000000000000000006'
-          const mooAssetAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
-          const perfToken = '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982'
-          const mooAssetVaultAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
+          const mooAssetAddress = '0x5B977577Eb8a480f63e11FC615D6753adB8652Ae'
+          const perfToken = '0x881Dace37C6fa4a5364Bf4806D0e9F8DAD8098e8'
+          const mooAssetVaultAddress = YVWETH_OPTIMISM_VAULT_ADDRESS
           const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
           return zapperContract.beefyZapToVault(amount, vaultIndex, assetAddress,
             mooAssetAddress, perfToken, mooAssetVaultAddress, {
@@ -282,9 +282,9 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
         ) => {
           const zapperAddress = '0xB0aed7923f7fBEAf5bb2caa4A049A51d638Be2c9'
           const assetAddress = '0x4200000000000000000000000000000000000006'
-          const mooAssetAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
-          const perfToken = '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982'
-          const mooAssetVaultAddress = '0xA628c54C850ff1077b5C954491D19EccE7e321fF'
+          const mooAssetAddress = '0x5B977577Eb8a480f63e11FC615D6753adB8652Ae'
+          const perfToken = '0x881Dace37C6fa4a5364Bf4806D0e9F8DAD8098e8'
+          const mooAssetVaultAddress = YVWETH_OPTIMISM_VAULT_ADDRESS
           const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
           return zapperContract.beefyZapFromVault(amount, vaultIndex, assetAddress,
             mooAssetAddress, perfToken, mooAssetVaultAddress, {
