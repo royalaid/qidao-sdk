@@ -946,7 +946,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
     {
       shortName: 'beefy-eth-steth-crv',
       vaultAddress: MOO_ETH_STETH_CRV_VAULT_ADDRESS,
-      fallbackUnderlyingAddress: '',
+      fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
       chainId: ChainId.OPTIMISM,
       connect: StableQiVault__factory.connect,
       contractAbi: StableQiVault__factory.abi,
@@ -955,7 +955,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
         '0x0892a178c363b4739e5Ac89E9155B9c30214C0c0',
         18,
         'mooCurveWSTETH',
-        ' Moo Curve wstETH  '
+        'Moo Curve wstETH'
       ),
       minimumCDR: 130,
       frontend: FRONTEND.MAI,

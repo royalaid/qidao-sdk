@@ -294,9 +294,9 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
         },
       },
       [MOO_ETH_STETH_CRV_VAULT_ADDRESS]: {
-        underlyingPriceSourceAddress: '',
+        underlyingPriceSourceAddress: '0x41878779a388585509657CE5Fb95a80050502186',
         perfToken: '0x0A53AB9005B495398E9e4aEF29ab32E34A777AF0',
-        underlying: new Token(ChainId.OPTIMISM, '', 18, 'wstETH', ''),
+        underlying: new Token(ChainId.OPTIMISM, '0x0892a178c363b4739e5Ac89E9155B9c30214C0c0', 18, 'mooCurveWSTETH', 'Moo Curve wstETH'),
         zapperAddress: OP_THREE_STEP_ZAPPER,
         zapInFunction: (
           amount: BigNumber,
