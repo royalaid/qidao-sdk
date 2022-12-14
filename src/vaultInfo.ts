@@ -32,7 +32,7 @@ import {
   MOO_SCREAM_DAI_VAULT_ADDRESS,
   MOO_SCREAM_ETH_VAULT_ADDRESS, MOO_SCREAM_LINK_VAULT_ADDRESS,
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
-  MOO_SCREAM_WFTM_VAULT_ADDRESS, MOO_WAVAX_VAULT_ADDRESS,
+  MOO_SCREAM_WFTM_VAULT_ADDRESS, MOO_ETH_STETH_CRV_VAULT_ADDRESS, MOO_WAVAX_VAULT_ADDRESS,
   OG_MATIC_VAULT, STETH_ADDRESS, WETH_ADDRESS, WFTM_ADDRESS, WSTETH_VAULT_ADDRESS,
   YVDAI_VAULT_ADDRESS, YVETH_VAULT_ADDRESS, YVLINK_VAULT_ADDRESS,
   YVWBTC_VAULT_ADDRESS, YVWETH_OPTIMISM_VAULT_ADDRESS,
@@ -101,6 +101,7 @@ export type SnapshotCanonicalChoiceName =
   | 'MAI DAI Arrakis Polygon'
   | 'Wrapped Staked ETH (Optimism)'
   | 'Yearn vault ETH (Optimism)'
+  | 'Moo stETH Curve (Optimism)'
 
 export type VaultShortName =
   | 'aave'
@@ -181,6 +182,7 @@ export type VaultShortName =
   | 'maidai'
   | 'yvweth'
   | 'wsteth'
+  | 'beefy-eth-steth-crv'
 
 type VaultContractAbi =
   | typeof Erc20Stablecoin__factory.abi
@@ -940,6 +942,25 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'Yearn vault ETH (Optimism)',
+    },
+    {
+      shortName: 'beefy-eth-steth-crv',
+      vaultAddress: MOO_ETH_STETH_CRV_VAULT_ADDRESS,
+      fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
+      chainId: ChainId.OPTIMISM,
+      connect: StableQiVault__factory.connect,
+      contractAbi: StableQiVault__factory.abi,
+      token: new Token(
+        ChainId.OPTIMISM,
+        '0x0892a178c363b4739e5Ac89E9155B9c30214C0c0',
+        18,
+        'mooCurveWSTETH',
+        'Moo Curve wstETH'
+      ),
+      minimumCDR: 130,
+      frontend: FRONTEND.MAI,
+      version: 2,
+      snapshotName: 'Moo stETH Curve (Optimism)',
     }
   ],
   [ChainId.MOONRIVER]: [
