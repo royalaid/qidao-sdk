@@ -7,7 +7,7 @@ import {
   CAMAAVE_VAULT_ADDRESS, CAMDAI_VAULT_ADDRESS, CAMWBTC_VAULT_ADDRESS,
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
-  ChainId, MOO_BIFI_FTM_VAULT_ADDRESS,
+  ChainId, MOO_BIFI_FTM_VAULT_ADDRESS, MOO_ETH_STETH_CRV_VAULT_ADDRESS,
   MOO_SCREAM_DAI_VAULT_ADDRESS,
   MOO_SCREAM_ETH_VAULT_ADDRESS, MOO_SCREAM_LINK_VAULT_ADDRESS,
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
@@ -216,6 +216,7 @@ export const ZAP_META: { [c in ChainId]?: { [s in string]: ZapMeta } } = {
   },
 }
 
+const OP_THREE_STEP_ZAPPER = '0x1D864EDCA89b99580C46CEC4091103D7fb85aDCF';
 export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta | QiZapThreeStepMeta } } = {
   [ChainId.OPTIMISM]:
     {
@@ -223,13 +224,13 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
         underlyingPriceSourceAddress: '0x41878779a388585509657CE5Fb95a80050502186',
         perfToken: '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878',
         underlying: new Token(ChainId.OPTIMISM, '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb', 18, 'wstETH', 'Wrapped liquid staked Ether 2.0'),
-        zapperAddress: '0x1D864EDCA89b99580C46CEC4091103D7fb85aDCF',
+        zapperAddress: OP_THREE_STEP_ZAPPER,
         zapInFunction: (
           amount: BigNumber,
           vaultIndex: BigNumber,
           signer: Signer,
         ) => {
-          const zapperAddress = '0x1D864EDCA89b99580C46CEC4091103D7fb85aDCF'
+          const zapperAddress = OP_THREE_STEP_ZAPPER
           const perfToken = '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878'
           const assetAddress = '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb'
           const mooAssetVaultAddress = WSTETH_VAULT_ADDRESS
@@ -243,7 +244,7 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
           vaultIndex: BigNumber,
           signer: Signer,
         ) => {
-          const zapperAddress = '0x1D864EDCA89b99580C46CEC4091103D7fb85aDCF'
+          const zapperAddress = OP_THREE_STEP_ZAPPER
           const assetAddress = '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb'
           const perfToken = '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878'
           const mooAssetVaultAddress = WSTETH_VAULT_ADDRESS
@@ -290,6 +291,40 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
             mooAssetAddress, perfToken, mooAssetVaultAddress, {
               gasLimit: 3500000,
             })
+        },
+      },
+      [MOO_ETH_STETH_CRV_VAULT_ADDRESS]: {
+        underlyingPriceSourceAddress: '',
+        perfToken: '0x0A53AB9005B495398E9e4aEF29ab32E34A777AF0',
+        underlying: new Token(ChainId.OPTIMISM, '', 18, 'wstETH', ''),
+        zapperAddress: OP_THREE_STEP_ZAPPER,
+        zapInFunction: (
+          amount: BigNumber,
+          vaultIndex: BigNumber,
+          signer: Signer,
+        ) => {
+          const zapperAddress = OP_THREE_STEP_ZAPPER
+          const perfToken = '0x0A53AB9005B495398E9e4aEF29ab32E34A777AF0'
+          const assetAddress = '0x0892a178c363b4739e5Ac89E9155B9c30214C0c0'
+          const mooAssetVaultAddress = MOO_ETH_STETH_CRV_VAULT_ADDRESS
+          const zapperContract = new Contract(zapperAddress, ThreeStepQiZappah, signer)
+          return zapperContract.beefyZapToVault(amount, vaultIndex, assetAddress, perfToken, mooAssetVaultAddress, {
+              gasLimit: 3500000,
+            })
+        },
+        zapOutFunction: (
+          amount: BigNumber,
+          vaultIndex: BigNumber,
+          signer: Signer,
+        ) => {
+          const zapperAddress = OP_THREE_STEP_ZAPPER
+          const assetAddress = '0x0892a178c363b4739e5Ac89E9155B9c30214C0c0'
+          const perfToken = '0x0A53AB9005B495398E9e4aEF29ab32E34A777AF0'
+          const mooAssetVaultAddress = MOO_ETH_STETH_CRV_VAULT_ADDRESS
+          const zapperContract = new Contract(zapperAddress, ThreeStepQiZappah, signer)
+          return zapperContract.beefyZapFromVault(amount, vaultIndex, assetAddress, perfToken,  mooAssetVaultAddress, {
+            gasLimit: 3500000,
+          })
         },
       }
     }
