@@ -914,7 +914,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       contractAbi: StableQiVault__factory.abi,
       token: new Token(
         ChainId.OPTIMISM,
-        '0x77965B3282DFdeB258B7ad77e833ad7Ee508B878',
+        '0x926B92B15385981416a5E0Dcb4f8b31733d598Cf',
         18,
         'wstETH',
         'Wrapped liquid staked Ether 2.0'
@@ -933,7 +933,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       contractAbi: StableQiVault__factory.abi,
       token: new Token(
         ChainId.OPTIMISM,
-        '0x5A6325c3E3c88Dbcd52a8d55a31b342d09fa7982',
+        '0x22f39d6535dF5767f8F57FEE3B2F941410773ec4',
         18,
         'yvWETH',
         'WETH yVault'
@@ -952,7 +952,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       contractAbi: StableQiVault__factory.abi,
       token: new Token(
         ChainId.OPTIMISM,
-        '0x0892a178c363b4739e5Ac89E9155B9c30214C0c0',
+        '0x480798FAC621adD14113ECC82638305c260cEaf1',
         18,
         'mooCurveWSTETH',
         'Moo Curve wstETH'
