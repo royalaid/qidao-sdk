@@ -230,13 +230,13 @@ function generateQiZapper({perfToken, underlyingPriceSourceAddress, underlying, 
     zapperAddress,
     zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => {
       const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
-      return zapperContract.beefyZapToVault(amount, vaultIndex, underlying.address, perfToken, mooAssetVaultAddress, {
+      return zapperContract.beefyZapToVault(amount, vaultIndex, underlying.address, mooAssetAddress, perfToken, mooAssetVaultAddress, {
         gasLimit: 3500000,
       })
     },
     zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer) => {
       const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
-      return zapperContract.beefyZapFromVault(amount, vaultIndex, underlying.address, perfToken, mooAssetVaultAddress, {
+      return zapperContract.beefyZapFromVault(amount, vaultIndex, underlying.address, mooAssetAddress, perfToken, mooAssetVaultAddress, {
         gasLimit: 3500000,
       })
     },
