@@ -101,7 +101,7 @@ export type SnapshotCanonicalChoiceName =
   | 'MAI DAI Arrakis Polygon'
   | 'Wrapped Staked ETH (Optimism)'
   | 'Yearn vault ETH (Optimism)'
-  | 'Moo stETH Curve (Optimism)'
+  | 'Beefy stETH Curve (Optimism)'
 
 export type VaultShortName =
   | 'aave'
@@ -955,12 +955,12 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
         '0x480798FAC621adD14113ECC82638305c260cEaf1',
         18,
         'mooCurveWSTETH',
-        'Moo Curve wstETH'
+        'Beefy OP Curve ETH/stETH'
       ),
       minimumCDR: 130,
       frontend: FRONTEND.MAI,
       version: 2,
-      snapshotName: 'Moo stETH Curve (Optimism)',
+      snapshotName: 'Beefy stETH Curve (Optimism)',
     }
   ],
   [ChainId.MOONRIVER]: [
