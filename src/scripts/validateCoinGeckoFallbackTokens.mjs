@@ -25,7 +25,7 @@ function collateralName(c) {
 }
 
 const main = async () => {
-  const queue = new PQueue({concurrency: 1, interval: 1200, intervalCap: 1});
+  const queue = new PQueue({concurrency: 1, interval: 5005, intervalCap: 1});
 
   const fallBackCollaterals = Object.values(COLLATERALS).flat().filter(c => c.fallbackUnderlyingAddress)
 
