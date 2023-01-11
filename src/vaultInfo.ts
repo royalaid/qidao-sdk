@@ -22,23 +22,39 @@ import {
   Erc20QiStablecoinwbtc__factory,
   Erc20QiStablecoincamwbtc__factory,
 } from './contracts'
+import { QiStablecoin__factory } from './contracts/factories/QiStablecoin__factory'
 import { Token } from './entities'
 import {
   AAVE_ADDRESS,
-  CAMAAVE_VAULT_ADDRESS, CAMDAI_VAULT_ADDRESS, CAMWBTC_VAULT_ADDRESS,
+  CAMAAVE_VAULT_ADDRESS,
+  CAMDAI_VAULT_ADDRESS,
+  CAMWBTC_VAULT_ADDRESS,
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
-  ChainId, LINK_ADDRESS, METIS_WBTC_ADDRESS, MOO_BIFI_FTM_VAULT_ADDRESS,
+  ChainId,
+  LINK_ADDRESS,
+  METIS_WBTC_ADDRESS,
+  MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_SCREAM_DAI_VAULT_ADDRESS,
-  MOO_SCREAM_ETH_VAULT_ADDRESS, MOO_SCREAM_LINK_VAULT_ADDRESS,
+  MOO_SCREAM_ETH_VAULT_ADDRESS,
+  MOO_SCREAM_LINK_VAULT_ADDRESS,
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
-  MOO_SCREAM_WFTM_VAULT_ADDRESS, MOO_ETH_STETH_CRV_VAULT_ADDRESS, MOO_WAVAX_VAULT_ADDRESS,
-  OG_MATIC_VAULT, STETH_ADDRESS, WETH_ADDRESS, WFTM_ADDRESS, WSTETH_VAULT_ADDRESS,
-  YVDAI_VAULT_ADDRESS, YVETH_VAULT_ADDRESS, YVLINK_VAULT_ADDRESS,
-  YVWBTC_VAULT_ADDRESS, YVWETH_OPTIMISM_VAULT_ADDRESS,
+  MOO_SCREAM_WFTM_VAULT_ADDRESS,
+  MOO_ETH_STETH_CRV_VAULT_ADDRESS,
+  MOO_WAVAX_VAULT_ADDRESS,
+  OG_MATIC_VAULT,
+  STETH_ADDRESS,
+  WETH_ADDRESS,
+  WFTM_ADDRESS,
+  WSTETH_VAULT_ADDRESS,
+  YVDAI_VAULT_ADDRESS,
+  YVETH_VAULT_ADDRESS,
+  YVLINK_VAULT_ADDRESS,
+  YVWBTC_VAULT_ADDRESS,
+  YVWETH_OPTIMISM_VAULT_ADDRESS,
   YVWETH_VAULT_ADDRESS,
   YVWFTM_VAULT_ADDRESS,
-  YVYFI_VAULT_ADDRESS
+  YVYFI_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -184,17 +200,21 @@ export type VaultShortName =
   | 'wsteth'
   | 'beefy-eth-steth-crv'
 
-type VaultContractAbi =
+export type VaultContractAbiV1 =
+  | typeof QiStablecoin__factory.abi
   | typeof Erc20Stablecoin__factory.abi
   | typeof Erc20QiStablecoinwbtc__factory.abi
   | typeof Erc20QiStablecoincamwbtc__factory.abi
-  | typeof StableQiVault__factory.abi
   | typeof CrosschainQiStablecoin__factory.abi
   | typeof CrosschainNativeQiStablecoin__factory.abi
   | typeof CrosschainQiStablecoinV2__factory.abi
   | typeof CrosschainQiStablecoinSlim__factory.abi
   | typeof CrosschainQiStablecoinSlimV2__factory.abi
   | typeof CrosschainQiStablecoinwbtc__factory.abi
+
+export type VaultContractAbiV2 = typeof StableQiVault__factory.abi
+
+export type VaultContractAbi = VaultContractAbiV1 | VaultContractAbiV2
 
 export enum FRONTEND {
   MAI,
@@ -211,7 +231,6 @@ export interface COLLATERAL {
     | Erc20Stablecoin
     | Erc20QiStablecoinwbtc
     | Erc20QiStablecoincamwbtc
-    | StableQiVault
     | CrosschainQiStablecoin
     | CrosschainNativeQiStablecoin
     | CrosschainQiStablecoinV2
@@ -228,7 +247,7 @@ export interface COLLATERAL {
   token: Token
   vaultAddress: string
   shortName: VaultShortName
-  contractAbi: VaultContractAbi
+  contractAbi: VaultContractAbiV1
   frontend: FRONTEND
   version: 1
   fallbackUnderlyingAddress?: string
@@ -238,24 +257,31 @@ export interface GAUGE_VALID_COLLATERAL extends COLLATERAL {
   snapshotName: SnapshotCanonicalChoiceName
 }
 
-export interface COLLATERAL_V2 extends Omit<COLLATERAL, 'version'> {
+export interface COLLATERAL_V2 extends Omit<COLLATERAL, 'version' | 'connect' | 'contractAbi'> {
   version: 2
+  connect(address: string, signerOrProvider: Signer | Provider): StableQiVault
+  contractAbi: VaultContractAbiV2
 }
 
 export interface GAUGE_VALID_COLLATERAL_V2 extends COLLATERAL_V2 {
   snapshotName: SnapshotCanonicalChoiceName
 }
 
-
-export function isV2QiVault(collateral: COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2): collateral is COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2 {
+export function isV2QiVault(
+  collateral: COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2
+): collateral is COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2 {
   return collateral.version === 2
 }
 
-export function isGaugeValid(collateral: COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2): collateral is GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2{
-  return ((collateral as GAUGE_VALID_COLLATERAL).snapshotName !== undefined && !collateral.depreciated)
+export function isGaugeValid(
+  collateral: COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2
+): collateral is GAUGE_VALID_COLLATERAL | GAUGE_VALID_COLLATERAL_V2 {
+  return (collateral as GAUGE_VALID_COLLATERAL).snapshotName !== undefined && !collateral.depreciated
 }
 
-export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[] } = {
+export const COLLATERALS: {
+  [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+} = {
   [ChainId.MAINNET]: [
     {
       shortName: 'weth',
@@ -267,7 +293,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       minimumCDR: 120,
       frontend: FRONTEND.MAI,
       version: 2,
-      snapshotName: 'WETH (Ethereum)'
+      snapshotName: 'WETH (Ethereum)',
     },
     {
       shortName: 'wbtc',
@@ -279,7 +305,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       minimumCDR: 120,
       frontend: FRONTEND.MAI,
       version: 2,
-      snapshotName: 'WBTC (Ethereum)'
+      snapshotName: 'WBTC (Ethereum)',
     },
     {
       shortName: 'stake-dao-crv-eth-steth',
@@ -359,7 +385,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-fantom-vaults',
       frontend: FRONTEND.MAI,
       version: 1,
-      snapshotName: 'WFTM (Fantom)'
+      snapshotName: 'WFTM (Fantom)',
     },
     {
       shortName: 'yvwftm',
@@ -486,7 +512,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       connect: CrosschainQiStablecoin__factory.connect,
       frontend: FRONTEND.MAI,
       version: 1,
-      snapshotName: 'LINK (Fantom)'
+      snapshotName: 'LINK (Fantom)',
     },
     {
       shortName: 'btc',
@@ -931,13 +957,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       chainId: ChainId.OPTIMISM,
       connect: StableQiVault__factory.connect,
       contractAbi: StableQiVault__factory.abi,
-      token: new Token(
-        ChainId.OPTIMISM,
-        '0x22f39d6535dF5767f8F57FEE3B2F941410773ec4',
-        18,
-        'yvWETH',
-        'WETH yVault'
-      ),
+      token: new Token(ChainId.OPTIMISM, '0x22f39d6535dF5767f8F57FEE3B2F941410773ec4', 18, 'yvWETH', 'WETH yVault'),
       minimumCDR: 135,
       frontend: FRONTEND.MAI,
       version: 2,
@@ -961,7 +981,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'Beefy stETH Curve (Optimism)',
-    }
+    },
   ],
   [ChainId.MOONRIVER]: [
     {
@@ -1223,7 +1243,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       chainId: ChainId.MATIC,
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/mai-finance-cam-weth-vaults',
       vaultAddress: CAMWETH_VAULT_ADDRESS,
-      fallbackUnderlyingAddress: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      fallbackUnderlyingAddress: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
       contractAbi: Erc20Stablecoin__factory.abi,
       connect: Erc20Stablecoin__factory.connect,
       token: new Token(
@@ -1674,7 +1694,7 @@ export const COLLATERALS: { [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COL
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'm.WBTC (Metis)',
-      fallbackUnderlyingAddress: METIS_WBTC_ADDRESS
+      fallbackUnderlyingAddress: METIS_WBTC_ADDRESS,
     },
   ],
 }

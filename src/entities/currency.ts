@@ -61,8 +61,6 @@ export class Currency {
 
   public static readonly NATIVE = {
     [ChainId.MAINNET]: Currency.ETHER,
-    [ChainId.ROPSTEN]: Currency.ETHER,
-    [ChainId.RINKEBY]: Currency.ETHER,
     [ChainId.GÖRLI]: Currency.ETHER,
     [ChainId.KOVAN]: Currency.ETHER,
     [ChainId.FANTOM]: Currency.FTM,
@@ -93,7 +91,7 @@ export class Currency {
     [ChainId.CELO]: Currency.CELO,
     [ChainId.AURORA]: Currency.AURORA,
     [ChainId.BOBA]: Currency.BOBA,
-    [ChainId.CUBE]: Currency.CUBE
+    [ChainId.CUBE]: Currency.CUBE,
   }
 
   /**
