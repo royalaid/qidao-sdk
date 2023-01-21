@@ -12,6 +12,7 @@ import {
   ChainId,
   GDAI_VAULT_ADDRESS,
   MATIC_THREE_STEP_ZAPPER,
+  MATICX_MAI_VAULT_ADDRESS,
   MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_ETH_STETH_CRV_VAULT_ADDRESS,
   MOO_SCREAM_DAI_VAULT_ADDRESS,
@@ -397,6 +398,20 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
         'Gains Network DAI'
       ),
       mooAssetVaultAddress: GDAI_VAULT_ADDRESS,
+      zapperAddress: MATIC_THREE_STEP_ZAPPER,
+    }),
+
+    [MATICX_MAI_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0x5d37E4b374E6907de8Fc7fb33EE3b0af403C7403',
+      perfToken: '0x2acD702F7D35d3D2915663d7f7CbDF2863Ec6E79',
+      underlying: new Token(
+        ChainId.MATIC,
+        '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6',
+        18,
+        'MaticX',
+        'Liquid Staking Matic (PoS)'
+      ),
+      mooAssetVaultAddress: MATICX_MAI_VAULT_ADDRESS,
       zapperAddress: MATIC_THREE_STEP_ZAPPER,
     }),
   },

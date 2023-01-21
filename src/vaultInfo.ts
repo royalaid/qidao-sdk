@@ -57,6 +57,7 @@ import {
   YVYFI_VAULT_ADDRESS,
   STMATIC_MAI_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
+  MATICX_MAI_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -203,6 +204,7 @@ export type VaultShortName =
   | 'beefy-eth-steth-crv'
   | 'stmatic'
   | 'gdai'
+  | 'maticx'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -1669,10 +1671,27 @@ export const COLLATERALS: {
       shortName: 'gdai',
       connect: StableQiVault__factory.connect,
       chainId: ChainId.MATIC,
-      minimumCDR: 135,
+      minimumCDR: 120,
       token: new Token(ChainId.MATIC, '0x91993f2101cc758D0dEB7279d41e880F7dEFe827', 18, 'gDAI', 'Gains Network DAI'),
       frontend: FRONTEND.MAI,
       vaultAddress: GDAI_VAULT_ADDRESS,
+      contractAbi: StableQiVault__factory.abi,
+      version: 2,
+    },
+    {
+      shortName: 'maticx',
+      connect: StableQiVault__factory.connect,
+      chainId: ChainId.MATIC,
+      minimumCDR: 135,
+      token: new Token(
+        ChainId.MATIC,
+        '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6',
+        18,
+        'MaticX',
+        'Liquid Staking Matic (PoS)'
+      ),
+      frontend: FRONTEND.MAI,
+      vaultAddress: MATICX_MAI_VAULT_ADDRESS,
       contractAbi: StableQiVault__factory.abi,
       version: 2,
     },
