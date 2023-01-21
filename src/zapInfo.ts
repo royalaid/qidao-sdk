@@ -1,4 +1,4 @@
-import { BigNumber, Contract, Overrides, Signer } from 'ethers'
+import { BigNumber, CallOverrides, Contract, Signer } from 'ethers'
 import BeefyZapperABI from './abis/BeefyZapper.json'
 import QiZappahABI from './abis/QiZappah.json'
 import ThreeStepQiZappah from './abis/ThreeStepQiZappah.json'
@@ -46,7 +46,7 @@ export async function beefyZapToVault(
   mooAssetVaultAddress: string,
   amount: BigNumber,
   vaultIndex: BigNumber,
-  overrides?: Overrides
+  overrides?: CallOverrides
 ) {
   const zapperContract = new Contract(zapperAddress, BeefyZapperABI, signer)
   return zapperContract.beefyZapToVault(
@@ -67,7 +67,7 @@ export async function beefyZapFromVault(
   mooAssetVaultAddress: string,
   amount: BigNumber,
   vaultIndex: BigNumber,
-  overrides?: Overrides
+  overrides?: CallOverrides
 ) {
   const zapperContract = new Contract(zapperAddress, BeefyZapperABI, signer)
   return zapperContract.beefyZapFromVault(amount, vaultIndex, assetAddress, mooAssetAddress, mooAssetVaultAddress, {
@@ -103,7 +103,7 @@ function beefyZapperInfo({
     mooAssetAddress,
     collateralScaling,
     underlyingScaling,
-    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: Overrides) =>
+    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) =>
       beefyZapToVault(
         signer,
         zapperAddress, // Zapper Address
@@ -114,7 +114,7 @@ function beefyZapperInfo({
         vaultIndex,
         overrides
       ),
-    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: Overrides) =>
+    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) =>
       beefyZapFromVault(
         signer,
         zapperAddress, // Zapper Address
@@ -261,7 +261,7 @@ function generateQiZapper({
     underlying,
     mooAssetAddress,
     zapperAddress,
-    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: Overrides) => {
+    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
       const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
       return zapperContract.beefyZapToVault(
         amount,
@@ -276,7 +276,7 @@ function generateQiZapper({
         }
       )
     },
-    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: Overrides) => {
+    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
       const zapperContract = new Contract(zapperAddress, QiZappahABI, signer)
       return zapperContract.beefyZapFromVault(
         amount,
@@ -312,14 +312,14 @@ function generateThreeStepZapper({
     perfToken,
     underlying,
     zapperAddress,
-    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: Overrides) => {
+    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
       const zapperContract = new Contract(zapperAddress, ThreeStepQiZappah, signer)
       return zapperContract.beefyZapToVault(amount, vaultIndex, underlying.address, perfToken, mooAssetVaultAddress, {
         gasLimit: 3500000,
         ...overrides,
       })
     },
-    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: Overrides) => {
+    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
       const zapperContract = new Contract(zapperAddress, ThreeStepQiZappah, signer)
       return zapperContract.beefyZapFromVault(amount, vaultIndex, underlying.address, perfToken, mooAssetVaultAddress, {
         gasLimit: 3500000,
