@@ -55,6 +55,7 @@ import {
   YVWETH_VAULT_ADDRESS,
   YVWFTM_VAULT_ADDRESS,
   YVYFI_VAULT_ADDRESS,
+  STMATIC_MAI_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -199,6 +200,7 @@ export type VaultShortName =
   | 'yvweth'
   | 'wsteth'
   | 'beefy-eth-steth-crv'
+  | 'stmatic'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -1641,6 +1643,23 @@ export const COLLATERALS: {
       token: new Token(ChainId.MATIC, '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4', 18, 'stMatic', 'Staked Matic'),
       frontend: FRONTEND.MANHATTAN,
       vaultAddress: '0x34fa22892256216a659D4f635354250b4D771458',
+      contractAbi: StableQiVault__factory.abi,
+      version: 2,
+    },
+    {
+      shortName: 'stmatic',
+      connect: StableQiVault__factory.connect,
+      chainId: ChainId.MATIC,
+      minimumCDR: 135,
+      token: new Token(
+        ChainId.MATIC,
+        '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4',
+        18,
+        'stMATIC',
+        'Staked MATIC (PoS)'
+      ),
+      frontend: FRONTEND.MAI,
+      vaultAddress: STMATIC_MAI_VAULT_ADDRESS,
       contractAbi: StableQiVault__factory.abi,
       version: 2,
     },
