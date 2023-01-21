@@ -10,6 +10,7 @@ import {
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
   ChainId,
+  GDAI_VAULT_ADDRESS,
   MATIC_THREE_STEP_ZAPPER,
   MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_ETH_STETH_CRV_VAULT_ADDRESS,
@@ -367,6 +368,19 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
         'Staked MATIC (PoS)'
       ),
       mooAssetVaultAddress: STMATIC_MAI_VAULT_ADDRESS,
+      zapperAddress: MATIC_THREE_STEP_ZAPPER,
+    }),
+    [GDAI_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0x4746DeC9e833A82EC7C2C1356372CcF2cfcD2F3D',
+      perfToken: '0xe643a8378988b58A5db85c787397217CC023D9a5',
+      underlying: new Token(
+        ChainId.MATIC,
+        '0x91993f2101cc758D0dEB7279d41e880F7dEFe827',
+        18,
+        'gDAI',
+        'Gains Network DAI'
+      ),
+      mooAssetVaultAddress: GDAI_VAULT_ADDRESS,
       zapperAddress: MATIC_THREE_STEP_ZAPPER,
     }),
   },
