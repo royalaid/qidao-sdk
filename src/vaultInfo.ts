@@ -940,7 +940,7 @@ export const COLLATERALS: {
     {
       shortName: 'wsteth',
       vaultAddress: WSTETH_VAULT_ADDRESS,
-      fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
+      fallbackUnderlyingAddress: '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb',
       chainId: ChainId.OPTIMISM,
       connect: StableQiVault__factory.connect,
       contractAbi: StableQiVault__factory.abi,
