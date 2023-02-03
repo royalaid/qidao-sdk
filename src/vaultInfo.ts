@@ -989,7 +989,7 @@ const OPTIMISM_COLLATERALS = [
       'wstETH',
       'Wrapped liquid staked Ether 2.0'
     ),
-    minimumCDR: 135,
+    minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Wrapped Staked ETH (Optimism)',
