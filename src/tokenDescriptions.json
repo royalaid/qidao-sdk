@@ -1,0 +1,162 @@
+{
+  "weth": {
+    "shortDescription": "Wrapped ETH (WETH) is originally the ERC-20 compatible token pegged 1:1 of ETH on the Ethereum. It was first developed and implemented by a group of Ethereum projects led by 0x labs. Generally, all ETH assets on other blockchains rather than Ethereum could be categorized as wrapped ETH. ",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/WETH_WETH.png"
+  },
+  "wrapped-bitcoinwbtc": {
+    "shortDescription": "Wrapped Bitcoin ($WBTC) is the first ERC-20 token that represents Bitcoin ($BTC) on the Ethereum blockchain. WBTC is created in 2019 by BitGo, Kyber and Ren. ",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/WrappedBitcoin_WBTC.png"
+  },
+  "lido-staked-ether": {
+    "shortDescription": "Lido Staked Ether ($stETH) is a staked $ETH in Lido based on multiple networks, combining the value of the initial deposit and staking rewards. The Lido is an Ethereum Liquid Staking Protocol, built on Ethereum 2.0's Beacon chain, allowing its users to earn staking rewards on the Beacon chain without locking Ether or maintaining staking infrastructure. ",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/LidoStakedEther_stETH.png"
+  },
+  "chainlink": {
+    "shortDescription": "The Chainlink token ($LINK) is an ERC-677 token used as the payment for all services the Chainlink Network provides. Chainlink is a decentralized oracle network, which aims to serve as a middleware between smart contracts on smart contracting platforms and external data sources, allowing smart contracts to securely access off-chain data feeds.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Chainlink_LINK.png"
+  },
+  "optimism": {
+    "shortDescription": "Optimism ($OP) is an Layer-2 scaling solution of Ethereum using optimistic rollup.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Optimism_OP.jpeg"
+  },
+  "daidai": {
+    "shortDescription": "$DAI is a decentralized collateral stable coin soft-pegged to the US Dollar issued by MakerDAO.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Dai_DAI.png"
+  },
+  "wrapped-steth": {
+    "shortDescription": "Lido's wrapped stETH (wstETH) is stETH which is deposited into the stETH wrapper to create a new token called wstETH.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/LidoWrappedstETH_wstETH1.jpeg"
+  },
+  "binance-coin": {
+    "shortDescription": "Build and Build ($BNB), formerly Binance Coin, is initially issued as the exchange token of Binance that can be used to trade cryptocurrencies and pay for fees on the Binance exchange. Then, $BNB is also used as the native asset of the BNB Chain.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/content/imgUrl/bnb.png"
+  },
+  "pancakeswap": {
+    "shortDescription": "PancakeSwap is a decentralized exchange for swapping BEP20 tokens on BNB Chain.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/PancakeSwap_CAKE.jpeg"
+  },
+  "dodo": {
+    "shortDescription": "DODO is a decentralized exchange platform which adopts the Proactive Market Maker (PMM) algorithm on Ethereum and BNB Chain.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/DODO_DODO.png"
+  },
+  "gnosis": {
+    "shortDescription": "GnosisDAO ($GNO) is a Web 3.0 project to build a decentralized infrastructure for the Ethereum ecosystem, founded in 2015 with an initial focus on building a decentralized prediction marketplace.​",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Gnosis_GNO.jpeg"
+  },
+  "polygon": {
+    "shortDescription": "Polygon is a Layer 2 scaling solution that achieves scale by utilizing sidechains for off-chain computation and a decentralized network of Proof-of-Stake (PoS) validators.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Polygon_MATIC.jpeg"
+  },
+  "aave": {
+    "shortDescription": "Aave is a decentralized finance lending protocol built on multiple blockchains that allow people to lend and borrow crypto. It was previously known as ETHLend when it was founded in November 2017 by Stani Kulechov.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Aave_AAVE.png"
+  },
+  "curve-finance": {
+    "shortDescription": "Curve Finance is a decentralized exchange on multi-chains optimized for low slippage swaps between stablecoins or similar assets that peg to the same value (e.g. WBTC/renBTC) through employment of an Automated Market Maker.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CurveFinance_CRV.jpeg"
+  },
+  "balancer": {
+    "shortDescription": "Balancer is an AMM-based DEX, an automated portfolio management tool and a price sensor on Ethereum. ",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Balancer_BAL.png"
+  },
+  "quickswap": {
+    "shortDescription": "QuickSwap, a fork of Uniswap, is a DEX on Polygon that facilitates token swaps at lower cost relative to exchanges like Uniswap v2.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/QuickSwap(OLD)_QUICK.jpeg"
+  },
+  "aavegotchi": {
+    "shortDescription": "Aavegotchi ($GHST) is an open-source, community-owned NFT gaming protocol on Polygon and Ethereum.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Aavegotchi_GHST.jpeg"
+  },
+  "stake-dao-crv": {
+    "shortDescription": "Stake DAO is a non-custodial platform that enables anyone to easily grow their crypto portfolio, and $sdCRV is the governance token of Curve.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/StakeDAOCRV_SDCRV.png"
+  },
+  "tether": {
+    "shortDescription": "Tether ($USDT) is an asset-backed cryptocurrency stablecoin launched by Tether Limited Inc, whose value is pegged to the US dollar.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Tether_USDT.png"
+  },
+  "usd-coin": {
+    "shortDescription": "$USDC provides a fully collateralized US dollar stablecoin based on the open-source asset-backed stablecoin framework developed by Centre, an independent, member-based consortium founded by Coinbase and Circle in 2018.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/USDCoin_USDC.png"
+  },
+  "frax-share": {
+    "shortDescription": "Frax share (FXS) is the governance token of Frax Protocol. The Frax Protocol is the first fractional-algorithmic stablecoin system. Frax is open-source, permissionless, and entirely on-chain – currently implemented on Ethereum, Avalanche, BSC, Fantom and Solana. ",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/FraxShare_FXS.png"
+  },
+  "ethereum": {
+    "shortDescription": "Ethereum is a decentralized, open-source blockchain with smart contract functionality. Ether (ETH or Ξ) is the native cryptocurrency of the platform. Ethereum was proposed in 2013 by programmer Vitalik Buterin. Development was crowdfunded in 2014, and the network went live on 30 July 2015.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/content/imgUrl/Ethereum-ETH.png"
+  },
+  "cardano": {
+    "shortDescription": "Cardano is an PoS based open-source, smart-contract platform that aims to provide multiple features through layered design. Its modularization will eventually allow for network delegation, sidechains, and light client data structures. The network native token called $ADA, which gives stakers a claim on new issuance in proportion to their holdings and allows users to pay for transactions.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Cardano_ADA.jpeg"
+  },
+  "dogecoin": {
+    "shortDescription": "Dogecoin ($DOGE) is the world's first community-driven meme coin that features the Shiba Inu meme. It was created in 2013 as a fork of Lucky Coin – a fork of Litecoin, which is a fork of Bitcoin.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Dogecoin_DOGE.png"
+  },
+  "celsius": {
+    "shortDescription": "Celsius is a democratized reward-earning and crypto lending platform accessible via a mobile app. ",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Celsius_CEL.png"
+  },
+  "the-sandbox": {
+    "shortDescription": "The Sandbox is a Metaverse Play-to-Earn project on Ethereum where players can create NFTs, earn upload them to an in-game marketplace and integrate them into the games. $SAND is the ERC-20 token that can be used all across The Sandbox metaverse.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/TheSandbox_SAND.jpeg"
+  },
+  "kyber-network-crystal": {
+    "shortDescription": "Kyber Network is a multi-chain crypto trading and liquidity hub for decentralized applications.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/KyberNetworkCrystal_KNC.jpg"
+  },
+  "mai-finance": {
+    "shortDescription": "Decentralized collateral stable coin on multi-chain.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/MaiFinance_MIMATIC.jpeg"
+  },
+  "lido-staked-matic": {
+    "shortDescription": "Lido on Polygon is a liquid staking solution for MATIC backed by industry-leading staking providers.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/LidoStakedMatic_STMATIC.png"
+  },
+  "fantom": {
+    "shortDescription": "Fantom is a DAG-based Layer-1 smart-contract platform founded by Andre Cronje featuring a self-developed Lachesis Protocol, which is its aBFT consensus mechanism that makes Fantom more cost-efficient.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Fantom_FTM.png"
+  },
+  "yearn-finance": {
+    "shortDescription": "Yearn Finance is a suite of decentralized finance (DeFi) products on Ethereum that let users optimize their earnings on crypto assets through lending and trading services. The ecosystem is controlled by YFI token holders who submit and vote on proposals that govern the platform.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/yearn.finance_YFI.jpeg"
+  },
+  "sushiswap": {
+    "shortDescription": "SushiSwap is a decentralized exchange built on Ethereum that utilizes an automated market making system rather than a traditional order-book.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/SushiSwap_SUSHI.png"
+  },
+  "beefy-finance": {
+    "shortDescription": "Beefy Finance ($BIFI) is a decentralized, multi-chain yield optimizer platform that allows its users to earn compound interest on their crypto holdings.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/BeefyFinance_BIFI.jpg"
+  },
+  "spookyswap": {
+    "shortDescription": "SpookySwap is an automated market-making (AMM) decentralized exchange (DEX) for the Fantom Opera network and its smart contract is built on Fantom, Avalanche, and Ethereum.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Spookyswap_BOO.jpeg"
+  },
+  "metis-token": {
+    "shortDescription": "Metis ($METIS) is a Ethereum Layer 2 (Optimism rollup) solution. It is compatible with Ethereum layer 1, and aims to solve some of Ethereum’s biggest challenges, including scalability, transaction speed, and high gas fees.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/MetisToken_METIS.png"
+  },
+  "moonbeam": {
+    "shortDescription": "Moonbeam is an Ethereum-compatible smart contract parachain on Polkadot. $GLMR is the utility token.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Moonbeam_GLMR.jpeg"
+  },
+  "moonriver": {
+    "shortDescription": "Moonriver is an Ethereum-compatible smart-contract parachain on Kusama. It is also a companion canary network to Moonbeam.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Moonriver_MOVR.png"
+  },
+  "avalanche": {
+    "shortDescription": "Avalanche is an open-source decentralized smart contracts platform for DeFi applications. It is also a PoS public Chain.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Avalanche_AVAX.png"
+  },
+  "harmony": {
+    "shortDescription": "Harmony ($ONE) is an Ethereum-based cross-chain platform designed to facilitate the creation and use of decentralized applications by sharding and scaling.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Harmony_ONE.jpeg"
+  },
+  "stellaswap": {
+    "shortDescription": "Stellaswap is the largest decentralized exchange on Moonbeam, with the only concentrated liquidity platform on Polkadot.",
+    "logo": "https://stellaswap.com/logo.svg"
+  }
+}
