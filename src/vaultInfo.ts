@@ -314,7 +314,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'WBTC (Ethereum)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'stake-dao-crv-eth-steth',
@@ -334,7 +334,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'StakeDAO Curve ETH/stETH (Eth)',
-      underlyingIds: ['weth','steth'],
+      underlyingIds: ['weth', 'lido-staked-ether'],
     },
     {
       shortName: 'yvcrv-eth-steth',
@@ -354,7 +354,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'Yearn Curve ETH/stETH (Ethereum)',
-      underlyingIds: ['weth','steth'],
+      underlyingIds: ['weth', 'lido-staked-ether'],
     },
     {
       shortName: 'yveth',
@@ -434,7 +434,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'Yearn vault BTC (Fantom)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'yvyfi',
@@ -482,7 +482,7 @@ export const COLLATERALS: {
       subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-yvdai-vaults',
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['multi-collateral-dai'],
+      underlyingIds: ['daidai'],
     },
     {
       shortName: 'ftmweth',
@@ -510,7 +510,6 @@ export const COLLATERALS: {
       version: 1,
       snapshotName: 'AAVE (Fantom)',
       underlyingIds: ['aave'],
-
     },
     {
       shortName: 'sushi',
@@ -523,7 +522,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'SUSHI (Fantom)',
-      underlyingIds: ['sushi'],
+      underlyingIds: ['sushiswap'],
     },
     {
       shortName: 'link',
@@ -549,7 +548,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'WBTC (Fantom)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'beefy-scream-wbtc',
@@ -569,7 +568,7 @@ export const COLLATERALS: {
       depreciated: true,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'beefy-scream-dai',
@@ -589,7 +588,7 @@ export const COLLATERALS: {
       depreciated: true,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['multi-collateral-dai'],
+      underlyingIds: ['daidai'],
     },
     {
       shortName: 'beefy-scream-eth',
@@ -668,7 +667,7 @@ export const COLLATERALS: {
       minimumCDR: 135,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['wrapped-bitcoin','fantom']
+      underlyingIds: ['wrapped-bitcoinwbtc', 'fantom'],
     },
     /* {
             shortName: "beefy-spooky-dai-ftm",
@@ -702,7 +701,7 @@ export const COLLATERALS: {
       minimumCDR: 135,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['weth', 'fantom']
+      underlyingIds: ['weth', 'fantom'],
     },
     /* {
             shortName: "beefy-spooky-ftm-usdc",
@@ -791,7 +790,7 @@ export const COLLATERALS: {
       minimumCDR: 110,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['stake-dao-crv','tether','multi-collateral-dai','usd-coin'],
+      underlyingIds: ['stake-dao-crv', 'tether', 'daidai', 'usd-coin'],
     },
     {
       shortName: 'avaxwbtc',
@@ -804,7 +803,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'WBTC (Avalanche)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'avaxweth',
@@ -877,7 +876,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'WBTC (Arbitrum)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
   ],
   [ChainId.OPTIMISM]: [
@@ -905,7 +904,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'WBTC (Optimism)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'op',
@@ -918,7 +917,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'OP (Optimism)',
-      underlyingIds: ['optimism-ethereum'],
+      underlyingIds: ['optimism'],
     },
     {
       shortName: 'beefy-aave-dai',
@@ -937,7 +936,7 @@ export const COLLATERALS: {
       minimumCDR: 110,
       frontend: FRONTEND.MAI,
       version: 2,
-      underlyingIds: ['multi-collateral-dai'],
+      underlyingIds: ['daidai'],
     },
     {
       shortName: 'beefy-aave-weth',
@@ -977,7 +976,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'Beefy Aave BTC (Optimism)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'wsteth',
@@ -997,7 +996,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'Wrapped Staked ETH (Optimism)',
-      underlyingIds: ['lido-finance-wsteth'],
+      underlyingIds: ['wrapped-steth'],
     },
     {
       shortName: 'yvweth',
@@ -1031,7 +1030,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'Beefy stETH Curve (Optimism)',
-      underlyingIds: ['eth','steth'],
+      underlyingIds: ['weth', 'wrapped-steth'],
     },
   ],
   [ChainId.MOONRIVER]: [
@@ -1065,7 +1064,7 @@ export const COLLATERALS: {
       minimumCDR: 135,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['weth','usd-coin']
+      underlyingIds: ['weth', 'usd-coin'],
     },
     {
       shortName: 'movr',
@@ -1079,7 +1078,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'MOVR (Moonriver)',
-      underlyingIds: ['moonriver']
+      underlyingIds: ['moonriver'],
     },
     {
       shortName: 'moo-solar-movr-usdc',
@@ -1098,7 +1097,7 @@ export const COLLATERALS: {
       minimumCDR: 135,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['moonriver', 'usd-coin']
+      underlyingIds: ['moonriver', 'usd-coin'],
     },
   ],
   [ChainId.MOONBEAM]: [
@@ -1112,7 +1111,7 @@ export const COLLATERALS: {
       vaultAddress: '0x3A82F4da24F93a32dc3C2A28cFA9D6E63EC28531',
       contractAbi: StableQiVault__factory.abi,
       version: 2,
-      underlyingIds: ['moonbeam']
+      underlyingIds: ['moonbeam'],
     },
     {
       connect: StableQiVault__factory.connect,
@@ -1124,7 +1123,7 @@ export const COLLATERALS: {
       vaultAddress: '0x3756465c5b1C1C4cEe473880c9726E20875284f1',
       contractAbi: StableQiVault__factory.abi,
       version: 2,
-      underlyingIds: ['stellaswap']
+      underlyingIds: [],
     },
   ],
   [ChainId.HARMONY]: [
@@ -1148,11 +1147,12 @@ export const COLLATERALS: {
       chainId: ChainId.HARMONY,
       contractAbi: CrosschainNativeQiStablecoin__factory.abi,
       connect: CrosschainNativeQiStablecoin__factory.connect,
+      depreciated: true,
       token: new Token(ChainId.HARMONY, '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a', 18, 'ONE', 'Harmony (ONE)'),
       minimumCDR: 130,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['harmony']
+      underlyingIds: ['harmony'],
     },
     {
       shortName: 'btc_old',
@@ -1171,7 +1171,7 @@ export const COLLATERALS: {
       minimumCDR: 130,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'btc',
@@ -1184,7 +1184,7 @@ export const COLLATERALS: {
       minimumCDR: 130,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
   ],
   [ChainId.BSC]: [
@@ -1199,7 +1199,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'BNB (BNB)',
-      underlyingIds: ['bnb'],
+      underlyingIds: ['binance-coin'],
     },
     {
       shortName: 'cake',
@@ -1253,7 +1253,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'GNO (Gnosis Chain)',
-      underlyingIds: ['gnosis-gno'],
+      underlyingIds: ['gnosis'],
     },
   ],
   [ChainId.MATIC]: [
@@ -1392,7 +1392,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'CRV (Polygon)',
-      underlyingIds: ['curve-dao-token'],
+      underlyingIds: ['curve-finance'],
     },
     {
       shortName: 'wbtc',
@@ -1406,7 +1406,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'WBTC (Polygon)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'camwbtc',
@@ -1428,7 +1428,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'Compounding Aave WBTC (Polygon)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'bal-old',
@@ -1442,7 +1442,7 @@ export const COLLATERALS: {
       depreciated: true,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['balancer']
+      underlyingIds: ['balancer'],
     },
     {
       shortName: 'dquick-old',
@@ -1456,7 +1456,7 @@ export const COLLATERALS: {
       depreciated: true,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['quickswap']
+      underlyingIds: ['quickswap'],
     },
     {
       shortName: 'bal',
@@ -1470,7 +1470,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'BAL (Polygon)',
-      underlyingIds: ['balancer']
+      underlyingIds: ['balancer'],
     },
     {
       shortName: 'dquick',
@@ -1483,7 +1483,7 @@ export const COLLATERALS: {
       minimumCDR: 130,
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['quickswap']
+      underlyingIds: ['quickswap'],
     },
     {
       shortName: 'ghst',
@@ -1497,7 +1497,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'GHST (Polygon)',
-      underlyingIds: ['aavegotchi']
+      underlyingIds: ['aavegotchi'],
     },
     {
       shortName: 'camdai',
@@ -1518,7 +1518,7 @@ export const COLLATERALS: {
       aaveId: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a0630xd05e3e715d945b59290df0ae8ef85c1bdb684744',
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['multi-collateral-dai'],
+      underlyingIds: ['daidai'],
     },
     {
       shortName: 'sdam3crv',
@@ -1536,7 +1536,7 @@ export const COLLATERALS: {
       ),
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['stake-dao-crv','tether','multi-collateral-dai','usd-coin'],
+      underlyingIds: ['stake-dao-crv', 'tether', 'daidai', 'usd-coin'],
     },
     {
       shortName: 'fxs',
@@ -1563,7 +1563,7 @@ export const COLLATERALS: {
       token: new Token(ChainId.MATIC, '0xfe4546feFe124F30788c4Cc1BB9AA6907A7987F9', 18, 'cxETH', 'CelsiusX ETH'),
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['ethereum']
+      underlyingIds: ['ethereum'],
     },
     {
       shortName: 'cxada',
@@ -1583,7 +1583,7 @@ export const COLLATERALS: {
       ),
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['cardano']
+      underlyingIds: ['cardano'],
     },
     {
       shortName: 'cxdoge',
@@ -1603,7 +1603,7 @@ export const COLLATERALS: {
       ),
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['dogecoin']
+      underlyingIds: ['dogecoin'],
     },
     {
       shortName: 'vghst',
@@ -1617,7 +1617,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 1,
       snapshotName: 'vGHST (Polygon)',
-      underlyingIds: ['aavegotchi']
+      underlyingIds: ['aavegotchi'],
     },
     {
       shortName: 'celsius',
@@ -1630,7 +1630,7 @@ export const COLLATERALS: {
       token: new Token(ChainId.MATIC, '0xd85d1e945766fea5eda9103f918bd915fbca63e6', 4, 'CEL', 'Celsius'),
       frontend: FRONTEND.MAI,
       version: 1,
-      underlyingIds: ['celsius']
+      underlyingIds: ['celsius'],
     },
     {
       shortName: 'sand',
@@ -1669,7 +1669,7 @@ export const COLLATERALS: {
       connect: StableQiVault__factory.connect,
       frontend: FRONTEND.MAI,
       version: 2,
-      underlyingIds: ['multi-collateral-dai'],
+      underlyingIds: ['daidai'],
     },
     {
       shortName: 'xxlink',
@@ -1696,7 +1696,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       snapshotName: 'KNC (Polygon)',
       version: 2,
-      underlyingIds: ['kyber-network-crystal-v2'],
+      underlyingIds: ['kyber-network-crystal'],
     },
     {
       shortName: 'maidai',
@@ -1709,7 +1709,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       fallbackUnderlyingAddress: OG_MATIC_VAULT,
       version: 2,
-      underlyingIds: ['multi-collateral-dai','mai'],
+      underlyingIds: ['daidai', 'mai-finance'],
     },
     {
       shortName: 'LSMMVT',
@@ -1727,7 +1727,7 @@ export const COLLATERALS: {
       vaultAddress: '0x4b7509ce029656341D0B59D387D9B5312E41615a',
       contractAbi: StableQiVault__factory.abi,
       version: 2,
-      underlyingIds: ['stader-maticx'],
+      underlyingIds: ['polygon'],
     },
     {
       shortName: 'STMMVT',
@@ -1769,7 +1769,7 @@ export const COLLATERALS: {
       vaultAddress: GDAI_VAULT_ADDRESS,
       contractAbi: StableQiVault__factory.abi,
       version: 2,
-      underlyingIds: ['multi-collateral-dai'],
+      underlyingIds: ['daidai'],
     },
     {
       shortName: 'maticx',
@@ -1787,7 +1787,7 @@ export const COLLATERALS: {
       vaultAddress: MATICX_MAI_VAULT_ADDRESS,
       contractAbi: StableQiVault__factory.abi,
       version: 2,
-      underlyingIds: ['stader-maticx'],
+      underlyingIds: ['polygon'],
     },
   ],
   [ChainId.METIS]: [
@@ -1802,7 +1802,7 @@ export const COLLATERALS: {
       frontend: FRONTEND.MAI,
       version: 2,
       snapshotName: 'METIS (Metis)',
-      underlyingIds: ['metisdao'],
+      underlyingIds: ['metis-token'],
     },
     {
       shortName: 'weth',
@@ -1829,7 +1829,7 @@ export const COLLATERALS: {
       version: 2,
       depreciated: true,
       snapshotName: 'WBTC (Metis)',
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
     {
       shortName: 'mwbtc',
@@ -1843,7 +1843,7 @@ export const COLLATERALS: {
       version: 2,
       snapshotName: 'm.WBTC (Metis)',
       fallbackUnderlyingAddress: METIS_WBTC_ADDRESS,
-      underlyingIds: ['wrapped-bitcoin'],
+      underlyingIds: ['wrapped-bitcoinwbtc'],
     },
   ],
 }
