@@ -1,4 +1,5 @@
 import JSBI from 'jsbi'
+import tokenDescriptions from './tokenDescriptions.json'
 
 // exports for external consumption
 export type BigintIsh = JSBI | bigint | string
@@ -114,6 +115,8 @@ export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.BOBA]: '0xfb91c019D9F12A0f9c23B4762fa64A34F8daDb4A',
   [ChainId.CUBE]: '',
 }
+
+export const TOKEN_DESCRIPTIONS = tokenDescriptions
 
 export const WFTM_ADDRESS = '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83'
 export const STETH_ADDRESS = '0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84'
