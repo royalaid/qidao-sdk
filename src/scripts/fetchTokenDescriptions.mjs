@@ -35,6 +35,7 @@ const manualOverrides = {
     shortDescription:
       'Stellaswap is the largest decentralized exchange on Moonbeam, with the only concentrated liquidity platform on Polkadot.',
     logo: 'https://stellaswap.com/logo.svg',
+    name: 'Stellaswap',
   },
 }
 
@@ -51,7 +52,8 @@ const fetches = Array.from(tokenInfo.keys()).map((tokenSlug) => {
           (localization) => localization.lang === 'en'
         )?.description_short
         const logo = result?.data?.logo
-        const toRet = [tokenSlug, { shortDescription, logo }]
+        const name = result?.data?.name
+        const toRet = [tokenSlug, { shortDescription, logo, name }]
         console.log(toRet)
         return toRet
       })
@@ -62,4 +64,4 @@ const fetches = Array.from(tokenInfo.keys()).map((tokenSlug) => {
 const fetchesed = await Promise.all(fetches)
 const combined = Object.fromEntries(fetchesed)
 //write to file
-fs.writeFileSync(`./tokenDescriptions.json`, JSON.stringify(combined, null, 2))
+fs.writeFileSync(`./src/tokenDescriptions.json`, JSON.stringify(combined, null, 2))
