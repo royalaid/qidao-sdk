@@ -1833,6 +1833,8 @@ const METIS_COLLATERALS = [
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
+const EMPTY_COLLATERALS = [] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+
 export const COLLATERALS: {
   [ChainId.MAINNET]: typeof MAINNET_COLLATERALS,
   [ChainId.FANTOM]: typeof FANTOM_COLLATERALS,
@@ -1846,6 +1848,27 @@ export const COLLATERALS: {
   [ChainId.XDAI]: typeof XDAI_COLLATERALS,
   [ChainId.MATIC]: typeof MATIC_COLLATERALS,
   [ChainId.METIS]: typeof METIS_COLLATERALS,
+  [ChainId.CUBE]: typeof EMPTY_COLLATERALS,
+  [ChainId.HECO]: typeof EMPTY_COLLATERALS,
+  [ChainId.KOVAN]: typeof EMPTY_COLLATERALS,
+  [ChainId.FUJI]: typeof EMPTY_COLLATERALS,
+  [ChainId.CELO]: typeof EMPTY_COLLATERALS,
+  [ChainId.MOONBASE]: typeof EMPTY_COLLATERALS,
+  [ChainId.BOBA]: typeof EMPTY_COLLATERALS,
+  [ChainId.AURORA]: typeof EMPTY_COLLATERALS,
+  [ChainId.GÖRLI]: typeof EMPTY_COLLATERALS,
+  [ChainId.MILKOMEDA]: typeof EMPTY_COLLATERALS,
+  [ChainId.BSC_TESTNET]: typeof EMPTY_COLLATERALS,
+  [ChainId.CRONOS]: typeof EMPTY_COLLATERALS,
+  [ChainId.MATIC_TESTNET]: typeof EMPTY_COLLATERALS,
+  [ChainId.FANTOM_TESTNET]: typeof EMPTY_COLLATERALS,
+  [ChainId.BSC_TESTNET]: typeof EMPTY_COLLATERALS,
+  [ChainId.HARMONY_TESTNET]: typeof EMPTY_COLLATERALS,
+  [ChainId.HECO_TESTNET]: typeof EMPTY_COLLATERALS,
+  [ChainId.SYSCOIN]: typeof EMPTY_COLLATERALS,
+  [ChainId.IOTEX]: typeof EMPTY_COLLATERALS,
+  [ChainId.KAVA]: typeof EMPTY_COLLATERALS,
+  [ChainId.KLAYTN]: typeof EMPTY_COLLATERALS,
 } = {
   [ChainId.MAINNET]: MAINNET_COLLATERALS,
   [ChainId.FANTOM]: FANTOM_COLLATERALS,
@@ -1859,6 +1882,27 @@ export const COLLATERALS: {
   [ChainId.XDAI]: XDAI_COLLATERALS,
   [ChainId.MATIC]: MATIC_COLLATERALS,
   [ChainId.METIS]: METIS_COLLATERALS,
+  [ChainId.CUBE]: [],
+  [ChainId.HECO]: [],
+  [ChainId.KOVAN]: [],
+  [ChainId.FUJI]: [],
+  [ChainId.CELO]: [],
+  [ChainId.MOONBASE]: [],
+  [ChainId.BOBA]: [],
+  [ChainId.AURORA]: [],
+  [ChainId.GÖRLI]: [],
+  [ChainId.MILKOMEDA]: [],
+  [ChainId.BSC_TESTNET]: [],
+  [ChainId.CRONOS]: [],
+  [ChainId.MATIC_TESTNET]: [],
+  [ChainId.FANTOM_TESTNET]: [],
+  [ChainId.BSC_TESTNET]: [],
+  [ChainId.HARMONY_TESTNET]: [],
+  [ChainId.HECO_TESTNET]: [],
+  [ChainId.SYSCOIN]: [],
+  [ChainId.IOTEX]: [],
+  [ChainId.KAVA]: [],
+  [ChainId.KLAYTN]: [],
 } satisfies {
-  [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+  [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
