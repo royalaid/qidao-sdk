@@ -389,7 +389,7 @@ export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta 
     }),
     [GDAI_VAULT_ADDRESS]: generateThreeStepZapper({
       underlyingPriceSourceAddress: '0x4746DeC9e833A82EC7C2C1356372CcF2cfcD2F3D',
-      perfToken: '0xe643a8378988b58A5db85c787397217CC023D9a5',
+      perfToken: '0x2DeA91E68FDC5693B63924c5FEE0a28cFb78a801',
       underlying: new Token(
         ChainId.MATIC,
         '0x91993f2101cc758D0dEB7279d41e880F7dEFe827',
