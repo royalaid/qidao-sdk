@@ -193,5 +193,12 @@
     "shortDescription": "Harmony ($ONE) is an Ethereum-based cross-chain platform designed to facilitate the creation and use of decentralized applications by sharding and scaling.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Harmony_ONE.jpeg",
     "name": "Harmony"
+  },
+
+  "gns": {
+    "shortDescription":
+    "Gains Network or GNS is a decentralized trading platform. It provides users with both crypto and forex trading options with leverage.",
+    "logo": "https://gainsnetwork.io/images/logo_header.png",
+    "name": "Gains Network (GNS)"
   }
 }
