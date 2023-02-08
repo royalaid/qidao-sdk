@@ -37,6 +37,12 @@ const manualOverrides = {
     logo: 'https://stellaswap.com/logo.svg',
     name: 'Stellaswap',
   },
+  gns: {
+    shortDescription:
+      'Gains Network or GNS is a decentralized trading platform. It provides users with both crypto and forex trading options with leverage.',
+    logo: 'https://gainsnetwork.io/images/logo_header.png',
+    name: 'Gains Network (GNS)',
+  }
 }
 
 const fetches = Array.from(tokenInfo.keys()).map((tokenSlug) => {
