@@ -44,6 +44,7 @@ const main = async () => {
       failingTokens.push({c,json})
     }
     console.log(`Checked ${collateralName(c)}`)
+    console.log(`Found token ${json.name}`)
   }))
 
   if(!isEmpty(failingTokens)){
