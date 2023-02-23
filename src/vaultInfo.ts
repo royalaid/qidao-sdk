@@ -58,6 +58,7 @@ import {
   YVYFI_VAULT_ADDRESS,
   STMATIC_MAI_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
+  ARBI_GDAI_VAULT_ADDRESS,
   MATICX_MAI_VAULT_ADDRESS, TOKEN_DESCRIPTIONS,
 } from './constants'
 
@@ -873,6 +874,19 @@ const ARBITRUM_COLLATERALS = [
     version: 1,
     snapshotName: 'WBTC (Arbitrum)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+  },
+  {
+    shortName: 'gdai',
+    connect: StableQiVault__factory.connect,
+    chainId: ChainId.ARBITRUM,
+    minimumCDR: 120,
+    token: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI', 'Gains Network DAI'),
+    frontend: FRONTEND.MAI,
+    vaultAddress: ARBI_GDAI_VAULT_ADDRESS,
+    contractAbi: StableQiVault__factory.abi,
+    version: 2,
+    fallbackUnderlyingAddress: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
+    underlyingIds: ['gns', 'daidai'],
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
