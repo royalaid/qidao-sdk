@@ -4,6 +4,8 @@ import QiZappahABI from './abis/QiZappah.json'
 import ThreeStepQiZappah from './abis/ThreeStepQiZappah.json'
 
 import {
+  ARBI_GAINS_ZAPPER,
+  ARBI_GDAI_VAULT_ADDRESS,
   CAMAAVE_VAULT_ADDRESS,
   CAMDAI_VAULT_ADDRESS,
   CAMWBTC_VAULT_ADDRESS,
@@ -33,6 +35,7 @@ import {
   YVWFTM_VAULT_ADDRESS,
   YVYFI_VAULT_ADDRESS,
 } from './constants'
+import { GainsZapper__factory } from './contracts'
 import { Token } from './entities'
 import ZapMeta, { CamMeta, QiZapMeta, QiZapThreeStepMeta, ScalingInfo } from './ZapMeta'
 
@@ -241,6 +244,43 @@ export const ZAP_META: { [c in ChainId]?: { [s in string]: ZapMeta } } = {
   },
 }
 
+function generateGainsZapper({
+  underlying,
+  gdai,
+  perfToken,
+  underlyingPriceSourceAddress,
+  vaultAddress,
+  zapperAddress,
+}: {
+  underlying: Token
+  gdai: string
+  perfToken: string
+  vaultAddress: string
+  underlyingPriceSourceAddress: string
+  zapperAddress: string
+}) {
+  return {
+    underlyingPriceSourceAddress,
+    perfToken,
+    underlying,
+    zapperAddress,
+    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+      const zapperContract = GainsZapper__factory.connect(zapperAddress, signer)
+      return zapperContract.gainsZapToVault(amount, vaultIndex, underlying.address, gdai, perfToken, vaultAddress, {
+        gasLimit: 3500000,
+        ...overrides,
+      })
+    },
+    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+      const zapperContract = GainsZapper__factory.connect(zapperAddress, signer)
+      return zapperContract.gainsZapFromVault(amount, vaultIndex, underlying.address, gdai, perfToken, vaultAddress, {
+        gasLimit: 3500000,
+        ...overrides,
+      })
+    },
+  }
+}
+
 function generateQiZapper({
   perfToken,
   underlyingPriceSourceAddress,
@@ -331,6 +371,16 @@ function generateThreeStepZapper({
 }
 
 export const PERF_TOKEN_ZAP_META: { [c in ChainId]?: { [s in string]: QiZapMeta | QiZapThreeStepMeta } } = {
+  [ChainId.ARBITRUM]: {
+    [ARBI_GDAI_VAULT_ADDRESS]: generateGainsZapper({
+      vaultAddress: ARBI_GDAI_VAULT_ADDRESS,
+      gdai: '0xd85E038593d7A098614721EaE955EC2022B9B91B',
+      perfToken: '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35',
+      underlying: new Token(ChainId.ARBITRUM, '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1', 18, 'DAI'),
+      underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
+      zapperAddress: ARBI_GAINS_ZAPPER,
+    }),
+  },
   [ChainId.OPTIMISM]: {
     [WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
       perfToken: '0x926B92B15385981416a5E0Dcb4f8b31733d598Cf',
