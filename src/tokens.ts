@@ -59,4 +59,5 @@ export const MAI: ChainTokenMap = {
   [ChainId.CELO]: makeMaiToken(ChainId.CELO, '0xB9C8F0d3254007eE4b98970b94544e473Cd610EC'),
   [ChainId.IOTEX]: makeMaiToken(ChainId.IOTEX, '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d'),
   [ChainId.OPTIMISM]: makeMaiToken(ChainId.OPTIMISM, '0xdFA46478F9e5EA86d57387849598dbFB2e964b02'),
+  [ChainId.KAVA]: makeMaiToken(ChainId.KAVA, '0xb84Df10966a5D7e1ab46D9276F55d57bD336AFC7'),
 }
