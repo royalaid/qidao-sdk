@@ -1,5 +1,5 @@
-import { ChainId } from "./constants"
-import { Token } from "./entities"
+import { ChainId } from './constants'
+import { Token } from './entities'
 
 type ChainTokenMap = {
   readonly [chainId in ChainId]?: Token

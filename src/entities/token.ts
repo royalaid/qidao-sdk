@@ -197,4 +197,11 @@ export const WNATIVE = {
   ),
   [ChainId.BOBA]: new Token(ChainId.BOBA, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.CUBE]: new Token(ChainId.CUBE, '0x9d3f61338d6eb394e378d28c1fd17d5909ac6591', 18, 'WCUBE', 'Wrapped Cube'),
+  [ChainId.CANTO]: new Token(
+    ChainId.CANTO,
+    '0x826551890Dc65655a0Aceca109aB11AbDbD7a07B',
+    18,
+    'WCANTO',
+    'Wrapped Canto'
+  ),
 }

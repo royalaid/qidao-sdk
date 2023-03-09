@@ -1884,6 +1884,7 @@ export const COLLATERALS: {
   [ChainId.IOTEX]: typeof EMPTY_COLLATERALS,
   [ChainId.KAVA]: typeof EMPTY_COLLATERALS,
   [ChainId.KLAYTN]: typeof EMPTY_COLLATERALS,
+  [ChainId.CANTO]: typeof EMPTY_COLLATERALS,
 } = {
   [ChainId.MAINNET]: MAINNET_COLLATERALS,
   [ChainId.FANTOM]: FANTOM_COLLATERALS,
@@ -1918,6 +1919,7 @@ export const COLLATERALS: {
   [ChainId.IOTEX]: [],
   [ChainId.KAVA]: [],
   [ChainId.KLAYTN]: [],
+  [ChainId.CANTO]: [],
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
