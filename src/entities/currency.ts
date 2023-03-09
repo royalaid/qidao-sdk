@@ -59,6 +59,8 @@ export class Currency {
 
   public static readonly CUBE: Currency = new Currency(18, 'WCUBE', 'Wrapped Cube')
 
+  public static readonly CANTO: Currency = new Currency(18, 'WCANTO', 'Wrapped Canto')
+
   public static readonly NATIVE = {
     [ChainId.MAINNET]: Currency.ETHER,
     [ChainId.GÖRLI]: Currency.ETHER,
@@ -92,6 +94,7 @@ export class Currency {
     [ChainId.AURORA]: Currency.AURORA,
     [ChainId.BOBA]: Currency.BOBA,
     [ChainId.CUBE]: Currency.CUBE,
+    [ChainId.CANTO]: Currency.CANTO,
   }
 
   /**
