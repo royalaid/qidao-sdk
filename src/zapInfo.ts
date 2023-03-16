@@ -24,6 +24,7 @@ import {
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
   MOO_SCREAM_WFTM_VAULT_ADDRESS,
   MOO_WAVAX_VAULT_ADDRESS,
+  OP_KNC_VAULT_ADDRESS,
   OP_QI_ZAPPER,
   OP_THREE_STEP_ZAPPER,
   STMATIC_MAI_VAULT_ADDRESS,
@@ -387,6 +388,13 @@ export const PERF_TOKEN_ZAP_META: {
         'Moo Curve wstETH'
       ),
       mooAssetVaultAddress: MOO_ETH_STETH_CRV_VAULT_ADDRESS,
+      zapperAddress: OP_THREE_STEP_ZAPPER,
+    }),
+    [OP_KNC_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0x80ff0aA765e49D451FF7C7D046f7e8ba732d8bb5',
+      mooAssetVaultAddress: OP_KNC_VAULT_ADDRESS,
+      underlying: new Token(ChainId.ARBITRUM, '0xa00E3A3511aAC35cA78530c85007AFCd31753819', 18, 'KNC', 'Kyber Network Crystal (v2)'),
+      underlyingPriceSourceAddress: '0xCB24d22aF35986aC1feb8874AdBbDF68f6dC2e96',
       zapperAddress: OP_THREE_STEP_ZAPPER,
     }),
   },

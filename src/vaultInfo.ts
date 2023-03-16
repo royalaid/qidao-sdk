@@ -1055,6 +1055,18 @@ const OPTIMISM_COLLATERALS = [
     snapshotName: 'Beefy stETH Curve (Optimism)',
     underlyingIds: ['weth', 'wrapped-steth'],
   },
+  {
+    shortName: 'knc',
+    vaultAddress: OP_KNC_VAULT_ADDRESS,
+    chainId: ChainId.OPTIMISM,
+    token: new Token(ChainId.OPTIMISM, '0xa00E3A3511aAC35cA78530c85007AFCd31753819', 18, 'KNC', 'Kyber Network Crystal (v2)'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 140,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    underlyingIds: ['kyber-network-crystal'],
+  },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const MOONRIVER_COLLATERALS = [
