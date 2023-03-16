@@ -5,6 +5,7 @@ import ThreeStepQiZappah from './abis/ThreeStepQiZappah.json'
 
 import {
   ARBI_GDAI_VAULT_ADDRESS,
+  ARBI_KNC_VAULT_ADDRESS,
   ARBI_THREE_STEP_ZAPPER,
   CAMAAVE_VAULT_ADDRESS,
   CAMDAI_VAULT_ADDRESS,
@@ -337,6 +338,13 @@ export const PERF_TOKEN_ZAP_META: {
       mooAssetVaultAddress: ARBI_GDAI_VAULT_ADDRESS,
       underlying: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI'),
       underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
+      zapperAddress: ARBI_THREE_STEP_ZAPPER,
+    }),
+    [ARBI_KNC_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0xe7d5De69F42881cFEABAc44eaf9c782A08B083B8',
+      mooAssetVaultAddress: ARBI_KNC_VAULT_ADDRESS,
+      underlying: new Token(ChainId.ARBITRUM, '0xe4DDDfe67E7164b0FE14E218d80dC4C08eDC01cB', 18, 'KNC', 'Kyber Network Crystal (v2)'),
+      underlyingPriceSourceAddress: '0xbF539d4c2106dd4D9AB6D56aed3d9023529Db145',
       zapperAddress: ARBI_THREE_STEP_ZAPPER,
     }),
   },

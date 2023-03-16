@@ -59,7 +59,7 @@ import {
   STMATIC_MAI_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
   ARBI_GDAI_VAULT_ADDRESS,
-  MATICX_MAI_VAULT_ADDRESS, TOKEN_DESCRIPTIONS,
+  MATICX_MAI_VAULT_ADDRESS, TOKEN_DESCRIPTIONS, ARBI_KNC_VAULT_ADDRESS, OP_KNC_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -887,6 +887,18 @@ const ARBITRUM_COLLATERALS = [
     version: 2,
     fallbackUnderlyingAddress: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
     underlyingIds: ['gns', 'daidai'],
+  },
+  {
+    shortName: 'knc',
+    vaultAddress: ARBI_KNC_VAULT_ADDRESS,
+    chainId: ChainId.ARBITRUM,
+    token: new Token(ChainId.ARBITRUM, '0xe4DDDfe67E7164b0FE14E218d80dC4C08eDC01cB', 18, 'KNC', 'Kyber Network Crystal (v2)'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 140,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    underlyingIds: ['kyber-network-crystal'],
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
