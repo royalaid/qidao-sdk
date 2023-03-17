@@ -247,9 +247,8 @@ export const ZAP_META: { [c in ChainId]?: { [s in string]: ZapMeta } } = {
   },
 }
 
-function generateGainsZapper({
+function generateGainsZapOut({
   depositToken,
-  withdrawToken,
   gdai,
   perfToken,
   underlyingPriceSourceAddress,
@@ -257,7 +256,6 @@ function generateGainsZapper({
   zapperAddress,
 }: {
   depositToken: Token
-  withdrawToken: Token
   gdai: string
   perfToken: string
   vaultAddress: string
@@ -268,14 +266,6 @@ function generateGainsZapper({
     underlyingPriceSourceAddress,
     perfToken,
     depositToken,
-    withdrawToken,
-    zapperAddress,
-    zapInFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
-      const zapperContract = GainsZapper__factory.connect(zapperAddress, signer)
-      return zapperContract.gainsZapToVault(amount, vaultIndex, depositToken.address, gdai, perfToken, vaultAddress, {
-        ...overrides,
-      })
-    },
     zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
       const zapperContract = GainsZapper__factory.connect(zapperAddress, signer)
       return zapperContract.gainsZapFromVault(amount, vaultIndex, depositToken.address, gdai, perfToken, vaultAddress, {
@@ -372,35 +362,82 @@ function generateThreeStepZapper({
 
 export type QiZapAnyMeta = QiZapGainsMeta | QiZapMeta | QiZapThreeStepMeta
 
+generateThreeStepZapper({
+  perfToken: '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35',
+  mooAssetVaultAddress: ARBI_GDAI_VAULT_ADDRESS,
+  underlying: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI'),
+  underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
+  zapperAddress: ARBI_THREE_STEP_ZAPPER,
+})
+
+const ARBI_DAI_ADDRESS = '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1'
+const ARBI_GDAI_ADDRESS = '0xd85E038593d7A098614721EaE955EC2022B9B91B'
+const ARBI_GDAI_PERF_TOKEN = '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35'
 export const PERF_TOKEN_ZAP_META: {
-  [c in ChainId]?: { [s in string]: QiZapAnyMeta | QiZapAnyMeta[] }
+  [c in ChainId]?: { [s in string]: QiZapAnyMeta }
 } = {
   [ChainId.ARBITRUM]: {
-    [ARBI_GDAI_VAULT_ADDRESS]: [
-      generateThreeStepZapper({
-        perfToken: '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35',
-        mooAssetVaultAddress: ARBI_GDAI_VAULT_ADDRESS,
-        underlying: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI'),
-        underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
-        zapperAddress: ARBI_THREE_STEP_ZAPPER,
-    }),
-    [ARBI_KNC_VAULT_ADDRESS]: generateThreeStepZapper({
-      perfToken: '0xe7d5De69F42881cFEABAc44eaf9c782A08B083B8',
-      mooAssetVaultAddress: ARBI_KNC_VAULT_ADDRESS,
-      underlying: new Token(ChainId.ARBITRUM, '0xe4DDDfe67E7164b0FE14E218d80dC4C08eDC01cB', 18, 'KNC', 'Kyber Network Crystal (v2)'),
-      underlyingPriceSourceAddress: '0xbF539d4c2106dd4D9AB6D56aed3d9023529Db145',
-      zapperAddress: ARBI_THREE_STEP_ZAPPER,
-      }),
-      generateGainsZapper({
+    [ARBI_GDAI_VAULT_ADDRESS]: {
+      ...generateGainsZapOut({
         vaultAddress: ARBI_GDAI_VAULT_ADDRESS,
-        gdai: '0xd85E038593d7A098614721EaE955EC2022B9B91B',
-        perfToken: '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35',
-        depositToken: new Token(ChainId.ARBITRUM, '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1', 18, 'DAI'),
-        withdrawToken: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI'),
+        gdai: ARBI_GDAI_ADDRESS,
+        perfToken: ARBI_GDAI_PERF_TOKEN,
+        depositToken: new Token(ChainId.ARBITRUM, ARBI_DAI_ADDRESS, 18, 'DAI'),
         underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
         zapperAddress: ARBI_GAINS_ZAPPER,
       }),
-    ],
+      withdrawToken: new Token(ChainId.ARBITRUM, ARBI_GDAI_ADDRESS, 18, 'gDAI'),
+      depositTokens: [
+        new Token(ChainId.ARBITRUM, ARBI_DAI_ADDRESS, 18, 'DAI'),
+        new Token(ChainId.ARBITRUM, ARBI_GDAI_ADDRESS, 18, 'gDAI'),
+      ],
+      zapperAddresses: {
+        [ARBI_DAI_ADDRESS]: ARBI_GAINS_ZAPPER,
+        [ARBI_GDAI_ADDRESS]: ARBI_THREE_STEP_ZAPPER,
+      },
+      zapInFunctions: {
+        [ARBI_DAI_ADDRESS]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+          const zapperContract = GainsZapper__factory.connect(ARBI_GAINS_ZAPPER, signer)
+          return zapperContract.gainsZapToVault(
+            amount,
+            vaultIndex,
+            ARBI_DAI_ADDRESS,
+            ARBI_GDAI_ADDRESS,
+            ARBI_GDAI_PERF_TOKEN,
+            ARBI_GDAI_VAULT_ADDRESS,
+            {
+              ...overrides,
+            }
+          )
+        },
+        [ARBI_GDAI_ADDRESS]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+          const zapperContract = new Contract(ARBI_THREE_STEP_ZAPPER, ThreeStepQiZappah, signer)
+          return zapperContract.beefyZapToVault(
+            amount,
+            vaultIndex,
+            ARBI_GDAI_ADDRESS,
+            ARBI_GDAI_ADDRESS,
+            ARBI_GDAI_VAULT_ADDRESS,
+            {
+              ...overrides,
+            }
+          )
+        },
+      },
+    },
+    [ARBI_KNC_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0xe7d5De69F42881cFEABAc44eaf9c782A08B083B8',
+      mooAssetVaultAddress: ARBI_KNC_VAULT_ADDRESS,
+      underlying: new Token(
+        ChainId.ARBITRUM,
+        '0xe4DDDfe67E7164b0FE14E218d80dC4C08eDC01cB',
+        18,
+        'KNC',
+        'Kyber Network Crystal (v2)'
+      ),
+      underlyingPriceSourceAddress: '0xbF539d4c2106dd4D9AB6D56aed3d9023529Db145',
+      zapperAddress: ARBI_THREE_STEP_ZAPPER,
+    }),
   },
   [ChainId.OPTIMISM]: {
     [WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
@@ -446,7 +483,13 @@ export const PERF_TOKEN_ZAP_META: {
     [OP_KNC_VAULT_ADDRESS]: generateThreeStepZapper({
       perfToken: '0x80ff0aA765e49D451FF7C7D046f7e8ba732d8bb5',
       mooAssetVaultAddress: OP_KNC_VAULT_ADDRESS,
-      underlying: new Token(ChainId.ARBITRUM, '0xa00E3A3511aAC35cA78530c85007AFCd31753819', 18, 'KNC', 'Kyber Network Crystal (v2)'),
+      underlying: new Token(
+        ChainId.ARBITRUM,
+        '0xa00E3A3511aAC35cA78530c85007AFCd31753819',
+        18,
+        'KNC',
+        'Kyber Network Crystal (v2)'
+      ),
       underlyingPriceSourceAddress: '0xCB24d22aF35986aC1feb8874AdBbDF68f6dC2e96',
       zapperAddress: OP_THREE_STEP_ZAPPER,
     }),

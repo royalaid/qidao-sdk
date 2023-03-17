@@ -49,7 +49,11 @@ export interface QiZapMeta {
   zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, override?: CallOverrides) => any
 }
 
-export type QiZapGainsMeta = Omit<QiZapMeta, 'underlying' | 'mooAssetAddress'> & {
-  depositToken: Token
+export type QiZapGainsMeta = Omit<QiZapMeta, 'underlying' | 'mooAssetAddress' | 'zapInFunction' | 'zapperAddress'> & {
+  depositTokens: Token[]
+  zapInFunctions: {
+    [s in string]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, override?: CallOverrides) => any
+  }
   withdrawToken: Token
+  zapperAddresses: { [s in string]: string }
 }
