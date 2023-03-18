@@ -247,34 +247,6 @@ export const ZAP_META: { [c in ChainId]?: { [s in string]: ZapMeta } } = {
   },
 }
 
-function generateGainsZapOut({
-  depositToken,
-  gdai,
-  perfToken,
-  underlyingPriceSourceAddress,
-  vaultAddress,
-  zapperAddress,
-}: {
-  depositToken: Token
-  gdai: string
-  perfToken: string
-  vaultAddress: string
-  underlyingPriceSourceAddress: string
-  zapperAddress: string
-}) {
-  return {
-    underlyingPriceSourceAddress,
-    perfToken,
-    depositToken,
-    zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
-      const zapperContract = GainsZapper__factory.connect(zapperAddress, signer)
-      return zapperContract.gainsZapFromVault(amount, vaultIndex, depositToken.address, gdai, perfToken, vaultAddress, {
-        ...overrides,
-      })
-    },
-  }
-}
-
 function generateQiZapper({
   perfToken,
   underlyingPriceSourceAddress,
@@ -378,22 +350,29 @@ export const PERF_TOKEN_ZAP_META: {
 } = {
   [ChainId.ARBITRUM]: {
     [ARBI_GDAI_VAULT_ADDRESS]: {
-      ...generateGainsZapOut({
-        vaultAddress: ARBI_GDAI_VAULT_ADDRESS,
-        gdai: ARBI_GDAI_ADDRESS,
-        perfToken: ARBI_GDAI_PERF_TOKEN,
-        depositToken: new Token(ChainId.ARBITRUM, ARBI_DAI_ADDRESS, 18, 'DAI'),
-        underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
-        zapperAddress: ARBI_GAINS_ZAPPER,
-      }),
-      withdrawToken: new Token(ChainId.ARBITRUM, ARBI_GDAI_ADDRESS, 18, 'gDAI'),
+      underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
       depositTokens: [
         new Token(ChainId.ARBITRUM, ARBI_DAI_ADDRESS, 18, 'DAI'),
         new Token(ChainId.ARBITRUM, ARBI_GDAI_ADDRESS, 18, 'gDAI'),
       ],
+      perfToken: ARBI_GDAI_PERF_TOKEN,
+      withdrawToken: new Token(ChainId.ARBITRUM, ARBI_GDAI_ADDRESS, 18, 'gDAI'),
       zapperAddresses: {
         [ARBI_DAI_ADDRESS]: ARBI_GAINS_ZAPPER,
         [ARBI_GDAI_ADDRESS]: ARBI_THREE_STEP_ZAPPER,
+      },
+      zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+        const zapperContract = new Contract(ARBI_THREE_STEP_ZAPPER, ThreeStepQiZappah, signer)
+        return zapperContract.beefyZapFromVault(
+          amount,
+          vaultIndex,
+          ARBI_GDAI_ADDRESS,
+          ARBI_GDAI_PERF_TOKEN,
+          ARBI_GDAI_VAULT_ADDRESS,
+          {
+            ...overrides,
+          }
+        )
       },
       zapInFunctions: {
         [ARBI_DAI_ADDRESS]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
