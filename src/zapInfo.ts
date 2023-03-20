@@ -16,6 +16,7 @@ import {
   ChainId,
   GDAI_VAULT_ADDRESS,
   MATIC_THREE_STEP_ZAPPER,
+  MATIC_WSTETH_VAULT_ADDRESS,
   MATICX_MAI_VAULT_ADDRESS,
   MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_ETH_STETH_CRV_VAULT_ADDRESS,
@@ -512,6 +513,20 @@ export const PERF_TOKEN_ZAP_META: {
         'Liquid Staking Matic (PoS)'
       ),
       mooAssetVaultAddress: MATICX_MAI_VAULT_ADDRESS,
+      zapperAddress: MATIC_THREE_STEP_ZAPPER,
+    }),
+
+    [MATIC_WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0x10f964234cae09cB6a9854B56FF7D4F38Cda5E6a',
+      perfToken: '0xcC03032fBf096F14a2DE8809c79d8b584151212B',
+      underlying: new Token(
+        ChainId.MATIC,
+        '0x03b54A6e9a984069379fae1a4fC4dBAE93B3bCCD',
+        18,
+        'wstETH',
+        'Wrapped liquid staked Ether 2.0'
+      ),
+      mooAssetVaultAddress: MATIC_WSTETH_VAULT_ADDRESS,
       zapperAddress: MATIC_THREE_STEP_ZAPPER,
     }),
   },

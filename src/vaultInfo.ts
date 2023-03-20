@@ -59,7 +59,11 @@ import {
   STMATIC_MAI_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
   ARBI_GDAI_VAULT_ADDRESS,
-  MATICX_MAI_VAULT_ADDRESS, TOKEN_DESCRIPTIONS, ARBI_KNC_VAULT_ADDRESS, OP_KNC_VAULT_ADDRESS,
+  MATICX_MAI_VAULT_ADDRESS,
+  TOKEN_DESCRIPTIONS,
+  ARBI_KNC_VAULT_ADDRESS,
+  OP_KNC_VAULT_ADDRESS,
+  MATIC_WSTETH_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -1812,6 +1816,26 @@ const MATIC_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: ['polygon'],
+  },
+  {
+    shortName: 'wsteth',
+    vaultAddress: MATIC_WSTETH_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: '0x03b54A6e9a984069379fae1a4fC4dBAE93B3bCCD',
+    chainId: ChainId.MATIC,
+    connect: StableQiVault__factory.connect,
+    contractAbi: StableQiVault__factory.abi,
+    token: new Token(
+        ChainId.MATIC,
+        '0xcC03032fBf096F14a2DE8809c79d8b584151212B',
+        18,
+        'wstETH',
+        'Wrapped liquid staked Ether 2.0'
+    ),
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Optimism)',
+    underlyingIds: ['wrapped-steth'],
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
