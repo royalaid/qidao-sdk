@@ -4,7 +4,9 @@ import QiZappahABI from './abis/QiZappah.json'
 import ThreeStepQiZappah from './abis/ThreeStepQiZappah.json'
 
 import {
+  ARBI_GAINS_ZAPPER,
   ARBI_GDAI_VAULT_ADDRESS,
+  ARBI_KNC_VAULT_ADDRESS,
   ARBI_THREE_STEP_ZAPPER,
   CAMAAVE_VAULT_ADDRESS,
   CAMDAI_VAULT_ADDRESS,
@@ -14,6 +16,7 @@ import {
   ChainId,
   GDAI_VAULT_ADDRESS,
   MATIC_THREE_STEP_ZAPPER,
+  MATIC_WSTETH_VAULT_ADDRESS,
   MATICX_MAI_VAULT_ADDRESS,
   MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_ETH_STETH_CRV_VAULT_ADDRESS,
@@ -23,6 +26,7 @@ import {
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
   MOO_SCREAM_WFTM_VAULT_ADDRESS,
   MOO_WAVAX_VAULT_ADDRESS,
+  OP_KNC_VAULT_ADDRESS,
   OP_QI_ZAPPER,
   OP_THREE_STEP_ZAPPER,
   STMATIC_MAI_VAULT_ADDRESS,
@@ -35,6 +39,7 @@ import {
   YVWFTM_VAULT_ADDRESS,
   YVYFI_VAULT_ADDRESS,
 } from './constants'
+import { GainsZapper__factory } from './contracts'
 import { Token } from './entities'
 import ZapMeta, { CamMeta, QiZapGainsMeta, QiZapMeta, QiZapThreeStepMeta, ScalingInfo } from './ZapMeta'
 
@@ -328,15 +333,89 @@ function generateThreeStepZapper({
   }
 }
 
+export type QiZapAnyMeta = QiZapGainsMeta | QiZapMeta | QiZapThreeStepMeta
+
+generateThreeStepZapper({
+  perfToken: '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35',
+  mooAssetVaultAddress: ARBI_GDAI_VAULT_ADDRESS,
+  underlying: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI'),
+  underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
+  zapperAddress: ARBI_THREE_STEP_ZAPPER,
+})
+
+const ARBI_DAI_ADDRESS = '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1'
+const ARBI_GDAI_ADDRESS = '0xd85E038593d7A098614721EaE955EC2022B9B91B'
+const ARBI_GDAI_PERF_TOKEN = '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35'
 export const PERF_TOKEN_ZAP_META: {
-  [c in ChainId]?: { [s in string]: QiZapGainsMeta | QiZapMeta | QiZapThreeStepMeta }
+  [c in ChainId]?: { [s in string]: QiZapAnyMeta }
 } = {
   [ChainId.ARBITRUM]: {
-    [ARBI_GDAI_VAULT_ADDRESS]: generateThreeStepZapper({
-      perfToken: '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35',
-      mooAssetVaultAddress: ARBI_GDAI_VAULT_ADDRESS,
-      underlying: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI'),
+    [ARBI_GDAI_VAULT_ADDRESS]: {
       underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
+      depositTokens: [
+        new Token(ChainId.ARBITRUM, ARBI_DAI_ADDRESS, 18, 'DAI'),
+        new Token(ChainId.ARBITRUM, ARBI_GDAI_ADDRESS, 18, 'gDAI'),
+      ],
+      perfToken: ARBI_GDAI_PERF_TOKEN,
+      withdrawToken: new Token(ChainId.ARBITRUM, ARBI_GDAI_ADDRESS, 18, 'gDAI'),
+      zapperAddresses: {
+        [ARBI_DAI_ADDRESS]: ARBI_GAINS_ZAPPER,
+        [ARBI_GDAI_ADDRESS]: ARBI_THREE_STEP_ZAPPER,
+      },
+      zapOutFunction: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+        const zapperContract = new Contract(ARBI_THREE_STEP_ZAPPER, ThreeStepQiZappah, signer)
+        return zapperContract.beefyZapFromVault(
+          amount,
+          vaultIndex,
+          ARBI_GDAI_ADDRESS,
+          ARBI_GDAI_PERF_TOKEN,
+          ARBI_GDAI_VAULT_ADDRESS,
+          {
+            ...overrides,
+          }
+        )
+      },
+      zapInFunctions: {
+        [ARBI_DAI_ADDRESS]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+          const zapperContract = GainsZapper__factory.connect(ARBI_GAINS_ZAPPER, signer)
+          return zapperContract.gainsZapToVault(
+            amount,
+            vaultIndex,
+            ARBI_DAI_ADDRESS,
+            ARBI_GDAI_ADDRESS,
+            ARBI_GDAI_PERF_TOKEN,
+            ARBI_GDAI_VAULT_ADDRESS,
+            {
+              ...overrides,
+            }
+          )
+        },
+        [ARBI_GDAI_ADDRESS]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+          const zapperContract = new Contract(ARBI_THREE_STEP_ZAPPER, ThreeStepQiZappah, signer)
+          return zapperContract.beefyZapToVault(
+            amount,
+            vaultIndex,
+            ARBI_GDAI_ADDRESS,
+            ARBI_GDAI_PERF_TOKEN,
+            ARBI_GDAI_VAULT_ADDRESS,
+            {
+              ...overrides,
+            }
+          )
+        },
+      },
+    },
+    [ARBI_KNC_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0xe7d5De69F42881cFEABAc44eaf9c782A08B083B8',
+      mooAssetVaultAddress: ARBI_KNC_VAULT_ADDRESS,
+      underlying: new Token(
+        ChainId.ARBITRUM,
+        '0xe4DDDfe67E7164b0FE14E218d80dC4C08eDC01cB',
+        18,
+        'KNC',
+        'Kyber Network Crystal (v2)'
+      ),
+      underlyingPriceSourceAddress: '0xbF539d4c2106dd4D9AB6D56aed3d9023529Db145',
       zapperAddress: ARBI_THREE_STEP_ZAPPER,
     }),
   },
@@ -381,6 +460,19 @@ export const PERF_TOKEN_ZAP_META: {
       mooAssetVaultAddress: MOO_ETH_STETH_CRV_VAULT_ADDRESS,
       zapperAddress: OP_THREE_STEP_ZAPPER,
     }),
+    [OP_KNC_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0x80ff0aA765e49D451FF7C7D046f7e8ba732d8bb5',
+      mooAssetVaultAddress: OP_KNC_VAULT_ADDRESS,
+      underlying: new Token(
+        ChainId.ARBITRUM,
+        '0xa00E3A3511aAC35cA78530c85007AFCd31753819',
+        18,
+        'KNC',
+        'Kyber Network Crystal (v2)'
+      ),
+      underlyingPriceSourceAddress: '0xCB24d22aF35986aC1feb8874AdBbDF68f6dC2e96',
+      zapperAddress: OP_THREE_STEP_ZAPPER,
+    }),
   },
   [ChainId.MATIC]: {
     [STMATIC_MAI_VAULT_ADDRESS]: generateThreeStepZapper({
@@ -421,6 +513,20 @@ export const PERF_TOKEN_ZAP_META: {
         'Liquid Staking Matic (PoS)'
       ),
       mooAssetVaultAddress: MATICX_MAI_VAULT_ADDRESS,
+      zapperAddress: MATIC_THREE_STEP_ZAPPER,
+    }),
+
+    [MATIC_WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0x10f964234cae09cB6a9854B56FF7D4F38Cda5E6a',
+      perfToken: '0xcC03032fBf096F14a2DE8809c79d8b584151212B',
+      underlying: new Token(
+        ChainId.MATIC,
+        '0x03b54A6e9a984069379fae1a4fC4dBAE93B3bCCD',
+        18,
+        'wstETH',
+        'Wrapped liquid staked Ether 2.0'
+      ),
+      mooAssetVaultAddress: MATIC_WSTETH_VAULT_ADDRESS,
       zapperAddress: MATIC_THREE_STEP_ZAPPER,
     }),
   },

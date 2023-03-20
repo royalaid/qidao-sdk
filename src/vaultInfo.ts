@@ -59,7 +59,11 @@ import {
   STMATIC_MAI_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
   ARBI_GDAI_VAULT_ADDRESS,
-  MATICX_MAI_VAULT_ADDRESS, TOKEN_DESCRIPTIONS,
+  MATICX_MAI_VAULT_ADDRESS,
+  TOKEN_DESCRIPTIONS,
+  ARBI_KNC_VAULT_ADDRESS,
+  OP_KNC_VAULT_ADDRESS,
+  MATIC_WSTETH_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -888,6 +892,18 @@ const ARBITRUM_COLLATERALS = [
     fallbackUnderlyingAddress: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
     underlyingIds: ['gns', 'daidai'],
   },
+  {
+    shortName: 'knc',
+    vaultAddress: ARBI_KNC_VAULT_ADDRESS,
+    chainId: ChainId.ARBITRUM,
+    token: new Token(ChainId.ARBITRUM, '0xe4DDDfe67E7164b0FE14E218d80dC4C08eDC01cB', 18, 'KNC', 'Kyber Network Crystal (v2)'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 140,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    underlyingIds: ['kyber-network-crystal'],
+  },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const OPTIMISM_COLLATERALS = [
@@ -1042,6 +1058,18 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'Beefy stETH Curve (Optimism)',
     underlyingIds: ['weth', 'wrapped-steth'],
+  },
+  {
+    shortName: 'knc',
+    vaultAddress: OP_KNC_VAULT_ADDRESS,
+    chainId: ChainId.OPTIMISM,
+    token: new Token(ChainId.OPTIMISM, '0xa00E3A3511aAC35cA78530c85007AFCd31753819', 18, 'KNC', 'Kyber Network Crystal (v2)'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 140,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    underlyingIds: ['kyber-network-crystal'],
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1788,6 +1816,26 @@ const MATIC_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: ['polygon'],
+  },
+  {
+    shortName: 'wsteth',
+    vaultAddress: MATIC_WSTETH_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: '0x03b54A6e9a984069379fae1a4fC4dBAE93B3bCCD',
+    chainId: ChainId.MATIC,
+    connect: StableQiVault__factory.connect,
+    contractAbi: StableQiVault__factory.abi,
+    token: new Token(
+        ChainId.MATIC,
+        '0xcC03032fBf096F14a2DE8809c79d8b584151212B',
+        18,
+        'wstETH',
+        'Wrapped liquid staked Ether 2.0'
+    ),
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Optimism)',
+    underlyingIds: ['wrapped-steth'],
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
