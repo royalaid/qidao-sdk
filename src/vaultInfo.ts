@@ -1820,7 +1820,7 @@ const MATIC_COLLATERALS = [
   {
     shortName: 'wsteth',
     vaultAddress: MATIC_WSTETH_VAULT_ADDRESS,
-    fallbackUnderlyingAddress: '0x03b54A6e9a984069379fae1a4fC4dBAE93B3bCCD',
+    fallbackUnderlyingAddress: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
     chainId: ChainId.MATIC,
     connect: StableQiVault__factory.connect,
     contractAbi: StableQiVault__factory.abi,
