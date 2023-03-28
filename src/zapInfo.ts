@@ -8,6 +8,7 @@ import {
   ARBI_GDAI_VAULT_ADDRESS,
   ARBI_KNC_VAULT_ADDRESS,
   ARBI_THREE_STEP_ZAPPER,
+  ARBI_WSTETH_VAULT_ADDRESS,
   CAMAAVE_VAULT_ADDRESS,
   CAMDAI_VAULT_ADDRESS,
   CAMWBTC_VAULT_ADDRESS,
@@ -416,6 +417,19 @@ export const PERF_TOKEN_ZAP_META: {
         'Kyber Network Crystal (v2)'
       ),
       underlyingPriceSourceAddress: '0xbF539d4c2106dd4D9AB6D56aed3d9023529Db145',
+      zapperAddress: ARBI_THREE_STEP_ZAPPER,
+    }),
+    [ARBI_WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0xcBAD495647627002d19b8B2ebE2B86087A15A724',
+      mooAssetVaultAddress: ARBI_WSTETH_VAULT_ADDRESS,
+      underlying: new Token(
+        ChainId.ARBITRUM,
+        '0x9E75f8298e458B76382870982788988A0799195b',
+        18,
+        'mooCurveWSTETH',
+        'Moo Curve wstETH'
+      ),
+      underlyingPriceSourceAddress: '0x07C5b924399cc23c24a95c8743DE4006a32b7f2a',
       zapperAddress: ARBI_THREE_STEP_ZAPPER,
     }),
   },

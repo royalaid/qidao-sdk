@@ -63,7 +63,7 @@ import {
   TOKEN_DESCRIPTIONS,
   ARBI_KNC_VAULT_ADDRESS,
   OP_KNC_VAULT_ADDRESS,
-  MATIC_WSTETH_VAULT_ADDRESS,
+  MATIC_WSTETH_VAULT_ADDRESS, ARBI_WSTETH_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -127,6 +127,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Wrapped Staked ETH (Optimism)'
   | 'Yearn vault ETH (Optimism)'
   | 'Beefy stETH Curve (Optimism)'
+  | 'Beefy stETH Curve (Arbitrum)'
 
 export type VaultShortName =
   | 'aave'
@@ -903,6 +904,26 @@ const ARBITRUM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     underlyingIds: ['kyber-network-crystal'],
+  },
+  {
+    shortName: 'beefy-eth-steth-crv',
+    vaultAddress: ARBI_WSTETH_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: '0x5979D7b546E38E414F7E9822514be443A4800529',
+    chainId: ChainId.ARBITRUM,
+    connect: StableQiVault__factory.connect,
+    contractAbi: StableQiVault__factory.abi,
+    token: new Token(
+        ChainId.ARBITRUM,
+        '0x9E75f8298e458B76382870982788988A0799195b',
+        18,
+        'mooCurveWSTETH',
+        'Moo Curve wstETH'
+    ),
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Beefy stETH Curve (Arbitrum)',
+    underlyingIds: ['weth', 'wrapped-steth'],
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
