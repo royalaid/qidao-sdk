@@ -179,10 +179,10 @@ export const WNATIVE = {
     'Wrapped ADA'
   ),
   [ChainId.KAVA]: new Token(ChainId.KAVA, '0xc86c7C0eFbd6A49B35E8714C5f59D99De09A225b', 18, 'WKAVA', 'Wrapped Kava'),
-  [ChainId.IOTEX]: new Token(ChainId.IOTEX, '0xa00744882684c3e4747faefd68d283ea44099d03', 18, 'WIOTX', 'Wrapped IoTeX'),
+  [ChainId.IOTEX]: new Token(ChainId.IOTEX, '0xA00744882684C3e4747faEFD68D283eA44099D03', 18, 'WIOTX', 'Wrapped IoTeX'),
   [ChainId.KLAYTN]: new Token(
     ChainId.KLAYTN,
-    '0xfd844c2fca5e595004b17615f891620d1cb9bbb2',
+    '0xfd844c2fcA5e595004b17615f891620d1cB9bBB2',
     18,
     'WKLAY',
     'Wrapped Klaytn'
@@ -196,7 +196,7 @@ export const WNATIVE = {
     'Wrapped Ether'
   ),
   [ChainId.BOBA]: new Token(ChainId.BOBA, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.CUBE]: new Token(ChainId.CUBE, '0x9d3f61338d6eb394e378d28c1fd17d5909ac6591', 18, 'WCUBE', 'Wrapped Cube'),
+  [ChainId.CUBE]: new Token(ChainId.CUBE, '0x9D3F61338d6Eb394e378D28C1Fd17d5909aC6591', 18, 'WCUBE', 'Wrapped Cube'),
   [ChainId.CANTO]: new Token(
     ChainId.CANTO,
     '0x826551890Dc65655a0Aceca109aB11AbDbD7a07B',
