@@ -420,7 +420,7 @@ export const PERF_TOKEN_ZAP_META: {
       zapperAddress: ARBI_THREE_STEP_ZAPPER,
     }),
     [ARBI_WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
-      perfToken: '0xcBAD495647627002d19b8B2ebE2B86087A15A724',
+      perfToken: '0xf05f0e8760cE9a32df05549309ebEF7Ddb2190Fe',
       mooAssetVaultAddress: ARBI_WSTETH_VAULT_ADDRESS,
       underlying: new Token(
         ChainId.ARBITRUM,
