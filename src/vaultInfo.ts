@@ -66,7 +66,7 @@ import {
   MATIC_WSTETH_VAULT_ADDRESS,
   ARBI_WSTETH_VAULT_ADDRESS,
   ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
-  ETH_SDSTECRV_VAULT_ADDRESS,
+  ETH_SDSTECRV_VAULT_ADDRESS, ETH_BEEFY_CONVEX_STETH,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -132,6 +132,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Beefy stETH Curve (Optimism)'
   | 'Beefy stETH Curve (Arbitrum)'
   | 'StakeDAO Curve ETH/stETH Perf (Eth)'
+  | 'Beefy stETH Convex Perf (Eth)'
 
 export type VaultShortName =
   | 'aave'
@@ -218,6 +219,7 @@ export type VaultShortName =
   | 'maticx'
   | 'yvcurve-steth-f-perf'
   | 'stake-dao-crv-eth-steth-perf'
+  | 'beefy-eth-steth-crv-perf'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -423,6 +425,20 @@ const MAINNET_COLLATERALS = [
     snapshotName: 'StakeDAO Curve ETH/stETH Perf (Eth)',
     underlyingIds: ['weth', 'lido-staked-ether'],
   },
+{
+  shortName: 'beefy-eth-steth-crv-perf',
+  vaultAddress: ETH_BEEFY_CONVEX_STETH,
+  fallbackUnderlyingAddress: STETH_ADDRESS,
+  chainId: ChainId.MAINNET,
+  token: new Token(ChainId.MAINNET, '0xa7739fd3d12ac7F16D8329AF3Ee407e19De10D8D', 18, 'mooConvexStETH', 'Moo Convex stETH'),
+  contractAbi: StableQiVault__factory.abi,
+  connect: StableQiVault__factory.connect,
+  minimumCDR: 125,
+  frontend: FRONTEND.MAI,
+  version: 2,
+  snapshotName: 'Beefy stETH Convex Perf (Eth)',
+  underlyingIds: ['weth', 'lido-staked-ether'],
+},
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const FANTOM_COLLATERALS = [
