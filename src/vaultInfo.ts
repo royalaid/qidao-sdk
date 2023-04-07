@@ -216,7 +216,7 @@ export type VaultShortName =
   | 'stmatic'
   | 'gdai'
   | 'maticx'
-  | 'yvcurve-steth-f'
+  | 'yvcurve-steth-f-perf'
   | 'stake-dao-crv-eth-steth-perf'
 
 export type VaultContractAbiV1 =
@@ -396,7 +396,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['chainlink'],
   },
   {
-    shortName: 'yvcurve-steth-f',
+    shortName: 'yvcurve-steth-f-perf',
     vaultAddress: ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
     fallbackUnderlyingAddress: STETH_ADDRESS,
     chainId: ChainId.MAINNET,
