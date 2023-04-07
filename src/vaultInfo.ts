@@ -63,7 +63,10 @@ import {
   TOKEN_DESCRIPTIONS,
   ARBI_KNC_VAULT_ADDRESS,
   OP_KNC_VAULT_ADDRESS,
-  MATIC_WSTETH_VAULT_ADDRESS, ARBI_WSTETH_VAULT_ADDRESS, ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
+  MATIC_WSTETH_VAULT_ADDRESS,
+  ARBI_WSTETH_VAULT_ADDRESS,
+  ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
+  ETH_SDSTECRV_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -128,6 +131,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Yearn vault ETH (Optimism)'
   | 'Beefy stETH Curve (Optimism)'
   | 'Beefy stETH Curve (Arbitrum)'
+  | 'StakeDAO Curve ETH/stETH Perf (Eth)'
 
 export type VaultShortName =
   | 'aave'
@@ -213,6 +217,7 @@ export type VaultShortName =
   | 'gdai'
   | 'maticx'
   | 'yvcurve-steth-f'
+  | 'stake-dao-crv-eth-steth-perf'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -402,6 +407,20 @@ const MAINNET_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Yearn Curve ETH/stETH (Ethereum)',
+    underlyingIds: ['weth', 'lido-staked-ether'],
+  },
+  {
+    shortName: 'stake-dao-crv-eth-steth-perf',
+    vaultAddress: ETH_SDSTECRV_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: STETH_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, '0xbC10c4F7B9FE0B305e8639B04c536633A3dB7065', 18, 'sdsteCRV', 'StakeDAO Curve.fi ETH/stETH'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'StakeDAO Curve ETH/stETH Perf (Eth)',
     underlyingIds: ['weth', 'lido-staked-ether'],
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
