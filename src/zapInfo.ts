@@ -15,7 +15,9 @@ import {
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
   ChainId,
+  ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
+  MAINNET_ZAPPER,
   MATIC_THREE_STEP_ZAPPER,
   MATIC_WSTETH_VAULT_ADDRESS,
   MATICX_MAI_VAULT_ADDRESS,
@@ -350,6 +352,15 @@ const ARBI_GDAI_PERF_TOKEN = '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35'
 export const PERF_TOKEN_ZAP_META: {
   [c in ChainId]?: { [s in string]: QiZapAnyMeta }
 } = {
+  [ChainId.MAINNET]: {
+    [ETH_YVCURVE_STETH_F_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0xE9D954a9A6A1a61bc1120970f84CDd76562c4a0c',
+      mooAssetVaultAddress: ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
+      underlying: new Token(ChainId.MAINNET, '0x5B8C556B8b2a78696F0B9B830B3d67623122E270', 18, 'yvCurve-stETH-f'),
+      underlyingPriceSourceAddress: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',
+      zapperAddress: MAINNET_ZAPPER,
+    }),
+  },
   [ChainId.ARBITRUM]: {
     [ARBI_GDAI_VAULT_ADDRESS]: {
       underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
