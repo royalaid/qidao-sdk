@@ -237,6 +237,8 @@ export type VaultContractAbiV2 = typeof StableQiVault__factory.abi
 
 export type VaultContractAbi = VaultContractAbiV1 | VaultContractAbiV2
 
+const MAI_BIRTHDAY = 1620090000
+
 export enum FRONTEND {
   MAI,
   MANHATTAN,
@@ -274,6 +276,7 @@ export interface COLLATERAL {
   version: 1
   fallbackUnderlyingAddress?: string
   underlyingIds: (keyof typeof TOKEN_DESCRIPTIONS)[]
+  addedAt: number
 }
 
 export interface GAUGE_VALID_COLLATERAL extends COLLATERAL {
@@ -315,6 +318,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'WETH (Ethereum)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wbtc',
@@ -328,6 +332,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'WBTC (Ethereum)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'stake-dao-crv-eth-steth',
@@ -349,6 +354,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'StakeDAO Curve ETH/stETH (Eth)',
     underlyingIds: ['weth', 'lido-staked-ether'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvcrv-eth-steth',
@@ -370,6 +376,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'Yearn Curve ETH/stETH (Ethereum)',
     underlyingIds: ['weth', 'lido-staked-ether'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yveth',
@@ -384,6 +391,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'Yearn WETH (Ethereum)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvlink',
@@ -398,6 +406,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'Yearn LINK (Ethereum)',
     underlyingIds: ['chainlink'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvcurve-steth-f-perf',
@@ -412,6 +421,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'Yearn Curve ETH/stETH (Ethereum)',
     underlyingIds: ['weth', 'lido-staked-ether'],
+    addedAt: 1681002000,
   },
   {
     shortName: 'stake-dao-crv-eth-steth-perf',
@@ -426,21 +436,23 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'StakeDAO Curve ETH/stETH Perf (Eth)',
     underlyingIds: ['weth', 'lido-staked-ether'],
+    addedAt: 1681002000,
   },
-{
-  shortName: 'beefy-eth-steth-crv-perf',
-  vaultAddress: ETH_BEEFY_CONVEX_STETH,
-  fallbackUnderlyingAddress: STETH_ADDRESS,
-  chainId: ChainId.MAINNET,
-  token: new Token(ChainId.MAINNET, '0xa7739fd3d12ac7F16D8329AF3Ee407e19De10D8D', 18, 'mooConvexStETH', 'Moo Convex stETH'),
-  contractAbi: StableQiVault__factory.abi,
-  connect: StableQiVault__factory.connect,
-  minimumCDR: 125,
-  frontend: FRONTEND.MAI,
-  version: 2,
-  snapshotName: 'Beefy stETH Convex Perf (Eth)',
-  underlyingIds: ['weth', 'lido-staked-ether'],
-},
+  {
+    shortName: 'beefy-eth-steth-crv-perf',
+    vaultAddress: ETH_BEEFY_CONVEX_STETH,
+    fallbackUnderlyingAddress: STETH_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, '0xa7739fd3d12ac7F16D8329AF3Ee407e19De10D8D', 18, 'mooConvexStETH', 'Moo Convex stETH'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Beefy stETH Convex Perf (Eth)',
+    underlyingIds: ['weth', 'lido-staked-ether'],
+    addedAt: 1681002000,
+  },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const FANTOM_COLLATERALS = [
@@ -458,6 +470,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'WFTM (Fantom)',
     underlyingIds: ['fantom'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvwftm',
@@ -473,6 +486,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'Yearn vault WFTM (Fantom)',
     underlyingIds: ['fantom'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvwbtc',
@@ -493,6 +507,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'Yearn vault BTC (Fantom)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvyfi',
@@ -507,6 +522,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'Yearn vault YFI (Fantom)',
     underlyingIds: ['yearn-finance'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yveth',
@@ -521,6 +537,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'Yearn vault ETH (Fantom)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvwdai',
@@ -535,6 +552,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['daidai'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'ftmweth',
@@ -549,6 +567,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'WETH (Fantom)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'aave',
@@ -562,6 +581,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'AAVE (Fantom)',
     underlyingIds: ['aave'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'sushi',
@@ -575,6 +595,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'SUSHI (Fantom)',
     underlyingIds: ['sushiswap'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'link',
@@ -588,6 +609,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'LINK (Fantom)',
     underlyingIds: ['chainlink'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'btc',
@@ -601,6 +623,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'WBTC (Fantom)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-scream-wbtc',
@@ -621,6 +644,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-scream-dai',
@@ -641,6 +665,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['daidai'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-scream-eth',
@@ -661,6 +686,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-scream-ftm',
@@ -681,6 +707,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['fantom'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-scream-link',
@@ -701,6 +728,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['chainlink'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-spooky-btc-ftm',
@@ -720,6 +748,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['wrapped-bitcoinwbtc', 'fantom'],
+    addedAt: MAI_BIRTHDAY,
   },
   /* {
           shortName: "beefy-spooky-dai-ftm",
@@ -735,6 +764,7 @@ const FANTOM_COLLATERALS = [
           minimumCDR: 135,
           version: 1
     snapshotName: '',
+    addedAt: MAI_BIRTHDAY,
       }, */
   {
     shortName: 'beefy-spooky-eth-ftm',
@@ -754,6 +784,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['weth', 'fantom'],
+    addedAt: MAI_BIRTHDAY,
   },
   /* {
           shortName: "beefy-spooky-ftm-usdc",
@@ -769,6 +800,7 @@ const FANTOM_COLLATERALS = [
           minimumCDR: 135,
           version: 1
     snapshotName: '',
+    addedAt: MAI_BIRTHDAY,
       }, */
   {
     shortName: 'beefy-bifi',
@@ -789,6 +821,7 @@ const FANTOM_COLLATERALS = [
     version: 1,
     snapshotName: 'mooBIFI (Fantom)',
     underlyingIds: ['beefy-finance'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'xboo',
@@ -803,6 +836,7 @@ const FANTOM_COLLATERALS = [
     version: 2,
     snapshotName: 'xBOO (Fantom)',
     underlyingIds: ['spookyswap'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -826,6 +860,7 @@ const AVALANCHE_COLLATERALS = [
     version: 1,
     snapshotName: 'Beefy Aave AVAX (Avalanche)',
     underlyingIds: ['avalanche'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'sdav3crv',
@@ -844,6 +879,7 @@ const AVALANCHE_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['stake-dao-crv', 'tether', 'daidai', 'usd-coin'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'avaxwbtc',
@@ -857,6 +893,7 @@ const AVALANCHE_COLLATERALS = [
     version: 1,
     snapshotName: 'WBTC (Avalanche)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'avaxweth',
@@ -870,6 +907,7 @@ const AVALANCHE_COLLATERALS = [
     version: 1,
     snapshotName: 'WETH (Avalanche)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'avax',
@@ -883,6 +921,7 @@ const AVALANCHE_COLLATERALS = [
     version: 1,
     snapshotName: 'WAVAX (Avalanche)',
     underlyingIds: ['avalanche'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -905,6 +944,7 @@ const ARBITRUM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'weth',
@@ -918,6 +958,7 @@ const ARBITRUM_COLLATERALS = [
     version: 1,
     snapshotName: 'WETH (Arbitrum)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wbtc',
@@ -931,6 +972,7 @@ const ARBITRUM_COLLATERALS = [
     version: 1,
     snapshotName: 'WBTC (Arbitrum)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'gdai',
@@ -944,6 +986,7 @@ const ARBITRUM_COLLATERALS = [
     version: 2,
     fallbackUnderlyingAddress: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
     underlyingIds: ['gns', 'daidai'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'knc',
@@ -956,6 +999,7 @@ const ARBITRUM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     underlyingIds: ['kyber-network-crystal'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-eth-steth-crv',
@@ -976,6 +1020,7 @@ const ARBITRUM_COLLATERALS = [
     version: 2,
     snapshotName: 'Beefy stETH Curve (Arbitrum)',
     underlyingIds: ['weth', 'wrapped-steth'],
+    addedAt: 1680483600,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -992,6 +1037,7 @@ const OPTIMISM_COLLATERALS = [
     version: 1,
     snapshotName: 'WETH (Optimism)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wbtc',
@@ -1005,6 +1051,7 @@ const OPTIMISM_COLLATERALS = [
     version: 1,
     snapshotName: 'WBTC (Optimism)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'op',
@@ -1018,6 +1065,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'OP (Optimism)',
     underlyingIds: ['optimism'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-aave-dai',
@@ -1037,6 +1085,7 @@ const OPTIMISM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     underlyingIds: ['daidai'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-aave-weth',
@@ -1057,6 +1106,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'Beefy Aave ETH (Optimism)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-aave-wbtc',
@@ -1077,6 +1127,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'Beefy Aave BTC (Optimism)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wsteth',
@@ -1097,6 +1148,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'Wrapped Staked ETH (Optimism)',
     underlyingIds: ['wrapped-steth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'yvweth',
@@ -1111,6 +1163,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'Yearn vault ETH (Optimism)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'beefy-eth-steth-crv',
@@ -1131,6 +1184,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'Beefy stETH Curve (Optimism)',
     underlyingIds: ['weth', 'wrapped-steth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'knc',
@@ -1143,6 +1197,7 @@ const OPTIMISM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     underlyingIds: ['kyber-network-crystal'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1159,6 +1214,7 @@ const MOONRIVER_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'moo-solar-eth-usdc',
@@ -1178,6 +1234,7 @@ const MOONRIVER_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['weth', 'usd-coin'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'movr',
@@ -1192,6 +1249,7 @@ const MOONRIVER_COLLATERALS = [
     version: 1,
     snapshotName: 'MOVR (Moonriver)',
     underlyingIds: ['moonriver'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'moo-solar-movr-usdc',
@@ -1211,6 +1269,7 @@ const MOONRIVER_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['moonriver', 'usd-coin'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1226,6 +1285,7 @@ const MOONBEAM_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: ['moonbeam'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     connect: StableQiVault__factory.connect,
@@ -1238,6 +1298,7 @@ const MOONBEAM_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: [],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1254,6 +1315,7 @@ const HARMONY_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'one',
@@ -1268,6 +1330,7 @@ const HARMONY_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['harmony'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'btc_old',
@@ -1287,6 +1350,7 @@ const HARMONY_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'btc',
@@ -1300,6 +1364,7 @@ const HARMONY_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1316,6 +1381,7 @@ const BSC_COLLATERALS = [
     version: 1,
     snapshotName: 'BNB (BNB)',
     underlyingIds: ['binance-coin'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'cake',
@@ -1329,6 +1395,7 @@ const BSC_COLLATERALS = [
     version: 1,
     snapshotName: 'CAKE (BNB)',
     underlyingIds: ['pancakeswap'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'dodo',
@@ -1342,6 +1409,7 @@ const BSC_COLLATERALS = [
     version: 2,
     snapshotName: 'DODO (BNB)',
     underlyingIds: ['dodo'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1358,6 +1426,7 @@ const XDAI_COLLATERALS = [
     version: 1,
     snapshotName: 'WETH (Gnosis Chain)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'gno',
@@ -1371,6 +1440,7 @@ const XDAI_COLLATERALS = [
     version: 1,
     snapshotName: 'GNO (Gnosis Chain)',
     underlyingIds: ['gnosis'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1388,6 +1458,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['polygon'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'camwmatic',
@@ -1410,6 +1481,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'Compounding Aave MATIC (Polygon)',
     underlyingIds: ['polygon'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'weth',
@@ -1424,6 +1496,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'WETH (Polygon)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'camweth',
@@ -1446,6 +1519,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'Compounding Aave ETH (Polygon)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'camaave',
@@ -1469,6 +1543,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'Compounding Aave AAVE (Polygon)',
     underlyingIds: ['aave'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'aave',
@@ -1483,6 +1558,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'AAVE (Polygon)',
     underlyingIds: ['aave'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'link',
@@ -1497,6 +1573,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'LINK (Polygon)',
     underlyingIds: ['chainlink'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'crv',
@@ -1511,6 +1588,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'CRV (Polygon)',
     underlyingIds: ['curve-finance'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wbtc',
@@ -1525,6 +1603,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'WBTC (Polygon)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'camwbtc',
@@ -1547,6 +1626,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'Compounding Aave WBTC (Polygon)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'bal-old',
@@ -1561,6 +1641,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['balancer'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'dquick-old',
@@ -1575,6 +1656,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['quickswap'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'bal',
@@ -1589,6 +1671,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'BAL (Polygon)',
     underlyingIds: ['balancer'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'dquick',
@@ -1602,6 +1685,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['quickswap'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'ghst',
@@ -1616,6 +1700,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'GHST (Polygon)',
     underlyingIds: ['aavegotchi'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'camdai',
@@ -1637,6 +1722,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['daidai'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'sdam3crv',
@@ -1655,6 +1741,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['stake-dao-crv', 'tether', 'daidai', 'usd-coin'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'fxs',
@@ -1668,6 +1755,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'Frax Share (Polygon)',
     underlyingIds: ['frax-share'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'cxeth',
@@ -1682,6 +1770,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['ethereum'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'cxada',
@@ -1696,6 +1785,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['cardano'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'cxdoge',
@@ -1716,6 +1806,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['dogecoin'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'vghst',
@@ -1730,6 +1821,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'vGHST (Polygon)',
     underlyingIds: ['aavegotchi'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'celsius',
@@ -1743,6 +1835,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['celsius'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'sand',
@@ -1756,6 +1849,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'SAND (Polygon)',
     underlyingIds: ['the-sandbox'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wmatic',
@@ -1769,6 +1863,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     snapshotName: 'Wrapped MATIC (Polygon)',
     underlyingIds: ['polygon'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'xxdai',
@@ -1782,6 +1877,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     underlyingIds: ['daidai'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'xxlink',
@@ -1796,6 +1892,7 @@ const MATIC_COLLATERALS = [
     version: 2,
     snapshotName: 'xxLINK (Polygon)',
     underlyingIds: ['chainlink'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'knc',
@@ -1809,6 +1906,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'KNC (Polygon)',
     version: 2,
     underlyingIds: ['kyber-network-crystal'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'maidai',
@@ -1822,6 +1920,7 @@ const MATIC_COLLATERALS = [
     fallbackUnderlyingAddress: OG_MATIC_VAULT,
     version: 2,
     underlyingIds: ['daidai', 'mai-finance'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'LSMMVT',
@@ -1834,6 +1933,7 @@ const MATIC_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: ['polygon'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'STMMVT',
@@ -1846,6 +1946,7 @@ const MATIC_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: ['lido-staked-matic'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'stmatic',
@@ -1858,6 +1959,7 @@ const MATIC_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: ['lido-staked-matic'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'gdai',
@@ -1871,6 +1973,7 @@ const MATIC_COLLATERALS = [
     version: 2,
     fallbackUnderlyingAddress: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
     underlyingIds: ['gns', 'daidai'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'maticx',
@@ -1889,6 +1992,7 @@ const MATIC_COLLATERALS = [
     contractAbi: StableQiVault__factory.abi,
     version: 2,
     underlyingIds: ['polygon'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wsteth',
@@ -1909,6 +2013,7 @@ const MATIC_COLLATERALS = [
     version: 2,
     snapshotName: 'Wrapped Staked ETH (Optimism)',
     underlyingIds: ['wrapped-steth'],
+    addedAt: 1679274000,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1925,6 +2030,7 @@ const METIS_COLLATERALS = [
     version: 2,
     snapshotName: 'METIS (Metis)',
     underlyingIds: ['metis-token'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'weth',
@@ -1938,6 +2044,7 @@ const METIS_COLLATERALS = [
     version: 2,
     snapshotName: 'WETH (Metis)',
     underlyingIds: ['weth'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'wbtc',
@@ -1952,6 +2059,7 @@ const METIS_COLLATERALS = [
     deprecated: true,
     snapshotName: 'WBTC (Metis)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
   {
     shortName: 'mwbtc',
@@ -1966,6 +2074,7 @@ const METIS_COLLATERALS = [
     snapshotName: 'm.WBTC (Metis)',
     fallbackUnderlyingAddress: METIS_WBTC_ADDRESS,
     underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: MAI_BIRTHDAY,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
