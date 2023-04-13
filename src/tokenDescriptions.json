@@ -19,6 +19,11 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Chainlink_LINK.png",
     "name": "Chainlink"
   },
+  "curve-finance": {
+    "shortDescription": "Curve Finance is a decentralized exchange on multi-chains optimized for low slippage swaps between stablecoins or similar assets that peg to the same value (e.g. WBTC/renBTC) through employment of an Automated Market Maker.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CurveFinance_CRV.jpeg",
+    "name": "Curve Finance"
+  },
   "optimism": {
     "shortDescription": "Optimism ($OP) is an Layer-2 scaling solution of Ethereum using optimistic rollup.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Optimism_OP.jpeg",
@@ -29,10 +34,11 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Dai_DAI.png",
     "name": "Dai"
   },
-  "wrapped-steth": {
-    "shortDescription": "Lido's wrapped stETH (wstETH) is stETH which is deposited into the stETH wrapper to create a new token called wstETH.",
-    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/LidoWrappedstETH_wstETH1.jpeg",
-    "name": "Lido Wrapped stETH"
+  "wrapped-steth": {},
+  "kyber-network-crystal": {
+    "shortDescription": "Kyber Network is a multi-chain crypto trading and liquidity hub for decentralized applications.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/KyberNetworkCrystal_KNC.jpg",
+    "name": "Kyber Network Crystal"
   },
   "binance-coin": {
     "shortDescription": "Build and Build ($BNB), formerly Binance Coin, is initially issued as the exchange token of Binance that can be used to trade cryptocurrencies and pay for fees on the Binance exchange. Then, $BNB is also used as the native asset of the BNB Chain.",
@@ -63,11 +69,6 @@
     "shortDescription": "Aave is a decentralized finance lending protocol built on multiple blockchains that allow people to lend and borrow crypto. It was previously known as ETHLend when it was founded in November 2017 by Stani Kulechov.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Aave_AAVE.png",
     "name": "Aave"
-  },
-  "curve-finance": {
-    "shortDescription": "Curve Finance is a decentralized exchange on multi-chains optimized for low slippage swaps between stablecoins or similar assets that peg to the same value (e.g. WBTC/renBTC) through employment of an Automated Market Maker.",
-    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CurveFinance_CRV.jpeg",
-    "name": "Curve Finance"
   },
   "balancer": {
     "shortDescription": "Balancer is an AMM-based DEX, an automated portfolio management tool and a price sensor on Ethereum. ",
@@ -129,11 +130,6 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/TheSandbox_SAND.jpeg",
     "name": "The Sandbox"
   },
-  "kyber-network-crystal": {
-    "shortDescription": "Kyber Network is a multi-chain crypto trading and liquidity hub for decentralized applications.",
-    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/KyberNetworkCrystal_KNC.jpg",
-    "name": "Kyber Network Crystal"
-  },
   "mai-finance": {
     "shortDescription": "Decentralized collateral stable coin on multi-chain.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/MaiFinance_MIMATIC.jpeg",
@@ -143,6 +139,11 @@
     "shortDescription": "Lido on Polygon is a liquid staking solution for MATIC backed by industry-leading staking providers.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/LidoStakedMatic_STMATIC.png",
     "name": "Lido Staked Matic"
+  },
+  "gns": {
+    "shortDescription": "Gains Network or GNS is a decentralized trading platform. It provides users with both crypto and forex trading options with leverage.",
+    "logo": "https://gainsnetwork.io/images/logo_header.png",
+    "name": "Gains Network (GNS)"
   },
   "fantom": {
     "shortDescription": "Fantom is a DAG-based Layer-1 smart-contract platform founded by Andre Cronje featuring a self-developed Lachesis Protocol, which is its aBFT consensus mechanism that makes Fantom more cost-efficient.",
@@ -184,6 +185,11 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Moonriver_MOVR.png",
     "name": "Moonriver"
   },
+  "arbitrum": {
+    "shortDescription": "Arbitrum is a layer 2 Ethereum scaling solution for smart contracts.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Arbitrum_-.jpeg",
+    "name": "Arbitrum"
+  },
   "avalanche": {
     "shortDescription": "Avalanche is an open-source decentralized smart contracts platform for DeFi applications. It is also a PoS public Chain.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Avalanche_AVAX.png",
@@ -193,12 +199,5 @@
     "shortDescription": "Harmony ($ONE) is an Ethereum-based cross-chain platform designed to facilitate the creation and use of decentralized applications by sharding and scaling.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Harmony_ONE.jpeg",
     "name": "Harmony"
-  },
-
-  "gns": {
-    "shortDescription":
-    "Gains Network or GNS is a decentralized trading platform. It provides users with both crypto and forex trading options with leverage.",
-    "logo": "https://gainsnetwork.io/images/logo_header.png",
-    "name": "Gains Network (GNS)"
   }
 }

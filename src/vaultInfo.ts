@@ -66,7 +66,12 @@ import {
   MATIC_WSTETH_VAULT_ADDRESS,
   ARBI_WSTETH_VAULT_ADDRESS,
   ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
-  ETH_SDSTECRV_VAULT_ADDRESS, ETH_BEEFY_CONVEX_STETH,
+  ETH_SDSTECRV_VAULT_ADDRESS,
+  ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
+  ETH_CRV_VAULT_ADDRESS,
+  ETH_CRV_ADDRESS,
+  ARBI_ARB_ADDRESS,
+  ARBI_ARB_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -133,6 +138,8 @@ export type SnapshotCanonicalChoiceName =
   | 'Beefy stETH Curve (Arbitrum)'
   | 'StakeDAO Curve ETH/stETH Perf (Eth)'
   | 'Beefy stETH Convex Perf (Eth)'
+  | 'Curve (Eth)'
+  | 'Arb (Arbitrum)'
 
 export type VaultShortName =
   | 'aave'
@@ -220,6 +227,7 @@ export type VaultShortName =
   | 'yvcurve-steth-f-perf'
   | 'stake-dao-crv-eth-steth-perf'
   | 'beefy-eth-steth-crv-perf'
+  | 'arb'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -440,7 +448,7 @@ const MAINNET_COLLATERALS = [
   },
   {
     shortName: 'beefy-eth-steth-crv-perf',
-    vaultAddress: ETH_BEEFY_CONVEX_STETH,
+    vaultAddress: ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
     fallbackUnderlyingAddress: STETH_ADDRESS,
     chainId: ChainId.MAINNET,
     token: new Token(ChainId.MAINNET, '0xa7739fd3d12ac7F16D8329AF3Ee407e19De10D8D', 18, 'mooConvexStETH', 'Moo Convex stETH'),
@@ -452,6 +460,21 @@ const MAINNET_COLLATERALS = [
     snapshotName: 'Beefy stETH Convex Perf (Eth)',
     underlyingIds: ['weth', 'lido-staked-ether'],
     addedAt: 1681002000,
+  },
+  {
+    shortName: 'crv',
+    vaultAddress: ETH_CRV_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: '0xCd627aA160A6fA45Eb793D19Ef54f5062F20f33f',
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, ETH_CRV_ADDRESS, 18, 'CRV', 'Curve DAO Token'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Curve (Eth)',
+    underlyingIds: ['curve-finance'],
+    addedAt: 1681390800,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1020,6 +1043,27 @@ const ARBITRUM_COLLATERALS = [
     version: 2,
     snapshotName: 'Beefy stETH Curve (Arbitrum)',
     underlyingIds: ['weth', 'wrapped-steth'],
+    addedAt: 1680483600,
+  },
+  {
+    shortName: 'arb',
+    vaultAddress: ARBI_ARB_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: '0xb2A824043730FE05F3DA2efaFa1CBbe83fa548D6',
+    chainId: ChainId.ARBITRUM,
+    connect: StableQiVault__factory.connect,
+    contractAbi: StableQiVault__factory.abi,
+    token: new Token(
+        ChainId.ARBITRUM,
+        ARBI_ARB_ADDRESS,
+        18,
+        'ARB',
+        'Arbitrum'
+    ),
+    minimumCDR: 155,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Arb (Arbitrum)',
+    underlyingIds: ['arbitrum'],
     addedAt: 1680483600,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]

@@ -15,7 +15,7 @@ import {
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
   ChainId,
-  ETH_BEEFY_CONVEX_STETH,
+  ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
   ETH_SDSTECRV_VAULT_ADDRESS,
   ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
@@ -369,9 +369,9 @@ export const PERF_TOKEN_ZAP_META: {
       underlyingPriceSourceAddress: '0xCfE54B5cD566aB89272946F602D76Ea879CAb4a8',
       zapperAddress: MAINNET_ZAPPER,
     }),
-    [ETH_BEEFY_CONVEX_STETH]: generateThreeStepZapper({
+    [ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS]: generateThreeStepZapper({
       perfToken: '0x3c82A9514327A93928108e9F00D89877F4beB6e3',
-      mooAssetVaultAddress: ETH_BEEFY_CONVEX_STETH,
+      mooAssetVaultAddress: ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
       underlying: new Token(ChainId.MAINNET, '0xa7739fd3d12ac7F16D8329AF3Ee407e19De10D8D', 18, 'mooConvexStETH'),
       underlyingPriceSourceAddress: '0xCfE54B5cD566aB89272946F602D76Ea879CAb4a8',
       zapperAddress: MAINNET_ZAPPER,

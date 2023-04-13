@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { COLLATERALS } from '../../dist/index.modern.mjs'
 import fetch from 'node-fetch'
 import fs from 'fs'
