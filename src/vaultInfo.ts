@@ -464,7 +464,7 @@ const MAINNET_COLLATERALS = [
   {
     shortName: 'crv',
     vaultAddress: ETH_CRV_VAULT_ADDRESS,
-    fallbackUnderlyingAddress: '0xCd627aA160A6fA45Eb793D19Ef54f5062F20f33f',
+    fallbackUnderlyingAddress: ETH_CRV_ADDRESS,
     chainId: ChainId.MAINNET,
     token: new Token(ChainId.MAINNET, ETH_CRV_ADDRESS, 18, 'CRV', 'Curve DAO Token'),
     contractAbi: StableQiVault__factory.abi,
@@ -1048,7 +1048,7 @@ const ARBITRUM_COLLATERALS = [
   {
     shortName: 'arb',
     vaultAddress: ARBI_ARB_VAULT_ADDRESS,
-    fallbackUnderlyingAddress: '0xb2A824043730FE05F3DA2efaFa1CBbe83fa548D6',
+    fallbackUnderlyingAddress: ARBI_ARB_ADDRESS,
     chainId: ChainId.ARBITRUM,
     connect: StableQiVault__factory.connect,
     contractAbi: StableQiVault__factory.abi,
