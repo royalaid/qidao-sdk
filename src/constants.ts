@@ -50,6 +50,7 @@ export enum ChainId {
   BOBA = 288,
   CUBE = 1818,
   CANTO = 7700,
+  DOGECHAIN = 2000,
 }
 
 export enum TradeType {
@@ -121,6 +122,7 @@ export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.BOBA]: '0xfb91c019D9F12A0f9c23B4762fa64A34F8daDb4A',
   [ChainId.CUBE]: '',
   [ChainId.CANTO]: '0xcA11bde05977b3631167028862bE2a173976CA11',
+  [ChainId.DOGECHAIN]: '0xa51317d3365e8Ac0758bf3962A63892F612b942E',
 }
 
 export const TOKEN_DESCRIPTIONS = tokenDescriptions

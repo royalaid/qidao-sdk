@@ -61,6 +61,8 @@ export class Currency {
 
   public static readonly CANTO: Currency = new Currency(18, 'WCANTO', 'Wrapped Canto')
 
+  public static readonly WWDOGE: Currency = new Currency(18, 'WWDOGE', 'Wrapped Wrapped Doge')
+
   public static readonly NATIVE = {
     [ChainId.MAINNET]: Currency.ETHER,
     [ChainId.GÖRLI]: Currency.ETHER,
@@ -95,6 +97,7 @@ export class Currency {
     [ChainId.BOBA]: Currency.BOBA,
     [ChainId.CUBE]: Currency.CUBE,
     [ChainId.CANTO]: Currency.CANTO,
+    [ChainId.DOGECHAIN]: Currency.WWDOGE,
   }
 
   /**

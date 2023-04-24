@@ -204,4 +204,11 @@ export const WNATIVE = {
     'WCANTO',
     'Wrapped Canto'
   ),
+  [ChainId.DOGECHAIN]: new Token(
+    ChainId.DOGECHAIN,
+    '0xB7ddC6414bf4F5515b52D8BdD69973Ae205ff101',
+    18,
+    'WWDOGE',
+    'Wrapped Wrapped Doge'
+  ),
 }
