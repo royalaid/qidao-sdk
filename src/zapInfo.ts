@@ -15,7 +15,11 @@ import {
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
   ChainId,
+  ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
+  ETH_SDSTECRV_VAULT_ADDRESS,
+  ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
+  MAINNET_ZAPPER,
   MATIC_THREE_STEP_ZAPPER,
   MATIC_WSTETH_VAULT_ADDRESS,
   MATICX_MAI_VAULT_ADDRESS,
@@ -350,6 +354,29 @@ const ARBI_GDAI_PERF_TOKEN = '0x4fC050d75dBA5bF2d6EbD3667FFEc731A45B1f35'
 export const PERF_TOKEN_ZAP_META: {
   [c in ChainId]?: { [s in string]: QiZapAnyMeta }
 } = {
+  [ChainId.MAINNET]: {
+    [ETH_YVCURVE_STETH_F_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0xE9D954a9A6A1a61bc1120970f84CDd76562c4a0c',
+      mooAssetVaultAddress: ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
+      underlying: new Token(ChainId.MAINNET, '0x5B8C556B8b2a78696F0B9B830B3d67623122E270', 18, 'yvCurve-stETH-f'),
+      underlyingPriceSourceAddress: '0xCfE54B5cD566aB89272946F602D76Ea879CAb4a8',
+      zapperAddress: MAINNET_ZAPPER,
+    }),
+    [ETH_SDSTECRV_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0xf2833F5E72207D1Da1EEE7F8395Fb5f49895BBb4',
+      mooAssetVaultAddress: ETH_SDSTECRV_VAULT_ADDRESS,
+      underlying: new Token(ChainId.MAINNET, '0xbC10c4F7B9FE0B305e8639B04c536633A3dB7065', 18, 'sdsteCRV'),
+      underlyingPriceSourceAddress: '0xCfE54B5cD566aB89272946F602D76Ea879CAb4a8',
+      zapperAddress: MAINNET_ZAPPER,
+    }),
+    [ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      perfToken: '0x3c82A9514327A93928108e9F00D89877F4beB6e3',
+      mooAssetVaultAddress: ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
+      underlying: new Token(ChainId.MAINNET, '0xa7739fd3d12ac7F16D8329AF3Ee407e19De10D8D', 18, 'mooConvexStETH'),
+      underlyingPriceSourceAddress: '0xCfE54B5cD566aB89272946F602D76Ea879CAb4a8',
+      zapperAddress: MAINNET_ZAPPER,
+    }),
+  },
   [ChainId.ARBITRUM]: {
     [ARBI_GDAI_VAULT_ADDRESS]: {
       underlyingPriceSourceAddress: '0xc5C8E77B397E531B8EC06BFb0048328B30E9eCfB',
