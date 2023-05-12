@@ -2153,6 +2153,20 @@ const METIS_COLLATERALS = [
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
   },
+  {
+    shortName: 'metis',
+    vaultAddress: '0x19Cb63CCbfAC2f28B1fd79923f6aDfC096e6EBB4',
+    chainId: ChainId.METIS,
+    token: new Token(ChainId.METIS, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'METIS', 'Metis'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 130,
+    frontend: FRONTEND.MANHATTAN,
+    version: 2,
+    snapshotName: 'METIS (Metis)',
+    underlyingIds: ['metis-token'],
+    addedAt: MAI_BIRTHDAY,
+  },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const EMPTY_COLLATERALS = [] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
