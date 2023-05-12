@@ -2163,9 +2163,8 @@ const METIS_COLLATERALS = [
     minimumCDR: 130,
     frontend: FRONTEND.MANHATTAN,
     version: 2,
-    snapshotName: 'METIS (Metis)',
     underlyingIds: ['metis-token'],
-    addedAt: MAI_BIRTHDAY,
+    addedAt: 1683853200,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
