@@ -71,7 +71,7 @@ import {
   ETH_CRV_VAULT_ADDRESS,
   ETH_CRV_ADDRESS,
   ARBI_ARB_ADDRESS,
-  ARBI_ARB_VAULT_ADDRESS,
+  ARBI_ARB_VAULT_ADDRESS, MATIC_WBTC_I_VAULT_ADDRESS, MATIC_WETH_I_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -140,6 +140,8 @@ export type SnapshotCanonicalChoiceName =
   | 'Beefy stETH Convex Perf (Eth)'
   | 'Curve (Eth)'
   | 'Arb (Arbitrum)'
+  | 'WETH-I (Polygon)'
+  | 'WBTC-I (Polygon)'
 
 export type VaultShortName =
   | 'aave'
@@ -228,6 +230,8 @@ export type VaultShortName =
   | 'stake-dao-crv-eth-steth-perf'
   | 'beefy-eth-steth-crv-perf'
   | 'arb'
+  |'weth-i'
+  |'wbtc-i'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -2059,6 +2063,35 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['wrapped-steth'],
     addedAt: 1679274000,
   },
+
+  {
+    shortName: 'wbtc-i',
+    vaultAddress: MATIC_WBTC_I_VAULT_ADDRESS,
+    chainId: ChainId.MATIC,
+    connect: StableQiVault__factory.connect,
+    contractAbi: StableQiVault__factory.abi,
+    token: new Token(ChainId.MATIC, '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6', 8, 'WBTC', 'Wrapped BTC'),
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'WBTC-I (Polygon)',
+    underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: 1683594000,
+  },
+  {
+    shortName: 'weth-i',
+    vaultAddress: MATIC_WETH_I_VAULT_ADDRESS,
+    chainId: ChainId.MATIC,
+    connect: StableQiVault__factory.connect,
+    contractAbi: StableQiVault__factory.abi,
+    token: new Token(ChainId.MATIC, '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', 18, 'WETH', 'Wrapped Ether'),
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'WETH-I (Polygon)',
+    underlyingIds: ['weth'],
+    addedAt: 1683594000,
+  },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const METIS_COLLATERALS = [
@@ -2119,6 +2152,19 @@ const METIS_COLLATERALS = [
     fallbackUnderlyingAddress: METIS_WBTC_ADDRESS,
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+  },
+  {
+    shortName: 'metis',
+    vaultAddress: '0x19Cb63CCbfAC2f28B1fd79923f6aDfC096e6EBB4',
+    chainId: ChainId.METIS,
+    token: new Token(ChainId.METIS, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'METIS', 'Metis'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 130,
+    frontend: FRONTEND.MANHATTAN,
+    version: 2,
+    underlyingIds: ['metis-token'],
+    addedAt: 1683853200,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
