@@ -387,7 +387,7 @@ const MAINNET_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Yearn Curve ETH/stETH (Ethereum)',
-    underlyingIds: ['weth', 'lido-staked-ether'],
+    underlyingIds: ['yearn-finance', 'weth', 'lido-staked-ether'],
     addedAt: MAI_BIRTHDAY,
   },
   {
@@ -402,7 +402,7 @@ const MAINNET_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Yearn WETH (Ethereum)',
-    underlyingIds: ['weth'],
+    underlyingIds: ['yearn-finance', 'weth'],
     addedAt: MAI_BIRTHDAY,
   },
   {
@@ -417,7 +417,7 @@ const MAINNET_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Yearn LINK (Ethereum)',
-    underlyingIds: ['chainlink'],
+    underlyingIds: ['yearn-finance', 'chainlink'],
     addedAt: MAI_BIRTHDAY,
   },
   {
@@ -432,7 +432,7 @@ const MAINNET_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Yearn Curve ETH/stETH (Ethereum)',
-    underlyingIds: ['weth', 'lido-staked-ether'],
+    underlyingIds: ['yearn-finance', 'weth', 'lido-staked-ether'],
     addedAt: 1681002000,
   },
   {
@@ -512,7 +512,7 @@ const FANTOM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'Yearn vault WFTM (Fantom)',
-    underlyingIds: ['fantom'],
+    underlyingIds: ['yearn-finance', 'fantom'],
     addedAt: MAI_BIRTHDAY,
   },
   {
