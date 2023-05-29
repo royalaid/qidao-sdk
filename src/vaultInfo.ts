@@ -71,7 +71,11 @@ import {
   ETH_CRV_VAULT_ADDRESS,
   ETH_CRV_ADDRESS,
   ARBI_ARB_ADDRESS,
-  ARBI_ARB_VAULT_ADDRESS, MATIC_WBTC_I_VAULT_ADDRESS, MATIC_WETH_I_VAULT_ADDRESS,
+  ARBI_ARB_VAULT_ADDRESS,
+  MATIC_WBTC_I_VAULT_ADDRESS,
+  MATIC_WETH_I_VAULT_ADDRESS,
+  ETH_CBETH_ADDRESS,
+  ETH_CBETH_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -142,6 +146,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Arb (Arbitrum)'
   | 'WETH-I (Polygon)'
   | 'WBTC-I (Polygon)'
+  | 'cbEth (Eth)'
 
 export type VaultShortName =
   | 'aave'
@@ -230,8 +235,9 @@ export type VaultShortName =
   | 'stake-dao-crv-eth-steth-perf'
   | 'beefy-eth-steth-crv-perf'
   | 'arb'
-  |'weth-i'
-  |'wbtc-i'
+  | 'weth-i'
+  | 'wbtc-i'
+  | 'cbeth'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -490,6 +496,21 @@ const MAINNET_COLLATERALS = [
     snapshotName: 'Curve (Eth)',
     underlyingIds: ['curve-finance'],
     platform: ['Curve'],
+    addedAt: 1681390800,
+  },
+  {
+    shortName: 'cbeth',
+    vaultAddress: ETH_CBETH_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: ETH_CBETH_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, ETH_CBETH_ADDRESS, 18, 'cbETH', 'Coinbase Wrapped Staked ETH'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'cbEth (Eth)',
+    underlyingIds: ['cbeth'],
     addedAt: 1681390800,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]

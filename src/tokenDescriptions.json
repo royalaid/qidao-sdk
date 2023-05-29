@@ -209,5 +209,10 @@
     "shortDescription": "Harmony ($ONE) is an Ethereum-based cross-chain platform designed to facilitate the creation and use of decentralized applications by sharding and scaling.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Harmony_ONE.jpeg",
     "name": "Harmony"
+  },
+  "cbeth" : {
+    "shortDescription": "cETH is a tokenized version of ETH on C.R.E.A.M. Finance.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/cETH_cETH.png",
+    "name": "cETH"
   }
 }
