@@ -29,6 +29,11 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CurveFinance_CRV.jpeg",
     "name": "Curve Finance"
   },
+  "coinbase-wrapped-staked-eth": {
+    "shortDescription": "$cbETH is a wrapped token issued by Coinbase on the Ethereum blockchain for $ETH stakers.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CoinbaseWrappedStakedETH_CBETH.png",
+    "name": "Coinbase Wrapped Staked ETH"
+  },
   "optimism": {
     "shortDescription": "Optimism ($OP) is an Layer-2 scaling solution of Ethereum using optimistic rollup.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Optimism_OP.jpeg",
@@ -39,7 +44,6 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Dai_DAI.png",
     "name": "Dai"
   },
-  "wrapped-steth": {},
   "kyber-network-crystal": {
     "shortDescription": "Kyber Network is a multi-chain crypto trading and liquidity hub for decentralized applications.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/KyberNetworkCrystal_KNC.jpg",
@@ -209,10 +213,5 @@
     "shortDescription": "Harmony ($ONE) is an Ethereum-based cross-chain platform designed to facilitate the creation and use of decentralized applications by sharding and scaling.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Harmony_ONE.jpeg",
     "name": "Harmony"
-  },
-  "cbeth" : {
-    "shortDescription": "cETH is a tokenized version of ETH on C.R.E.A.M. Finance.",
-    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/cETH_cETH.png",
-    "name": "cETH"
   }
 }
