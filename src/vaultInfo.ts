@@ -75,7 +75,7 @@ import {
   MATIC_WBTC_I_VAULT_ADDRESS,
   MATIC_WETH_I_VAULT_ADDRESS,
   ETH_CBETH_ADDRESS,
-  ETH_CBETH_VAULT_ADDRESS,
+  ETH_CBETH_VAULT_ADDRESS, ETH_STETH_ADDRESS, ETH_STETH_VAULT_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -147,6 +147,7 @@ export type SnapshotCanonicalChoiceName =
   | 'WETH-I (Polygon)'
   | 'WBTC-I (Polygon)'
   | 'cbEth (Eth)'
+  | 'stEth (Eth)'
 
 export type VaultShortName =
   | 'aave'
@@ -238,6 +239,7 @@ export type VaultShortName =
   | 'weth-i'
   | 'wbtc-i'
   | 'cbeth'
+  | 'steth'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -511,8 +513,24 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'cbEth (Eth)',
     underlyingIds: ['cbeth'],
-    addedAt: 1681390800,
+    addedAt: 1685365200,
   },
+  {
+    shortName: 'steth',
+    vaultAddress: ETH_STETH_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: ETH_STETH_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, ETH_STETH_ADDRESS, 18, 'stETH', 'Liquid staked Ether 2.0'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'stEth (Eth)',
+    underlyingIds: ['lido-staked-ether'],
+    addedAt: 1685365200,
+  },
+
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const FANTOM_COLLATERALS = [
