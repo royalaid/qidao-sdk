@@ -34,6 +34,11 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CoinbaseWrappedStakedETH_CBETH.png",
     "name": "Coinbase Wrapped Staked ETH"
   },
+  "lido-dao-token": {
+    "shortDescription": "Lido DAO provides decentralized liquid staking solutions for Ethereum and other PoS chains, allowing the staked assets to remain liquid and therefore able to earn extra yield across other DeFi applications.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/LidoDAOToken_LDO.png",
+    "name": "Lido DAO Token"
+  },
   "optimism": {
     "shortDescription": "Optimism ($OP) is an Layer-2 scaling solution of Ethereum using optimistic rollup.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Optimism_OP.jpeg",

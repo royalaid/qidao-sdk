@@ -75,7 +75,7 @@ import {
   MATIC_WBTC_I_VAULT_ADDRESS,
   MATIC_WETH_I_VAULT_ADDRESS,
   ETH_CBETH_ADDRESS,
-  ETH_CBETH_VAULT_ADDRESS, ETH_STETH_ADDRESS, ETH_STETH_VAULT_ADDRESS,
+  ETH_CBETH_VAULT_ADDRESS, ETH_STETH_ADDRESS, ETH_STETH_VAULT_ADDRESS, ETH_LDO_VAULT_ADDRESS, ETH_LDO_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -148,6 +148,7 @@ export type SnapshotCanonicalChoiceName =
   | 'WBTC-I (Polygon)'
   | 'cbEth (Eth)'
   | 'stEth (Eth)'
+  | 'LDO (Eth)'
 
 export type VaultShortName =
   | 'aave'
@@ -240,6 +241,7 @@ export type VaultShortName =
   | 'wbtc-i'
   | 'cbeth'
   | 'steth'
+  | 'ldo'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -528,6 +530,21 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'stEth (Eth)',
     underlyingIds: ['lido-staked-ether'],
+    addedAt: 1685365200,
+  },
+  {
+    shortName: 'ldo',
+    vaultAddress: ETH_LDO_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: ETH_LDO_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, ETH_LDO_ADDRESS, 18, 'stETH', 'Lido DAO Token'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'LDO (Eth)',
+    underlyingIds: ['lido-dao-token'],
     addedAt: 1685365200,
   },
 
