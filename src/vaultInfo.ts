@@ -537,7 +537,7 @@ const MAINNET_COLLATERALS = [
     vaultAddress: ETH_LDO_VAULT_ADDRESS,
     fallbackUnderlyingAddress: ETH_LDO_ADDRESS,
     chainId: ChainId.MAINNET,
-    token: new Token(ChainId.MAINNET, ETH_LDO_ADDRESS, 18, 'stETH', 'Lido DAO Token'),
+    token: new Token(ChainId.MAINNET, ETH_LDO_ADDRESS, 18, 'LDO', 'Lido DAO Token'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
     minimumCDR: 130,
