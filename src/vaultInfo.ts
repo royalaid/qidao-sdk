@@ -71,7 +71,11 @@ import {
   ETH_CRV_VAULT_ADDRESS,
   ETH_CRV_ADDRESS,
   ARBI_ARB_ADDRESS,
-  ARBI_ARB_VAULT_ADDRESS, MATIC_WBTC_I_VAULT_ADDRESS, MATIC_WETH_I_VAULT_ADDRESS,
+  ARBI_ARB_VAULT_ADDRESS,
+  MATIC_WBTC_I_VAULT_ADDRESS,
+  MATIC_WETH_I_VAULT_ADDRESS,
+  ETH_CBETH_ADDRESS,
+  ETH_CBETH_VAULT_ADDRESS, ETH_STETH_ADDRESS, ETH_STETH_VAULT_ADDRESS, ETH_LDO_VAULT_ADDRESS, ETH_LDO_ADDRESS,
 } from './constants'
 
 export type SnapshotCanonicalChoiceName =
@@ -142,6 +146,9 @@ export type SnapshotCanonicalChoiceName =
   | 'Arb (Arbitrum)'
   | 'WETH-I (Polygon)'
   | 'WBTC-I (Polygon)'
+  | 'cbEth (Eth)'
+  | 'stEth (Eth)'
+  | 'LDO (Eth)'
 
 export type VaultShortName =
   | 'aave'
@@ -230,8 +237,11 @@ export type VaultShortName =
   | 'stake-dao-crv-eth-steth-perf'
   | 'beefy-eth-steth-crv-perf'
   | 'arb'
-  |'weth-i'
-  |'wbtc-i'
+  | 'weth-i'
+  | 'wbtc-i'
+  | 'cbeth'
+  | 'steth'
+  | 'ldo'
 
 export type VaultContractAbiV1 =
   | typeof QiStablecoin__factory.abi
@@ -492,6 +502,52 @@ const MAINNET_COLLATERALS = [
     platform: ['Curve'],
     addedAt: 1681390800,
   },
+  {
+    shortName: 'cbeth',
+    vaultAddress: ETH_CBETH_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: ETH_CBETH_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, ETH_CBETH_ADDRESS, 18, 'cbETH', 'Coinbase Wrapped Staked ETH'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'cbEth (Eth)',
+    underlyingIds: ['coinbase-wrapped-staked-eth'],
+    addedAt: 1685365200,
+  },
+  {
+    shortName: 'steth',
+    vaultAddress: ETH_STETH_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: ETH_STETH_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, ETH_STETH_ADDRESS, 18, 'stETH', 'Liquid staked Ether 2.0'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'stEth (Eth)',
+    underlyingIds: ['lido-staked-ether'],
+    addedAt: 1685365200,
+  },
+  {
+    shortName: 'ldo',
+    vaultAddress: ETH_LDO_VAULT_ADDRESS,
+    fallbackUnderlyingAddress: ETH_LDO_ADDRESS,
+    chainId: ChainId.MAINNET,
+    token: new Token(ChainId.MAINNET, ETH_LDO_ADDRESS, 18, 'LDO', 'Lido DAO Token'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'LDO (Eth)',
+    underlyingIds: ['lido-dao-token'],
+    addedAt: 1685365200,
+  },
+
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const FANTOM_COLLATERALS = [
@@ -1068,7 +1124,7 @@ const ARBITRUM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Beefy stETH Curve (Arbitrum)',
-    underlyingIds: ['weth', 'wrapped-steth'],
+    underlyingIds: ['weth', 'lido-staked-ether'],
     platform: ['Beefy', 'Curve', 'Lido'],
     addedAt: 1680483600,
   },
@@ -1221,7 +1277,7 @@ const OPTIMISM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Wrapped Staked ETH (Optimism)',
-    underlyingIds: ['wrapped-steth'],
+    underlyingIds: ['lido-staked-ether'],
     platform: ['Lido'],
     addedAt: MAI_BIRTHDAY,
   },
@@ -1259,7 +1315,7 @@ const OPTIMISM_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Beefy stETH Curve (Optimism)',
-    underlyingIds: ['weth', 'wrapped-steth'],
+    underlyingIds: ['weth', 'lido-staked-ether'],
     platform: ['Beefy', 'Curve', 'Lido'],
     addedAt: MAI_BIRTHDAY,
   },
@@ -2105,7 +2161,7 @@ const MATIC_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Wrapped Staked ETH (Optimism)',
-    underlyingIds: ['wrapped-steth'],
+    underlyingIds: ['lido-staked-ether'],
     platform: ['Lido'],
     addedAt: 1679274000,
   },

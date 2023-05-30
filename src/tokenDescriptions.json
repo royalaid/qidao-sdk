@@ -29,6 +29,16 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CurveFinance_CRV.jpeg",
     "name": "Curve Finance"
   },
+  "coinbase-wrapped-staked-eth": {
+    "shortDescription": "$cbETH is a wrapped token issued by Coinbase on the Ethereum blockchain for $ETH stakers.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CoinbaseWrappedStakedETH_CBETH.png",
+    "name": "Coinbase Wrapped Staked ETH"
+  },
+  "lido-dao-token": {
+    "shortDescription": "Lido DAO provides decentralized liquid staking solutions for Ethereum and other PoS chains, allowing the staked assets to remain liquid and therefore able to earn extra yield across other DeFi applications.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/LidoDAOToken_LDO.png",
+    "name": "Lido DAO Token"
+  },
   "optimism": {
     "shortDescription": "Optimism ($OP) is an Layer-2 scaling solution of Ethereum using optimistic rollup.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Optimism_OP.jpeg",
@@ -39,7 +49,6 @@
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Dai_DAI.png",
     "name": "Dai"
   },
-  "wrapped-steth": {},
   "kyber-network-crystal": {
     "shortDescription": "Kyber Network is a multi-chain crypto trading and liquidity hub for decentralized applications.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/KyberNetworkCrystal_KNC.jpg",
