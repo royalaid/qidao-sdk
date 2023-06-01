@@ -18,7 +18,7 @@ export type PLATFORM =
   | 'Spookyswap'
   | 'Convex'
 
-const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: string } } = {
+export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: string } } = {
   Beefy: {
     description: TOKEN_DESCRIPTIONS['beefy-finance'].shortDescription,
     logo: TOKEN_DESCRIPTIONS['beefy-finance'].logo,
@@ -88,5 +88,3 @@ const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: string } } =
     logo: 'https://icons.llamao.fi/icons/protocols/convex-finance',
   },
 }
-
-export default ProtocolInfo
