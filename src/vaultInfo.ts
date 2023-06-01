@@ -77,6 +77,7 @@ import {
   ETH_CBETH_ADDRESS,
   ETH_CBETH_VAULT_ADDRESS, ETH_STETH_ADDRESS, ETH_STETH_VAULT_ADDRESS, ETH_LDO_VAULT_ADDRESS, ETH_LDO_ADDRESS,
 } from './constants'
+import {PLATFORM} from "./ProtocolInfo";
 
 export type SnapshotCanonicalChoiceName =
   | 'Wrapped MATIC (Polygon)'
@@ -266,9 +267,6 @@ export enum FRONTEND {
   MANHATTAN,
   STELLASWAP,
 }
-
-export type PLATFORM = 'Beefy' | 'Yearn' | 'Curve' | 'AaveV2' | 'AaveV3' | 'Balancer' | 'Lido' | 'Arrakis'
-    | 'QuickSwap' | 'Gains' | 'GotchiVault' | 'Stader' | 'StakeDAO' | 'Tetu' | 'Spookyswap' | 'Convex'
 
 export interface COLLATERAL {
   aaveId?: string
