@@ -51,6 +51,7 @@ export enum ChainId {
   CUBE = 1818,
   CANTO = 7700,
   DOGECHAIN = 2000,
+  ZKEVM = 1101,
 }
 
 export enum TradeType {
@@ -123,6 +124,7 @@ export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.CUBE]: '',
   [ChainId.CANTO]: '0xcA11bde05977b3631167028862bE2a173976CA11',
   [ChainId.DOGECHAIN]: '0xa51317d3365e8Ac0758bf3962A63892F612b942E',
+  [ChainId.ZKEVM]: '0xcA11bde05977b3631167028862bE2a173976CA11',
 }
 
 export const TOKEN_DESCRIPTIONS = tokenDescriptions
