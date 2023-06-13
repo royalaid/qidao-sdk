@@ -75,7 +75,12 @@ import {
   MATIC_WBTC_I_VAULT_ADDRESS,
   MATIC_WETH_I_VAULT_ADDRESS,
   ETH_CBETH_ADDRESS,
-  ETH_CBETH_VAULT_ADDRESS, ETH_STETH_ADDRESS, ETH_STETH_VAULT_ADDRESS, ETH_LDO_VAULT_ADDRESS, ETH_LDO_ADDRESS,
+  ETH_CBETH_VAULT_ADDRESS,
+  ETH_STETH_ADDRESS,
+  ETH_STETH_VAULT_ADDRESS,
+  ETH_LDO_VAULT_ADDRESS,
+  ETH_LDO_ADDRESS,
+  ZKEVM_WETH_VAULT_ADDRESS, ZKEVM_WETH_ADDRESS, ZKEVM_WMATIC_ADDRESS, ZKEVM_WMATIC_VAULT_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -150,6 +155,8 @@ export type SnapshotCanonicalChoiceName =
   | 'cbEth (Eth)'
   | 'stEth (Eth)'
   | 'LDO (Eth)'
+  | 'WETH (ZKEVM)'
+  | 'WMATIC (ZKEVM)'
 
 export type VaultShortName =
   | 'aave'
@@ -2268,6 +2275,37 @@ const METIS_COLLATERALS = [
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
+const ZKEVM_COLLATERALS = [
+  {
+    shortName: 'weth',
+    vaultAddress: ZKEVM_WETH_VAULT_ADDRESS,
+    chainId: ChainId.ZKEVM,
+    token: new Token(ChainId.ZKEVM, ZKEVM_WETH_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'WETH (ZKEVM)',
+    underlyingIds: ['weth'],
+    addedAt: 1686618000,
+  },
+  {
+    shortName: 'wmatic',
+    vaultAddress: ZKEVM_WMATIC_VAULT_ADDRESS,
+    chainId: ChainId.ZKEVM,
+    token: new Token(ChainId.ZKEVM, ZKEVM_WMATIC_ADDRESS, 18, 'WMATIC', 'Wrapped Matic'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'WMATIC (ZKEVM)',
+    underlyingIds: ['wrapped-matic'],
+    addedAt: 1686618000,
+  },
+] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+
 const EMPTY_COLLATERALS = [] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 export const COLLATERALS: {
@@ -2306,7 +2344,7 @@ export const COLLATERALS: {
   [ChainId.KLAYTN]: typeof EMPTY_COLLATERALS,
   [ChainId.CANTO]: typeof EMPTY_COLLATERALS,
   [ChainId.DOGECHAIN]: typeof EMPTY_COLLATERALS,
-  [ChainId.ZKEVM]: typeof EMPTY_COLLATERALS,
+  [ChainId.ZKEVM]: typeof ZKEVM_COLLATERALS,
 } = {
   [ChainId.MAINNET]: MAINNET_COLLATERALS,
   [ChainId.FANTOM]: FANTOM_COLLATERALS,
@@ -2343,7 +2381,7 @@ export const COLLATERALS: {
   [ChainId.KLAYTN]: [],
   [ChainId.CANTO]: [],
   [ChainId.DOGECHAIN]: [],
-  [ChainId.ZKEVM]: [],
+  [ChainId.ZKEVM]: ZKEVM_COLLATERALS,
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
