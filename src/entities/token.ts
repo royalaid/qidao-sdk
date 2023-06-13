@@ -211,4 +211,5 @@ export const WNATIVE = {
     'WWDOGE',
     'Wrapped Wrapped Doge'
   ),
+  [ChainId.ZKEVM]: new Token(ChainId.ZKEVM, '0x4F9A0e7FD2Bf6067db6994CF12E4495Df938E6e9', 18, 'WETH', 'Wrapped Ether'),
 }
