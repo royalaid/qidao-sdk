@@ -571,6 +571,7 @@ const FANTOM_COLLATERALS = [
     snapshotName: 'WFTM (Fantom)',
     underlyingIds: ['fantom'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'yvwftm',
@@ -588,6 +589,7 @@ const FANTOM_COLLATERALS = [
     underlyingIds: ['yearn-finance', 'fantom'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'yvwbtc',
@@ -610,6 +612,7 @@ const FANTOM_COLLATERALS = [
     underlyingIds: ['wrapped-bitcoinwbtc'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'yvyfi',
@@ -626,6 +629,7 @@ const FANTOM_COLLATERALS = [
     underlyingIds: ['yearn-finance'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'yveth',
@@ -642,6 +646,7 @@ const FANTOM_COLLATERALS = [
     underlyingIds: ['yearn-finance', 'weth'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'yvwdai',
@@ -658,6 +663,7 @@ const FANTOM_COLLATERALS = [
     underlyingIds: ["yearn-finance", 'daidai'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'ftmweth',
@@ -673,6 +679,7 @@ const FANTOM_COLLATERALS = [
     snapshotName: 'WETH (Fantom)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'aave',
@@ -687,6 +694,7 @@ const FANTOM_COLLATERALS = [
     snapshotName: 'AAVE (Fantom)',
     underlyingIds: ['aave'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'sushi',
@@ -701,6 +709,7 @@ const FANTOM_COLLATERALS = [
     snapshotName: 'SUSHI (Fantom)',
     underlyingIds: ['sushiswap'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'link',
@@ -715,6 +724,7 @@ const FANTOM_COLLATERALS = [
     snapshotName: 'LINK (Fantom)',
     underlyingIds: ['chainlink'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'btc',
@@ -729,6 +739,7 @@ const FANTOM_COLLATERALS = [
     snapshotName: 'WBTC (Fantom)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'beefy-scream-wbtc',
@@ -928,6 +939,7 @@ const FANTOM_COLLATERALS = [
     underlyingIds: ['beefy-finance'],
     platform: ['Beefy'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'xboo',
@@ -944,6 +956,7 @@ const FANTOM_COLLATERALS = [
     underlyingIds: ['spookyswap'],
     platform: ['Spookyswap'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -951,6 +964,7 @@ const AVALANCHE_COLLATERALS = [
   {
     shortName: 'beefy-aave-avax',
     vaultAddress: MOO_WAVAX_VAULT_ADDRESS,
+    deprecated: true,
     chainId: ChainId.AVALANCHE,
     token: new Token(
       ChainId.AVALANCHE,
@@ -1384,6 +1398,7 @@ const MOONRIVER_COLLATERALS = [
     token: new Token(ChainId.MOONRIVER, '0x98878B06940aE243284CA214f92Bb71a2b032B8A', 18, 'MOVR', 'Moonriver'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
+    deprecated: true,
     version: 1,
     snapshotName: 'MOVR (Moonriver)',
     underlyingIds: ['moonriver'],
