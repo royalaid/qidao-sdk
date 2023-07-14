@@ -1,4 +1,4 @@
-import { BigNumber, CallOverrides, Contract, Signer } from 'ethers'
+import { BigNumber, CallOverrides, Contract, Overrides, Signer } from 'ethers'
 import BeefyZapperABI from './abis/BeefyZapper.json'
 import QiZappahABI from './abis/QiZappah.json'
 import ThreeStepQiZappah from './abis/ThreeStepQiZappah.json'
@@ -422,7 +422,7 @@ export const PERF_TOKEN_ZAP_META: {
         )
       },
       zapInFunctions: {
-        [ARBI_DAI_ADDRESS]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: CallOverrides) => {
+        [ARBI_DAI_ADDRESS]: (amount: BigNumber, vaultIndex: BigNumber, signer: Signer, overrides?: Overrides) => {
           const zapperContract = GainsZapper__factory.connect(ARBI_GAINS_ZAPPER, signer)
           return zapperContract.gainsZapToVault(
             amount,
