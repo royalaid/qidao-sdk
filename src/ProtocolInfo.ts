@@ -17,6 +17,9 @@ export type PLATFORM =
   | 'Tetu'
   | 'Spookyswap'
   | 'Convex'
+  | 'Coinbase'
+  | 'Optimism'
+  | 'Arbitrum'
 
 export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: string } } = {
   Beefy: {
@@ -86,5 +89,18 @@ export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: strin
   Convex: {
     description: 'Convex simplifies your Curve-boosting experience to maximize your yields.',
     logo: 'https://icons.llamao.fi/icons/protocols/convex-finance',
+  },
+  Coinbase: {
+    description:
+      'Coinbase is a secure online platform for buying, selling, transferring, and storing digital currency.',
+    logo: 'https://s2.tokeninsight.com/static/elogo/64x64/536.png',
+  },
+  Optimism: {
+    description: TOKEN_DESCRIPTIONS['optimism'].shortDescription,
+    logo: TOKEN_DESCRIPTIONS['optimism'].logo,
+  },
+  Arbitrum: {
+    description: TOKEN_DESCRIPTIONS['arbitrum'].shortDescription,
+    logo: TOKEN_DESCRIPTIONS['arbitrum'].logo,
   },
 }
