@@ -520,6 +520,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'cbEth (Eth)',
     underlyingIds: ['coinbase-wrapped-staked-eth'],
+    platform: ['Coinbase'],
     addedAt: 1685365200,
   },
   {
@@ -550,6 +551,7 @@ const MAINNET_COLLATERALS = [
     version: 2,
     snapshotName: 'LDO (Eth)',
     underlyingIds: ['lido-dao-token'],
+    platform: ['Lido'],
     addedAt: 1685365200,
   },
 
@@ -1166,6 +1168,7 @@ const ARBITRUM_COLLATERALS = [
     version: 2,
     snapshotName: 'Arb (Arbitrum)',
     underlyingIds: ['arbitrum'],
+    platform: ['Arbitrum'],
     addedAt: 1680483600,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
@@ -1211,6 +1214,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     snapshotName: 'OP (Optimism)',
     underlyingIds: ['optimism'],
+    platform: ['Optimism'],
     addedAt: MAI_BIRTHDAY,
   },
   {
@@ -2387,7 +2391,6 @@ export const COLLATERALS: {
   [ChainId.CRONOS]: [],
   [ChainId.MATIC_TESTNET]: [],
   [ChainId.FANTOM_TESTNET]: [],
-  [ChainId.BSC_TESTNET]: [],
   [ChainId.HARMONY_TESTNET]: [],
   [ChainId.HECO_TESTNET]: [],
   [ChainId.SYSCOIN]: [],
