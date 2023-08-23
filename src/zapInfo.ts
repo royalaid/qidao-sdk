@@ -593,11 +593,11 @@ export const PERF_TOKEN_ZAP_META: {
     }),
   },
   [ChainId.BASE]: {
-    [ETH_CBETH_VAULT_ADDRESS]: generateThreeStepZapper({
-      perfToken: '0xC765D6B7eA9D4b9CcD8cBAdbB0e4726d68e195E4',
-      mooAssetVaultAddress: BASE_CBETH_VAULT_ADDRESS,
-      underlying: new Token(ChainId.MAINNET, BASE_CBETH_ADDRESS, 18, 'Coinbase Wrapped Staked ETH'),
+    [BASE_CBETH_VAULT_ADDRESS]: generateThreeStepZapper({
       underlyingPriceSourceAddress: '0x5e5CcE0ac9375937D264d0aaf680C5261f95e3ff',
+      perfToken: '0xC765D6B7eA9D4b9CcD8cBAdbB0e4726d68e195E4',
+      underlying: new Token(ChainId.MAINNET, BASE_CBETH_ADDRESS, 18, 'Coinbase Wrapped Staked ETH'),
+      mooAssetVaultAddress: BASE_CBETH_VAULT_ADDRESS,
       zapperAddress: BASE_THREE_STEP_ZAPPER,
     }),
   },
