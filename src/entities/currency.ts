@@ -99,6 +99,7 @@ export class Currency {
     [ChainId.CANTO]: Currency.CANTO,
     [ChainId.DOGECHAIN]: Currency.WWDOGE,
     [ChainId.ZKEVM]: Currency.ETHER,
+    [ChainId.BASE]: Currency.ETHER,
   }
 
   /**

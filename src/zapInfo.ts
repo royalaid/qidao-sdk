@@ -9,6 +9,9 @@ import {
   ARBI_KNC_VAULT_ADDRESS,
   ARBI_THREE_STEP_ZAPPER,
   ARBI_WSTETH_VAULT_ADDRESS,
+  BASE_CBETH_ADDRESS,
+  BASE_CBETH_VAULT_ADDRESS,
+  BASE_THREE_STEP_ZAPPER,
   CAMAAVE_VAULT_ADDRESS,
   CAMDAI_VAULT_ADDRESS,
   CAMWBTC_VAULT_ADDRESS,
@@ -587,6 +590,15 @@ export const PERF_TOKEN_ZAP_META: {
       ),
       mooAssetVaultAddress: MATIC_WSTETH_VAULT_ADDRESS,
       zapperAddress: MATIC_THREE_STEP_ZAPPER,
+    }),
+  },
+  [ChainId.BASE]: {
+    [BASE_CBETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0x5e5CcE0ac9375937D264d0aaf680C5261f95e3ff',
+      perfToken: '0xC765D6B7eA9D4b9CcD8cBAdbB0e4726d68e195E4',
+      underlying: new Token(ChainId.MAINNET, BASE_CBETH_ADDRESS, 18, 'Coinbase Wrapped Staked ETH'),
+      mooAssetVaultAddress: BASE_CBETH_VAULT_ADDRESS,
+      zapperAddress: BASE_THREE_STEP_ZAPPER,
     }),
   },
 }
