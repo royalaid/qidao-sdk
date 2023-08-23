@@ -22,6 +22,7 @@ import {
   Erc20QiStablecoinwbtc__factory,
   Erc20QiStablecoincamwbtc__factory,
 } from './contracts'
+//DO NOT SHORTEN THESE IMPORTS, ITS BREAKS EVERYTHING, GOD KNOWS WHY
 import { QiStablecoin__factory } from './contracts/factories/QiStablecoin__factory'
 import { QiStablecoin } from './contracts/QiStablecoin'
 import { Token } from './entities'
@@ -292,8 +293,6 @@ export interface COLLATERAL {
     | CrosschainQiStablecoinSlimV2
     | CrosschainQiStablecoinwbtc
   chainId: ChainId
-  deprecated?: boolean
-  disabled?: boolean
   infoUrl?: string
   minimumCDR: number
   native?: boolean
@@ -308,6 +307,8 @@ export interface COLLATERAL {
   underlyingIds: (keyof typeof TOKEN_DESCRIPTIONS)[]
   addedAt: number
   platform?: PLATFORM[]
+  deprecated: boolean
+  disabled?: boolean
 }
 
 export interface GAUGE_VALID_COLLATERAL extends COLLATERAL {
@@ -350,6 +351,7 @@ const MAINNET_COLLATERALS = [
     snapshotName: 'WETH (Ethereum)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'wbtc',
@@ -364,12 +366,12 @@ const MAINNET_COLLATERALS = [
     snapshotName: 'WBTC (Ethereum)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'stake-dao-crv-eth-steth',
     fallbackUnderlyingAddress: STETH_ADDRESS,
     vaultAddress: '0xcc61Ee649A95F2E2f0830838681f839BDb7CB823',
-    deprecated: true,
     chainId: ChainId.MAINNET,
     token: new Token(
       ChainId.MAINNET,
@@ -387,11 +389,11 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['weth', 'lido-staked-ether'],
     platform: ['StakeDAO', 'Curve'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'yvcrv-eth-steth',
     fallbackUnderlyingAddress: STETH_ADDRESS,
-    deprecated: true,
     vaultAddress: '0x82E90EB7034C1DF646bD06aFb9E67281AAb5ed28',
     chainId: ChainId.MAINNET,
     token: new Token(
@@ -410,6 +412,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['yearn-finance', 'weth', 'lido-staked-ether'],
     platform: ['Yearn', 'Curve'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'yveth',
@@ -426,6 +429,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['yearn-finance', 'weth'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'yvlink',
@@ -442,6 +446,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['chainlink'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'yvcurve-steth-f-perf',
@@ -458,6 +463,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['yearn-finance', 'weth', 'lido-staked-ether'],
     platform: ['Yearn', 'Curve'],
     addedAt: 1681002000,
+    deprecated: false,
   },
   {
     shortName: 'stake-dao-crv-eth-steth-perf',
@@ -474,6 +480,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['weth', 'lido-staked-ether'],
     platform: ['StakeDAO', 'Curve'],
     addedAt: 1681002000,
+    deprecated: false,
   },
   {
     shortName: 'beefy-eth-steth-crv-perf',
@@ -490,6 +497,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['weth', 'lido-staked-ether'],
     platform: ['Beefy', 'Convex', 'Lido'],
     addedAt: 1681002000,
+    deprecated: false,
   },
   {
     shortName: 'crv',
@@ -506,6 +514,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['curve-finance'],
     platform: ['Curve'],
     addedAt: 1681390800,
+    deprecated: false,
   },
   {
     shortName: 'cbeth',
@@ -522,6 +531,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['coinbase-wrapped-staked-eth'],
     platform: ['Coinbase'],
     addedAt: 1685365200,
+    deprecated: false,
   },
   {
     shortName: 'steth',
@@ -537,6 +547,7 @@ const MAINNET_COLLATERALS = [
     snapshotName: 'stEth (Eth)',
     underlyingIds: ['lido-staked-ether'],
     addedAt: 1685365200,
+    deprecated: false,
   },
   {
     shortName: 'ldo',
@@ -553,6 +564,7 @@ const MAINNET_COLLATERALS = [
     underlyingIds: ['lido-dao-token'],
     platform: ['Lido'],
     addedAt: 1685365200,
+    deprecated: false,
   },
 
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
@@ -966,7 +978,6 @@ const AVALANCHE_COLLATERALS = [
   {
     shortName: 'beefy-aave-avax',
     vaultAddress: MOO_WAVAX_VAULT_ADDRESS,
-    deprecated: true,
     chainId: ChainId.AVALANCHE,
     token: new Token(
       ChainId.AVALANCHE,
@@ -985,6 +996,7 @@ const AVALANCHE_COLLATERALS = [
     underlyingIds: ['avalanche'],
     platform: ['Beefy', 'AaveV2'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'sdav3crv',
@@ -1005,6 +1017,7 @@ const AVALANCHE_COLLATERALS = [
     underlyingIds: ['stake-dao-crv', 'tether', 'daidai', 'usd-coin'],
     platform: ['StakeDAO', 'Curve'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'avaxwbtc',
@@ -1019,6 +1032,7 @@ const AVALANCHE_COLLATERALS = [
     snapshotName: 'WBTC (Avalanche)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'avaxweth',
@@ -1033,6 +1047,7 @@ const AVALANCHE_COLLATERALS = [
     snapshotName: 'WETH (Avalanche)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'avax',
@@ -1047,13 +1062,13 @@ const AVALANCHE_COLLATERALS = [
     snapshotName: 'WAVAX (Avalanche)',
     underlyingIds: ['avalanche'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const ARBITRUM_COLLATERALS = [
   {
     shortName: 'weth-old',
-    deprecated: true,
     vaultAddress: '0xf5c2b1b92456fe1b1208c63d8ea040d464f74a72',
     chainId: ChainId.ARBITRUM,
     contractAbi: CrosschainNativeQiStablecoin__factory.abi,
@@ -1070,6 +1085,7 @@ const ARBITRUM_COLLATERALS = [
     version: 1,
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'weth',
@@ -1084,6 +1100,7 @@ const ARBITRUM_COLLATERALS = [
     snapshotName: 'WETH (Arbitrum)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'wbtc',
@@ -1098,6 +1115,7 @@ const ARBITRUM_COLLATERALS = [
     snapshotName: 'WBTC (Arbitrum)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'gdai',
@@ -1113,6 +1131,7 @@ const ARBITRUM_COLLATERALS = [
     underlyingIds: ['gns', 'daidai'],
     platform: ['Gains'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'knc',
@@ -1126,6 +1145,7 @@ const ARBITRUM_COLLATERALS = [
     version: 2,
     underlyingIds: ['kyber-network-crystal'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'beefy-eth-steth-crv',
@@ -1148,6 +1168,7 @@ const ARBITRUM_COLLATERALS = [
     underlyingIds: ['weth', 'lido-staked-ether'],
     platform: ['Beefy', 'Curve', 'Lido'],
     addedAt: 1680483600,
+    deprecated: false,
   },
   {
     shortName: 'arb',
@@ -1170,6 +1191,7 @@ const ARBITRUM_COLLATERALS = [
     underlyingIds: ['arbitrum'],
     platform: ['Arbitrum'],
     addedAt: 1680483600,
+    deprecated: false,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1187,6 +1209,7 @@ const OPTIMISM_COLLATERALS = [
     snapshotName: 'WETH (Optimism)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'wbtc',
@@ -1201,6 +1224,7 @@ const OPTIMISM_COLLATERALS = [
     snapshotName: 'WBTC (Optimism)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'op',
@@ -1216,6 +1240,7 @@ const OPTIMISM_COLLATERALS = [
     underlyingIds: ['optimism'],
     platform: ['Optimism'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'beefy-aave-dai',
@@ -1237,6 +1262,7 @@ const OPTIMISM_COLLATERALS = [
     underlyingIds: ['daidai'],
     platform: ['Beefy', "AaveV3"],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'beefy-aave-weth',
@@ -1259,6 +1285,7 @@ const OPTIMISM_COLLATERALS = [
     underlyingIds: ['weth'],
     platform: ['Beefy', "AaveV3"],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'beefy-aave-wbtc',
@@ -1281,6 +1308,7 @@ const OPTIMISM_COLLATERALS = [
     underlyingIds: ['wrapped-bitcoinwbtc'],
     platform: ['Beefy', "AaveV3"],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'wsteth',
@@ -1303,6 +1331,7 @@ const OPTIMISM_COLLATERALS = [
     underlyingIds: ['lido-staked-ether'],
     platform: ['Lido'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'yvweth',
@@ -1319,6 +1348,7 @@ const OPTIMISM_COLLATERALS = [
     underlyingIds: ['weth'],
     platform: ['Yearn'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'beefy-eth-steth-crv',
@@ -1341,6 +1371,7 @@ const OPTIMISM_COLLATERALS = [
     underlyingIds: ['weth', 'lido-staked-ether'],
     platform: ['Beefy', 'Curve', 'Lido'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'knc',
@@ -1354,6 +1385,7 @@ const OPTIMISM_COLLATERALS = [
     version: 2,
     underlyingIds: ['kyber-network-crystal'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1361,7 +1393,6 @@ const MOONRIVER_COLLATERALS = [
   {
     shortName: 'eth',
     vaultAddress: '0x4a0474E3262d4DB3306Cea4F207B5d66eC8E0AA9',
-    deprecated: true,
     chainId: ChainId.MOONRIVER,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
@@ -1371,11 +1402,11 @@ const MOONRIVER_COLLATERALS = [
     version: 1,
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'moo-solar-eth-usdc',
     vaultAddress: '0x97D811A7eb99Ef4Cb027ad59800cE27E68Ee1109',
-    deprecated: true,
     chainId: ChainId.MOONRIVER,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
@@ -1391,6 +1422,7 @@ const MOONRIVER_COLLATERALS = [
     version: 1,
     underlyingIds: ['weth', 'usd-coin'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'movr',
@@ -1402,16 +1434,15 @@ const MOONRIVER_COLLATERALS = [
     token: new Token(ChainId.MOONRIVER, '0x98878B06940aE243284CA214f92Bb71a2b032B8A', 18, 'MOVR', 'Moonriver'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
-    deprecated: true,
     version: 1,
     snapshotName: 'MOVR (Moonriver)',
     underlyingIds: ['moonriver'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'moo-solar-movr-usdc',
     vaultAddress: '0xF4fa968578723580935a00d1e12Fe96Bc6401947',
-    deprecated: true,
     chainId: ChainId.MOONRIVER,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
@@ -1427,6 +1458,7 @@ const MOONRIVER_COLLATERALS = [
     version: 1,
     underlyingIds: ['moonriver', 'usd-coin'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1443,6 +1475,7 @@ const MOONBEAM_COLLATERALS = [
     version: 2,
     underlyingIds: ['moonbeam'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     connect: StableQiVault__factory.connect,
@@ -1456,6 +1489,7 @@ const MOONBEAM_COLLATERALS = [
     version: 2,
     underlyingIds: [],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1539,6 +1573,7 @@ const BSC_COLLATERALS = [
     snapshotName: 'BNB (BNB)',
     underlyingIds: ['wrapped-bnb'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'cake',
@@ -1553,6 +1588,7 @@ const BSC_COLLATERALS = [
     snapshotName: 'CAKE (BNB)',
     underlyingIds: ['pancakeswap'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'dodo',
@@ -1567,6 +1603,7 @@ const BSC_COLLATERALS = [
     snapshotName: 'DODO (BNB)',
     underlyingIds: ['dodo'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1584,6 +1621,7 @@ const XDAI_COLLATERALS = [
     snapshotName: 'WETH (Gnosis Chain)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'gno',
@@ -1598,6 +1636,7 @@ const XDAI_COLLATERALS = [
     snapshotName: 'GNO (Gnosis Chain)',
     underlyingIds: ['gnosis'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -1608,7 +1647,6 @@ const MATIC_COLLATERALS = [
     subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-mai-finance-og',
     vaultAddress: OG_MATIC_VAULT,
     token: new Token(ChainId.MATIC, constants.AddressZero, 18, 'MATIC', 'Polygon MATIC'),
-    deprecated: true,
     minimumCDR: 150,
     contractAbi: QiStablecoin__factory.abi,
     connect: QiStablecoin__factory.connect,
@@ -1616,6 +1654,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     underlyingIds: ['wrapped-matic'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'camwmatic',
@@ -1640,6 +1679,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['wrapped-matic'],
     platform: ['AaveV2'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'weth',
@@ -1655,6 +1695,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'WETH (Polygon)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'camweth',
@@ -1679,6 +1720,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['weth'],
     platform: ['AaveV2'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'camaave',
@@ -1704,6 +1746,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['aave'],
     platform: ['AaveV2'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'aave',
@@ -1720,6 +1763,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['aave'],
     platform: ['AaveV2'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'link',
@@ -1735,6 +1779,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'LINK (Polygon)',
     underlyingIds: ['chainlink'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'crv',
@@ -1750,6 +1795,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'CRV (Polygon)',
     underlyingIds: ['curve-finance'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'wbtc',
@@ -1765,6 +1811,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'WBTC (Polygon)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'camwbtc',
@@ -1789,6 +1836,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['wrapped-bitcoinwbtc'],
     platform: ['AaveV2'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'bal-old',
@@ -1799,11 +1847,11 @@ const MATIC_COLLATERALS = [
     connect: Erc20Stablecoin__factory.connect,
     token: new Token(ChainId.MATIC, '0x9a71012B13CA4d3D0Cdc72A177DF3ef03b0E76A3', 18, 'BAL OLD', 'Balancer'),
     minimumCDR: 130,
-    deprecated: true,
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['balancer'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'dquick-old',
@@ -1814,11 +1862,11 @@ const MATIC_COLLATERALS = [
     connect: Erc20Stablecoin__factory.connect,
     token: new Token(ChainId.MATIC, '0xf28164A485B0B2C90639E47b0f377b4a438a16B1', 18, 'dQUICK OLD', 'Dragon QUICK'),
     minimumCDR: 130,
-    deprecated: true,
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['quickswap'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'bal',
@@ -1834,6 +1882,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'BAL (Polygon)',
     underlyingIds: ['balancer'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'dquick',
@@ -1849,6 +1898,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['quickswap', 'dragon-s-quick'],
     platform: ['QuickSwap'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'ghst',
@@ -1864,6 +1914,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'GHST (Polygon)',
     underlyingIds: ['aavegotchi'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'camdai',
@@ -1887,6 +1938,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['daidai'],
     platform: ['AaveV2'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'sdam3crv',
@@ -1907,6 +1959,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['stake-dao-crv', 'tether', 'daidai', 'usd-coin'],
     platform: ['StakeDAO', 'Curve'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'fxs',
@@ -1921,13 +1974,12 @@ const MATIC_COLLATERALS = [
     snapshotName: 'Frax Share (Polygon)',
     underlyingIds: ['frax-share'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'cxeth',
     vaultAddress: '0x7d36999a69f2B99BF3FB98866cBbE47aF43696C8',
     chainId: ChainId.MATIC,
-    deprecated: true,
-    disabled: true,
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
@@ -1936,13 +1988,13 @@ const MATIC_COLLATERALS = [
     version: 1,
     underlyingIds: ['ethereum'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
+    disabled: true,
   },
   {
     shortName: 'cxada',
     vaultAddress: '0x506533B9C16eE2472A6BF37cc320aE45a0a24F11',
     chainId: ChainId.MATIC,
-    deprecated: true,
-    disabled: true,
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
@@ -1951,13 +2003,13 @@ const MATIC_COLLATERALS = [
     version: 1,
     underlyingIds: ['cardano'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
+    disabled: true,
   },
   {
     shortName: 'cxdoge',
     vaultAddress: '0x7CbF49E4214C7200AF986bc4aACF7bc79dd9C19a',
     chainId: ChainId.MATIC,
-    deprecated: true,
-    disabled: true,
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
@@ -1972,6 +2024,8 @@ const MATIC_COLLATERALS = [
     version: 1,
     underlyingIds: ['dogecoin'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
+    disabled: true,
   },
   {
     shortName: 'vghst',
@@ -1987,13 +2041,13 @@ const MATIC_COLLATERALS = [
     snapshotName: 'vGHST (Polygon)',
     underlyingIds: ['aavegotchi'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
     platform: ['GotchiVault']
   },
   {
     shortName: 'celsius',
     vaultAddress: '0x178f1c95C85Fe7221C7A6a3d6F12B7Da3253eeAe',
     chainId: ChainId.MATIC,
-    deprecated: true,
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoinV2__factory.abi,
     connect: CrosschainQiStablecoinV2__factory.connect,
@@ -2002,6 +2056,7 @@ const MATIC_COLLATERALS = [
     version: 1,
     underlyingIds: ['celsius'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'sand',
@@ -2016,6 +2071,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'SAND (Polygon)',
     underlyingIds: ['the-sandbox'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'wmatic',
@@ -2030,6 +2086,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'Wrapped MATIC (Polygon)',
     underlyingIds: ['wrapped-matic'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'xxdai',
@@ -2045,6 +2102,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['daidai'],
     platform: ['Tetu'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'xxlink',
@@ -2061,6 +2119,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['chainlink'],
     platform: ['Tetu'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'knc',
@@ -2075,6 +2134,7 @@ const MATIC_COLLATERALS = [
     version: 2,
     underlyingIds: ['kyber-network-crystal'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'maidai',
@@ -2090,6 +2150,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['daidai', 'mai-finance'],
     platform: ['Arrakis'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'LSMMVT',
@@ -2103,6 +2164,7 @@ const MATIC_COLLATERALS = [
     version: 2,
     underlyingIds: ['wrapped-matic'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'STMMVT',
@@ -2117,6 +2179,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['lido-staked-matic'],
     platform: ['Lido'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'stmatic',
@@ -2131,6 +2194,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['lido-staked-matic'],
     platform: ['Lido'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'gdai',
@@ -2146,6 +2210,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['gns', 'daidai'],
     platform: ['Gains'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'maticx',
@@ -2166,6 +2231,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['stader-maticx'],
     platform: ['Stader'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: false,
   },
   {
     shortName: 'wsteth',
@@ -2188,6 +2254,7 @@ const MATIC_COLLATERALS = [
     underlyingIds: ['lido-staked-ether'],
     platform: ['Lido'],
     addedAt: 1679274000,
+    deprecated: false,
   },
 
   {
@@ -2203,6 +2270,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'WBTC-I (Polygon)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: 1683594000,
+    deprecated: false,
   },
   {
     shortName: 'weth-i',
@@ -2217,6 +2285,7 @@ const MATIC_COLLATERALS = [
     snapshotName: 'WETH-I (Polygon)',
     underlyingIds: ['weth'],
     addedAt: 1683594000,
+    deprecated: false,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -2234,6 +2303,7 @@ const METIS_COLLATERALS = [
     snapshotName: 'METIS (Metis)',
     underlyingIds: ['metis-token'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'weth',
@@ -2248,6 +2318,7 @@ const METIS_COLLATERALS = [
     snapshotName: 'WETH (Metis)',
     underlyingIds: ['weth'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'wbtc',
@@ -2259,10 +2330,10 @@ const METIS_COLLATERALS = [
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
-    deprecated: true,
     snapshotName: 'WBTC (Metis)',
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'mwbtc',
@@ -2278,6 +2349,7 @@ const METIS_COLLATERALS = [
     fallbackUnderlyingAddress: METIS_WBTC_ADDRESS,
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: MAI_BIRTHDAY,
+    deprecated: true,
   },
   {
     shortName: 'metis',
@@ -2291,6 +2363,7 @@ const METIS_COLLATERALS = [
     version: 2,
     underlyingIds: ['metis-token'],
     addedAt: 1683853200,
+    deprecated: false,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -2308,6 +2381,7 @@ const ZKEVM_COLLATERALS = [
     snapshotName: 'WETH (ZKEVM)',
     underlyingIds: ['weth'],
     addedAt: 1686618000,
+    deprecated: false,
   },
   {
     shortName: 'wmatic',
@@ -2322,6 +2396,7 @@ const ZKEVM_COLLATERALS = [
     snapshotName: 'WMATIC (ZKEVM)',
     underlyingIds: ['wrapped-matic'],
     addedAt: 1686618000,
+    deprecated: false,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -2399,7 +2474,7 @@ export const COLLATERALS: {
   [ChainId.KLAYTN]: [],
   [ChainId.CANTO]: [],
   [ChainId.DOGECHAIN]: [],
-  [ChainId.ZKEVM]: ZKEVM_COLLATERALS,
+  [ChainId.ZKEVM]: [],
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
