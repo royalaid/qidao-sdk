@@ -81,7 +81,11 @@ import {
   ETH_STETH_VAULT_ADDRESS,
   ETH_LDO_VAULT_ADDRESS,
   ETH_LDO_ADDRESS,
-  ZKEVM_WETH_VAULT_ADDRESS, ZKEVM_WETH_ADDRESS, ZKEVM_WMATIC_ADDRESS, ZKEVM_WMATIC_VAULT_ADDRESS,
+  ZKEVM_WETH_VAULT_ADDRESS,
+  ZKEVM_WETH_ADDRESS,
+  ZKEVM_WMATIC_ADDRESS,
+  ZKEVM_WMATIC_VAULT_ADDRESS,
+  BASE_CBETH_VAULT_ADDRESS, BASE_WETH_VAULT_ADDRESS, BASE_CBETH_ADDRESS, BASE_WETH_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -158,6 +162,8 @@ export type SnapshotCanonicalChoiceName =
   | 'LDO (Eth)'
   | 'WETH (ZKEVM)'
   | 'WMATIC (ZKEVM)'
+  | 'cbEth (Base)'
+  | 'WETH (Base)'
 
 export type VaultShortName =
   | 'aave'
@@ -2367,6 +2373,8 @@ const METIS_COLLATERALS = [
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
+// @ts-ignore
+// noinspection JSUnusedLocalSymbols
 const ZKEVM_COLLATERALS = [
   {
     shortName: 'weth',
@@ -2396,6 +2404,40 @@ const ZKEVM_COLLATERALS = [
     snapshotName: 'WMATIC (ZKEVM)',
     underlyingIds: ['wrapped-matic'],
     addedAt: 1686618000,
+    deprecated: false,
+  },
+] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+
+const BASE_COLLATERALS = [
+  {
+    shortName: 'weth',
+    vaultAddress: BASE_WETH_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_WETH_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'WETH (Base)',
+    underlyingIds: ['weth'],
+    addedAt: 1686618000,
+    deprecated: false,
+  },
+  {
+    shortName: 'cbeth',
+    vaultAddress: BASE_CBETH_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_CBETH_ADDRESS, 18, 'cbETH', 'Coinbase Wrapped Staked ETH'),
+    contractAbi: StableQiVault__factory.abi,
+    connect: StableQiVault__factory.connect,
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'cbEth (Base)',
+    underlyingIds: ['coinbase-wrapped-staked-eth'],
+    platform: ['Coinbase'],
+    addedAt: 1685365200,
     deprecated: false,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
@@ -2438,7 +2480,8 @@ export const COLLATERALS: {
   [ChainId.KLAYTN]: typeof EMPTY_COLLATERALS,
   [ChainId.CANTO]: typeof EMPTY_COLLATERALS,
   [ChainId.DOGECHAIN]: typeof EMPTY_COLLATERALS,
-  [ChainId.ZKEVM]: typeof ZKEVM_COLLATERALS,
+  [ChainId.ZKEVM]: typeof EMPTY_COLLATERALS,
+  [ChainId.BASE]: typeof BASE_COLLATERALS,
 } = {
   [ChainId.MAINNET]: MAINNET_COLLATERALS,
   [ChainId.FANTOM]: FANTOM_COLLATERALS,
@@ -2475,6 +2518,7 @@ export const COLLATERALS: {
   [ChainId.CANTO]: [],
   [ChainId.DOGECHAIN]: [],
   [ChainId.ZKEVM]: [],
+  [ChainId.BASE]: BASE_COLLATERALS,
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
