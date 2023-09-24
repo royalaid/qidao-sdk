@@ -22,6 +22,7 @@ import {
   Erc20QiStablecoinwbtc__factory,
   Erc20QiStablecoincamwbtc__factory,
 } from './contracts'
+import abi from './abis'
 //DO NOT SHORTEN THESE IMPORTS, ITS BREAKS EVERYTHING, GOD KNOWS WHY
 import { QiStablecoin__factory } from './contracts/factories/QiStablecoin__factory'
 import { QiStablecoin } from './contracts/QiStablecoin'
@@ -270,6 +271,22 @@ export type VaultContractAbiV1 =
   | typeof CrosschainQiStablecoinSlimV2__factory.abi
   | typeof CrosschainQiStablecoinwbtc__factory.abi
 
+export type RawVaultContractAbiV1 =
+    | typeof abi.QiStablecoin
+    | typeof abi.erc20Stablecoin
+    | typeof abi.erc20QiStablecoinwbtc
+    | typeof abi.erc20QiStablecoincamwbtc
+    | typeof abi.crosschainQiStablecoin
+    | typeof abi.crosschainNativeQiStablecoin
+    | typeof abi.crosschainQiStablecoinV2
+    | typeof abi.crosschainQiStablecoinSlim
+    | typeof abi.crosschainQiStablecoinSlimV2
+    | typeof abi.crosschainQiStablecoinwbtc
+
+export type RawVaultContractAbiV2 = typeof abi.stableQiVault
+
+export type RawVaultContractAbi = RawVaultContractAbiV1 | RawVaultContractAbiV2
+
 export type VaultContractAbiV2 = typeof StableQiVault__factory.abi
 
 export type VaultContractAbi = VaultContractAbiV1 | VaultContractAbiV2
@@ -307,6 +324,7 @@ export interface COLLATERAL {
   vaultAddress: string
   shortName: VaultShortName
   contractAbi: VaultContractAbiV1
+  rawAbi: RawVaultContractAbiV1
   frontend: FRONTEND
   version: 1
   fallbackUnderlyingAddress?: string
@@ -321,10 +339,11 @@ export interface GAUGE_VALID_COLLATERAL extends COLLATERAL {
   snapshotName: SnapshotCanonicalChoiceName
 }
 
-export interface COLLATERAL_V2 extends Omit<COLLATERAL, 'version' | 'connect' | 'contractAbi'> {
+export interface COLLATERAL_V2 extends Omit<COLLATERAL, 'version' | 'connect' | 'contractAbi' | 'rawAbi'> {
   version: 2
   connect(address: string, signerOrProvider: Signer | Provider): StableQiVault
   contractAbi: VaultContractAbiV2
+  rawAbi: RawVaultContractAbiV2
 }
 
 export interface GAUGE_VALID_COLLATERAL_V2 extends COLLATERAL_V2 {
@@ -350,6 +369,7 @@ const MAINNET_COLLATERALS = [
     chainId: ChainId.MAINNET,
     token: new Token(ChainId.MAINNET, WETH_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
     contractAbi: StableQiVault__factory.abi,
+    rawAbi: abi.stableQiVault,
     connect: StableQiVault__factory.connect,
     minimumCDR: 120,
     frontend: FRONTEND.MAI,
@@ -366,6 +386,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped Bitcoin'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 120,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -388,6 +409,7 @@ const MAINNET_COLLATERALS = [
     ),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -411,6 +433,7 @@ const MAINNET_COLLATERALS = [
     ),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -428,6 +451,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, '0xa258C4606Ca8206D8aA700cE2143D7db854D168c', 18, 'YVETH', 'Yearn WETH'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -445,6 +469,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, '0x671a912C10bba0CFA74Cfc2d6Fba9BA1ed9530B2', 18, 'YVLINK', 'Yearn Link'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 140,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -462,6 +487,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, '0x5B8C556B8b2a78696F0B9B830B3d67623122E270', 18, 'yvCurve-stETH-f', 'Curve stETH Factory yVault'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -479,6 +505,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, '0xbC10c4F7B9FE0B305e8639B04c536633A3dB7065', 18, 'sdsteCRV', 'StakeDAO Curve.fi ETH/stETH'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -496,6 +523,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, '0xa7739fd3d12ac7F16D8329AF3Ee407e19De10D8D', 18, 'mooConvexStETH', 'Moo Convex stETH'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -513,6 +541,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, ETH_CRV_ADDRESS, 18, 'CRV', 'Curve DAO Token'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -530,6 +559,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, ETH_CBETH_ADDRESS, 18, 'cbETH', 'Coinbase Wrapped Staked ETH'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -547,6 +577,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, ETH_STETH_ADDRESS, 18, 'stETH', 'Liquid staked Ether 2.0'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -563,6 +594,7 @@ const MAINNET_COLLATERALS = [
     token: new Token(ChainId.MAINNET, ETH_LDO_ADDRESS, 18, 'LDO', 'Lido DAO Token'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -585,6 +617,7 @@ const FANTOM_COLLATERALS = [
     native: true,
     contractAbi: CrosschainNativeQiStablecoin__factory.abi,
     connect: CrosschainNativeQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainNativeQiStablecoin,
     subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-fantom-vaults',
     frontend: FRONTEND.MAI,
     version: 1,
@@ -602,6 +635,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-yvwftm-vaults',
     frontend: FRONTEND.MAI,
     version: 1,
@@ -626,6 +660,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
     connect: CrosschainQiStablecoinSlimV2__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlimV2,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'Yearn vault BTC (Fantom)',
@@ -643,6 +678,7 @@ const FANTOM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x29b0Da86e484E1C0029B56e817912d778aC0EC69',
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'Yearn vault YFI (Fantom)',
@@ -660,6 +696,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'Yearn vault ETH (Fantom)',
@@ -677,6 +714,7 @@ const FANTOM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e',
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-yvdai-vaults',
     frontend: FRONTEND.MAI,
     version: 1,
@@ -693,6 +731,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     subgraph: 'https://api.thegraph.com/subgraphs/name/0xlaozi/qi-dao-fantom-eth-vaults',
     frontend: FRONTEND.MAI,
     version: 1,
@@ -709,6 +748,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'AAVE (Fantom)',
@@ -724,6 +764,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'SUSHI (Fantom)',
@@ -739,6 +780,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'LINK (Fantom)',
@@ -754,6 +796,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinwbtc__factory.abi,
     connect: CrosschainQiStablecoinwbtc__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinwbtc,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'WBTC (Fantom)',
@@ -776,6 +819,7 @@ const FANTOM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x321162Cd933E2Be498Cd2267a90534A804051b11',
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     deprecated: true,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -797,6 +841,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     deprecated: true,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -818,6 +863,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     deprecated: true,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -839,6 +885,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     deprecated: true,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -860,6 +907,7 @@ const FANTOM_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     deprecated: true,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -873,6 +921,7 @@ const FANTOM_COLLATERALS = [
     chainId: ChainId.FANTOM,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(
       ChainId.FANTOM,
       '0xA3e3Af161943CfB3941B631676134bb048739727',
@@ -909,6 +958,7 @@ const FANTOM_COLLATERALS = [
     chainId: ChainId.FANTOM,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(
       ChainId.FANTOM,
       '0x2a30C5e0d577108F694d2A96179cd73611Ee069b',
@@ -953,6 +1003,7 @@ const FANTOM_COLLATERALS = [
     fallbackUnderlyingAddress: '0xd6070ae98b8069de6b494332d1a1a81b6179d960',
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'mooBIFI (Fantom)',
@@ -969,6 +1020,7 @@ const FANTOM_COLLATERALS = [
     token: new Token(ChainId.FANTOM, '0xa48d959AE2E88f1dAA7D5F611E01908106dE7598', 18, 'XBOO', 'xBoo MirrorWorld'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 155,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -996,6 +1048,7 @@ const AVALANCHE_COLLATERALS = [
     fallbackUnderlyingAddress: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'Beefy Aave AVAX (Avalanche)',
@@ -1017,6 +1070,7 @@ const AVALANCHE_COLLATERALS = [
     ),
     contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
     connect: CrosschainQiStablecoinSlimV2__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlimV2,
     minimumCDR: 110,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -1032,6 +1086,7 @@ const AVALANCHE_COLLATERALS = [
     token: new Token(ChainId.AVALANCHE, '0x50b7545627a5162F82A992c33b87aDc75187B218', 8, 'WBTC.e', 'Wrapped BTC'),
     contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
     connect: CrosschainQiStablecoinSlimV2__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlimV2,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -1047,6 +1102,7 @@ const AVALANCHE_COLLATERALS = [
     token: new Token(ChainId.AVALANCHE, '0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB', 18, 'WETH', 'Wrapped Ethereum'),
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -1062,6 +1118,7 @@ const AVALANCHE_COLLATERALS = [
     token: new Token(ChainId.AVALANCHE, '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7', 18, 'WAVAX', 'Wrapped AVAX'),
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     minimumCDR: 135,
     frontend: FRONTEND.MAI,
     version: 1,
@@ -1079,6 +1136,7 @@ const ARBITRUM_COLLATERALS = [
     chainId: ChainId.ARBITRUM,
     contractAbi: CrosschainNativeQiStablecoin__factory.abi,
     connect: CrosschainNativeQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainNativeQiStablecoin,
     token: new Token(
       ChainId.ARBITRUM,
       '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
@@ -1099,6 +1157,7 @@ const ARBITRUM_COLLATERALS = [
     chainId: ChainId.ARBITRUM,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.ARBITRUM, '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1', 18, 'WETH', 'Wrapped Ether'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1114,6 +1173,7 @@ const ARBITRUM_COLLATERALS = [
     chainId: ChainId.ARBITRUM,
     contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
     connect: CrosschainQiStablecoinSlimV2__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlimV2,
     token: new Token(ChainId.ARBITRUM, '0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f', 8, 'WBTC', 'Wrapped Bitcoin'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1126,6 +1186,7 @@ const ARBITRUM_COLLATERALS = [
   {
     shortName: 'gdai',
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.ARBITRUM,
     minimumCDR: 112,
     token: new Token(ChainId.ARBITRUM, '0xd85E038593d7A098614721EaE955EC2022B9B91B', 18, 'gDAI', 'Gains Network DAI'),
@@ -1146,6 +1207,7 @@ const ARBITRUM_COLLATERALS = [
     token: new Token(ChainId.ARBITRUM, '0xe4DDDfe67E7164b0FE14E218d80dC4C08eDC01cB', 18, 'KNC', 'Kyber Network Crystal (v2)'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 140,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -1159,6 +1221,7 @@ const ARBITRUM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x5979D7b546E38E414F7E9822514be443A4800529',
     chainId: ChainId.ARBITRUM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(
         ChainId.ARBITRUM,
@@ -1182,6 +1245,7 @@ const ARBITRUM_COLLATERALS = [
     fallbackUnderlyingAddress: ARBI_ARB_ADDRESS,
     chainId: ChainId.ARBITRUM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(
         ChainId.ARBITRUM,
@@ -1208,6 +1272,7 @@ const OPTIMISM_COLLATERALS = [
     chainId: ChainId.OPTIMISM,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000006', 18, 'WETH', 'Wrapped Ether'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1223,6 +1288,7 @@ const OPTIMISM_COLLATERALS = [
     chainId: ChainId.OPTIMISM,
     contractAbi: CrosschainQiStablecoinSlimV2__factory.abi,
     connect: CrosschainQiStablecoinSlimV2__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlimV2,
     token: new Token(ChainId.OPTIMISM, '0x68f180fcCe6836688e9084f035309E29Bf0A2095', 8, 'WBTC', 'Wrapped BTC'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1237,6 +1303,7 @@ const OPTIMISM_COLLATERALS = [
     vaultAddress: '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE',
     chainId: ChainId.OPTIMISM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(ChainId.OPTIMISM, '0x4200000000000000000000000000000000000042', 18, 'OP', 'Optimism'),
     minimumCDR: 130,
@@ -1253,6 +1320,7 @@ const OPTIMISM_COLLATERALS = [
     vaultAddress: '0xB89c1b3d9f335B9d8Bb16016F3d60160AE71041f',
     chainId: ChainId.OPTIMISM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     fallbackUnderlyingAddress: '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1',
     token: new Token(
@@ -1276,6 +1344,7 @@ const OPTIMISM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
     chainId: ChainId.OPTIMISM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(
       ChainId.OPTIMISM,
@@ -1299,6 +1368,7 @@ const OPTIMISM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x68f180fcCe6836688e9084f035309E29Bf0A2095',
     chainId: ChainId.OPTIMISM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(
       ChainId.OPTIMISM,
@@ -1322,6 +1392,7 @@ const OPTIMISM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb',
     chainId: ChainId.OPTIMISM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(
       ChainId.OPTIMISM,
@@ -1345,6 +1416,7 @@ const OPTIMISM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
     chainId: ChainId.OPTIMISM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(ChainId.OPTIMISM, '0x22f39d6535dF5767f8F57FEE3B2F941410773ec4', 18, 'yvWETH', 'WETH yVault'),
     minimumCDR: 135,
@@ -1362,6 +1434,7 @@ const OPTIMISM_COLLATERALS = [
     fallbackUnderlyingAddress: '0x4200000000000000000000000000000000000006',
     chainId: ChainId.OPTIMISM,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(
       ChainId.OPTIMISM,
@@ -1386,6 +1459,7 @@ const OPTIMISM_COLLATERALS = [
     token: new Token(ChainId.OPTIMISM, '0xa00E3A3511aAC35cA78530c85007AFCd31753819', 18, 'KNC', 'Kyber Network Crystal (v2)'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 140,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -1402,6 +1476,7 @@ const MOONRIVER_COLLATERALS = [
     chainId: ChainId.MOONRIVER,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(ChainId.MOONRIVER, '0x639A647fbe20b6c8ac19E48E2de44ea792c62c5C', 18, 'ETH', 'Ethereum'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1416,6 +1491,7 @@ const MOONRIVER_COLLATERALS = [
     chainId: ChainId.MOONRIVER,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(
       ChainId.MOONRIVER,
       '0x932009984bd2a7dA8C6396694E811Da5C0952d05',
@@ -1437,6 +1513,7 @@ const MOONRIVER_COLLATERALS = [
     chainId: ChainId.MOONRIVER,
     contractAbi: CrosschainNativeQiStablecoin__factory.abi,
     connect: CrosschainNativeQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainNativeQiStablecoin,
     token: new Token(ChainId.MOONRIVER, '0x98878B06940aE243284CA214f92Bb71a2b032B8A', 18, 'MOVR', 'Moonriver'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1452,6 +1529,7 @@ const MOONRIVER_COLLATERALS = [
     chainId: ChainId.MOONRIVER,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(
       ChainId.MOONRIVER,
       '0x78Dc4b7C7A89812fb337dD8C3B0ccB3e04E02D7C',
@@ -1471,6 +1549,7 @@ const MOONRIVER_COLLATERALS = [
 const MOONBEAM_COLLATERALS = [
   {
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.MOONBEAM,
     minimumCDR: 200,
     token: new Token(ChainId.MOONBEAM, '0xAcc15dC74880C9944775448304B263D191c6077F', 18, 'WGLMT', 'Wrapped GLMR'),
@@ -1485,6 +1564,7 @@ const MOONBEAM_COLLATERALS = [
   },
   {
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.MOONBEAM,
     minimumCDR: 250,
     token: new Token(ChainId.MOONBEAM, '0x06A3b410b681c82417A906993aCeFb91bAB6A080', 18, 'xStella', 'xStella'),
@@ -1506,6 +1586,7 @@ const HARMONY_COLLATERALS = [
     chainId: ChainId.HARMONY,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     deprecated: true,
     token: new Token(ChainId.HARMONY, '0x6983D1E6DEf3690C4d616b13597A09e6193EA013', 18, '1ETH', 'Wrapped Ethereum'),
     minimumCDR: 130,
@@ -1521,6 +1602,7 @@ const HARMONY_COLLATERALS = [
     chainId: ChainId.HARMONY,
     contractAbi: CrosschainNativeQiStablecoin__factory.abi,
     connect: CrosschainNativeQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainNativeQiStablecoin,
     deprecated: true,
     token: new Token(ChainId.HARMONY, '0xcF664087a5bB0237a0BAd6742852ec6c8d69A27a', 18, 'ONE', 'Harmony (ONE)'),
     minimumCDR: 130,
@@ -1536,6 +1618,7 @@ const HARMONY_COLLATERALS = [
     chainId: ChainId.HARMONY,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(
       ChainId.HARMONY,
       '0x3095c7557bCb296ccc6e363DE01b760bA031F2d9',
@@ -1556,6 +1639,7 @@ const HARMONY_COLLATERALS = [
     chainId: ChainId.HARMONY,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(ChainId.HARMONY, '0x3095c7557bCb296ccc6e363DE01b760bA031F2d9', 8, '1WBTC', 'Wrapped Bitcoin'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1572,6 +1656,7 @@ const BSC_COLLATERALS = [
     chainId: ChainId.BSC,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.BSC, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'Wrapped BNB', 'WBNB'),
     minimumCDR: 135,
     frontend: FRONTEND.MAI,
@@ -1586,6 +1671,7 @@ const BSC_COLLATERALS = [
     vaultAddress: '0x014A177E9642d1b4E970418f894985dC1b85657f',
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     chainId: ChainId.BSC,
     token: new Token(ChainId.BSC, '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', 18, 'PancakeSwap Token', 'CAKE'),
     minimumCDR: 130,
@@ -1603,6 +1689,7 @@ const BSC_COLLATERALS = [
     token: new Token(ChainId.BSC, '0x67ee3Cb086F8a16f34beE3ca72FAD36F7Db929e2', 18, 'DODO', 'DODO'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 150,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -1620,6 +1707,7 @@ const XDAI_COLLATERALS = [
     chainId: ChainId.XDAI,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     token: new Token(ChainId.XDAI, '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1', 18, 'Wrapped Ether', 'WETH'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1635,6 +1723,7 @@ const XDAI_COLLATERALS = [
     chainId: ChainId.XDAI,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.XDAI, '0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb', 18, 'Gnosis', 'GNO'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1656,6 +1745,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 150,
     contractAbi: QiStablecoin__factory.abi,
     connect: QiStablecoin__factory.connect,
+    rawAbi: abi.QiStablecoin,
     frontend: FRONTEND.MAI,
     version: 1,
     underlyingIds: ['wrapped-matic'],
@@ -1670,6 +1760,7 @@ const MATIC_COLLATERALS = [
     contractAbi: Erc20Stablecoin__factory.abi,
     fallbackUnderlyingAddress: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(
       ChainId.MATIC,
       '0x7068Ea5255cb05931EFa8026Bd04b18F3DeB8b0B',
@@ -1694,6 +1785,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x3fd939B017b31eaADF9ae50C7fF7Fa5c0661d47C',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', 18, 'WETH', 'Wrapped Ether'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1711,6 +1803,7 @@ const MATIC_COLLATERALS = [
     fallbackUnderlyingAddress: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(
       ChainId.MATIC,
       '0x0470CD31C8FcC42671465880BA81D631F0B76C1D',
@@ -1745,6 +1838,7 @@ const MATIC_COLLATERALS = [
 
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     aaveId: '0xd6df932a45c0f255f85145f286ea0b292b21c90b0xd05e3e715d945b59290df0ae8ef85c1bdb684744',
     frontend: FRONTEND.MAI,
     version: 1,
@@ -1761,6 +1855,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x87ee36f780ae843A78D5735867bc1c13792b7b11',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, AAVE_ADDRESS, 18, 'AAVE', 'Aave'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1778,6 +1873,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x61167073E31b1DAd85a3E531211c7B8F1E5cAE72',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39', 18, 'LINK', 'ChainLink Token'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1794,6 +1890,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x98B5F32dd9670191568b661a3e847Ed764943875',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0x172370d5Cd63279eFa6d502DAB29171933a610AF', 18, 'CRV', 'Curve Dao Token'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1810,6 +1907,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x37131aEDd3da288467B6EBe9A77C523A700E6Ca1',
     contractAbi: Erc20QiStablecoinwbtc__factory.abi,
     connect: Erc20QiStablecoinwbtc__factory.connect,
+    rawAbi: abi.erc20QiStablecoinwbtc,
     token: new Token(ChainId.MATIC, '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6', 8, 'WBTC', 'Wrapped BTC'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1836,6 +1934,7 @@ const MATIC_COLLATERALS = [
     aaveId: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd60xd05e3e715d945b59290df0ae8ef85c1bdb684744',
     contractAbi: Erc20QiStablecoincamwbtc__factory.abi,
     connect: Erc20QiStablecoincamwbtc__factory.connect,
+    rawAbi: abi.erc20QiStablecoincamwbtc,
     frontend: FRONTEND.MAI,
     version: 1,
     snapshotName: 'Compounding Aave WBTC (Polygon)',
@@ -1851,6 +1950,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0xf6906b1Cf79Ab14c79DdC7D763c1A517cF9968A5',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0x9a71012B13CA4d3D0Cdc72A177DF3ef03b0E76A3', 18, 'BAL OLD', 'Balancer'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1866,6 +1966,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x9e6e3e8161Fffb31a6030E56a3E024842567154F',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0xf28164A485B0B2C90639E47b0f377b4a438a16B1', 18, 'dQUICK OLD', 'Dragon QUICK'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1881,6 +1982,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x701A1824e5574B0b6b1c8dA808B184a7AB7A2867',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0x9a71012B13CA4d3D0Cdc72A177DF3ef03b0E76A3', 18, 'BAL', 'Balancer'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1897,6 +1999,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x649Aa6E6b6194250C077DF4fB37c23EE6c098513',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0xf28164A485B0B2C90639E47b0f377b4a438a16B1', 18, 'dQUICK', 'Dragon QUICK'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1913,6 +2016,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0xF086dEdf6a89e7B16145b03a6CB0C0a9979F1433',
     contractAbi: Erc20Stablecoin__factory.abi,
     connect: Erc20Stablecoin__factory.connect,
+    rawAbi: abi.erc20Stablecoin,
     token: new Token(ChainId.MATIC, '0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7', 18, 'GHST', 'Aavegotchi GHST'),
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
@@ -1929,6 +2033,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: CAMDAI_VAULT_ADDRESS,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     fallbackUnderlyingAddress: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
     token: new Token(
       ChainId.MATIC,
@@ -1951,6 +2056,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: '0x57Cbf36788113237D64E46f25A88855c3dff1691',
     contractAbi: CrosschainQiStablecoinV2__factory.abi,
     connect: CrosschainQiStablecoinV2__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinV2,
     chainId: ChainId.MATIC,
     minimumCDR: 110,
     token: new Token(
@@ -1973,6 +2079,7 @@ const MATIC_COLLATERALS = [
     chainId: ChainId.MATIC,
     contractAbi: CrosschainQiStablecoin__factory.abi,
     connect: CrosschainQiStablecoin__factory.connect,
+    rawAbi: abi.crosschainQiStablecoin,
     minimumCDR: 130,
     token: new Token(ChainId.MATIC, '0x1a3acf6D19267E2d3e7f898f42803e90C9219062', 18, 'FXS', 'Frax Share'),
     frontend: FRONTEND.MAI,
@@ -1989,6 +2096,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.MATIC, '0xfe4546feFe124F30788c4Cc1BB9AA6907A7987F9', 18, 'cxETH', 'CelsiusX ETH'),
     frontend: FRONTEND.MAI,
     version: 1,
@@ -2004,6 +2112,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.MATIC, '0x64875Aaa68d1d5521666C67d692Ee0B926b08b2F', 18, 'cxADA', 'CelsiusX Wrapped ADA'),
     frontend: FRONTEND.MAI,
     version: 1,
@@ -2019,6 +2128,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(
       ChainId.MATIC,
       '0x9Bd9aD490dD3a52f096D229af4483b94D63BE618',
@@ -2041,6 +2151,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 130,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.MATIC, '0x51195e21BDaE8722B29919db56d95Ef51FaecA6C', 18, 'vGHST', 'Gotchi Vault GHST'),
     frontend: FRONTEND.MAI,
     version: 1,
@@ -2057,6 +2168,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoinV2__factory.abi,
     connect: CrosschainQiStablecoinV2__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinV2,
     token: new Token(ChainId.MATIC, '0xD85d1e945766Fea5Eda9103F918Bd915FbCa63E6', 4, 'CEL', 'Celsius'),
     frontend: FRONTEND.MAI,
     version: 1,
@@ -2071,6 +2183,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 135,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.MATIC, '0xBbba073C31bF03b8ACf7c28EF0738DeCF3695683', 18, 'SAND', 'The Sandbox Game'),
     frontend: FRONTEND.MAI,
     version: 1,
@@ -2086,6 +2199,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 120,
     contractAbi: CrosschainQiStablecoinSlim__factory.abi,
     connect: CrosschainQiStablecoinSlim__factory.connect,
+    rawAbi: abi.crosschainQiStablecoinSlim,
     token: new Token(ChainId.MATIC, '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270', 18, 'WMATIC', 'Wrapped Matic'),
     frontend: FRONTEND.MAI,
     version: 1,
@@ -2103,6 +2217,7 @@ const MATIC_COLLATERALS = [
     token: new Token(ChainId.MATIC, '0xf52B3250E026E0307d7d717AE0f331baAA4F83a8', 18, 'xxDAI', 'Tetu xxDAI'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     frontend: FRONTEND.MAI,
     version: 2,
     underlyingIds: ['daidai'],
@@ -2118,6 +2233,7 @@ const MATIC_COLLATERALS = [
     minimumCDR: 150,
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     token: new Token(ChainId.MATIC, '0x6c5e2E7dF0372f834B7F40D16Ff4333Cf49Af235', 18, 'xxLINK', 'Tetu xxLINK'),
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2134,6 +2250,7 @@ const MATIC_COLLATERALS = [
     token: new Token(ChainId.MATIC, '0x1C954E8fe737F99f68Fa1CCda3e51ebDB291948C', 18, 'KNC', 'Kyber Network Crystal'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 140,
     frontend: FRONTEND.MAI,
     snapshotName: 'KNC (Polygon)',
@@ -2149,6 +2266,7 @@ const MATIC_COLLATERALS = [
     token: new Token(ChainId.MATIC, '0x873f4aE80867b9f97304B9Bb7Ef92c4d563fA48c', 18, 'aMAIDAI', 'Arrakis MAI/DAI'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 102,
     frontend: FRONTEND.MAI,
     fallbackUnderlyingAddress: OG_MATIC_VAULT,
@@ -2161,6 +2279,7 @@ const MATIC_COLLATERALS = [
   {
     shortName: 'LSMMVT',
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.MATIC,
     minimumCDR: 135,
     token: new Token(ChainId.MATIC, '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6', 18, 'MaticX', 'Liquid Staking Matic'),
@@ -2175,6 +2294,7 @@ const MATIC_COLLATERALS = [
   {
     shortName: 'STMMVT',
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.MATIC,
     minimumCDR: 135,
     token: new Token(ChainId.MATIC, '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4', 18, 'stMatic', 'Staked Matic'),
@@ -2190,6 +2310,7 @@ const MATIC_COLLATERALS = [
   {
     shortName: 'stmatic',
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.MATIC,
     minimumCDR: 135,
     token: new Token(ChainId.MATIC, '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4', 18, 'stMATIC', 'Staked MATIC (PoS)'),
@@ -2205,6 +2326,7 @@ const MATIC_COLLATERALS = [
   {
     shortName: 'gdai',
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.MATIC,
     minimumCDR: 112,
     token: new Token(ChainId.MATIC, '0x91993f2101cc758D0dEB7279d41e880F7dEFe827', 18, 'gDAI', 'Gains Network DAI'),
@@ -2221,6 +2343,7 @@ const MATIC_COLLATERALS = [
   {
     shortName: 'maticx',
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     chainId: ChainId.MATIC,
     minimumCDR: 135,
     token: new Token(
@@ -2245,6 +2368,7 @@ const MATIC_COLLATERALS = [
     fallbackUnderlyingAddress: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
     chainId: ChainId.MATIC,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(
         ChainId.MATIC,
@@ -2268,6 +2392,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: MATIC_WBTC_I_VAULT_ADDRESS,
     chainId: ChainId.MATIC,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(ChainId.MATIC, '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6', 8, 'WBTC', 'Wrapped BTC'),
     minimumCDR: 130,
@@ -2283,6 +2408,7 @@ const MATIC_COLLATERALS = [
     vaultAddress: MATIC_WETH_I_VAULT_ADDRESS,
     chainId: ChainId.MATIC,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     contractAbi: StableQiVault__factory.abi,
     token: new Token(ChainId.MATIC, '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', 18, 'WETH', 'Wrapped Ether'),
     minimumCDR: 130,
@@ -2303,6 +2429,7 @@ const METIS_COLLATERALS = [
     token: new Token(ChainId.METIS, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'METIS', 'Metis'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 155,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2318,6 +2445,7 @@ const METIS_COLLATERALS = [
     token: new Token(ChainId.METIS, '0x420000000000000000000000000000000000000A', 18, 'WETH', 'Wrapped Ether'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2333,6 +2461,7 @@ const METIS_COLLATERALS = [
     token: new Token(ChainId.METIS, METIS_WBTC_ADDRESS, 8, 'WBTC', 'Wrapped BTC'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2348,6 +2477,7 @@ const METIS_COLLATERALS = [
     token: new Token(ChainId.METIS, '0x433E43047B95cB83517abd7c9978Bdf7005E9938', 8, 'm.WBTC', 'Metis Wrapped BTC'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2364,6 +2494,7 @@ const METIS_COLLATERALS = [
     token: new Token(ChainId.METIS, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'METIS', 'Metis'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MANHATTAN,
     version: 2,
@@ -2383,6 +2514,7 @@ const ZKEVM_COLLATERALS = [
     token: new Token(ChainId.ZKEVM, ZKEVM_WETH_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2398,6 +2530,7 @@ const ZKEVM_COLLATERALS = [
     token: new Token(ChainId.ZKEVM, ZKEVM_WMATIC_ADDRESS, 18, 'WMATIC', 'Wrapped Matic'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2416,6 +2549,7 @@ const BASE_COLLATERALS = [
     token: new Token(ChainId.BASE, BASE_WETH_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
@@ -2431,6 +2565,7 @@ const BASE_COLLATERALS = [
     token: new Token(ChainId.BASE, BASE_CBETH_ADDRESS, 18, 'cbETH', 'Coinbase Wrapped Staked ETH'),
     contractAbi: StableQiVault__factory.abi,
     connect: StableQiVault__factory.connect,
+    rawAbi: abi.stableQiVault,
     minimumCDR: 125,
     frontend: FRONTEND.MAI,
     version: 2,
