@@ -10,11 +10,11 @@ import crosschainQiStablecoinwbtc from './toGenerate/crosschainQiStablecoinwbtc.
 import erc20QiStablecoincamwbtc from './toGenerate/erc20QiStablecoincamwbtc.json'
 import erc20QiStablecoinwbtc from './toGenerate/erc20QiStablecoinwbtc.json'
 import erc20Stablecoin from './toGenerate/erc20Stablecoin.json'
-import GainsZapper from './toGenerate/GainsZapper.json'
-import QiStablecoin from './toGenerate/QiStablecoin.json'
+import gainsZapper from './toGenerate/GainsZapper.json'
+import qiStablecoin from './toGenerate/QiStablecoin.json'
 import stableQiVault from './toGenerate/stableQiVault.json'
 
-export default {
+export {
   ThreeStepQiZapper,
   QiZappah,
   BeefyZapper,
@@ -27,7 +27,7 @@ export default {
   erc20QiStablecoincamwbtc,
   erc20QiStablecoinwbtc,
   erc20Stablecoin,
-  GainsZapper,
-  QiStablecoin,
+  gainsZapper,
+  qiStablecoin,
   stableQiVault,
 }
