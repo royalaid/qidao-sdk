@@ -373,6 +373,21 @@ export function isGaugeValid(
   return (collateral as GAUGE_VALID_COLLATERAL).snapshotName !== undefined && !collateral.deprecated
 }
 
+export const DISCRIMINATOR_TO_ABI = {
+  CrosschainNativeQiStablecoin: crosschainNativeQiStablecoin,
+  CrosschainQiStablecoin: crosschainQiStablecoin,
+  CrosschainQiStablecoinSlim: crosschainQiStablecoinSlim,
+  CrosschainQiStablecoinSlimV2: crosschainQiStablecoinSlimV2,
+  CrosschainQiStablecoinV2: crosschainQiStablecoinV2,
+  CrosschainQiStablecoinwbtc: crosschainQiStablecoinwbtc,
+  Erc20QiStablecoincamwbtc: erc20QiStablecoincamwbtc,
+  Erc20QiStablecoinwbtc: erc20QiStablecoinwbtc,
+  Erc20Stablecoin: erc20Stablecoin,
+  StableQiVault: stableQiVault,
+  QiStablecoin: qiStablecoin
+
+} satisfies Record<VaultContractDiscriminator, RawVaultContractAbi>
+
 const MAINNET_COLLATERALS = [
   {
     shortName: 'weth',
