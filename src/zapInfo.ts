@@ -44,6 +44,9 @@ import {
   STMATIC_MAI_VAULT_ADDRESS,
   WFTM_ADDRESS,
   WSTETH_VAULT_ADDRESS,
+  XDAI_SDAI_ADDRESS,
+  XDAI_SDAI_VAULT_ADDRESS,
+  XDAI_THREE_STEP_ZAPPER,
   YVDAI_VAULT_ADDRESS,
   YVWBTC_VAULT_ADDRESS,
   YVWETH_OPTIMISM_VAULT_ADDRESS,
@@ -599,6 +602,15 @@ export const PERF_TOKEN_ZAP_META: {
       underlying: new Token(ChainId.MAINNET, BASE_CBETH_ADDRESS, 18, 'Coinbase Wrapped Staked ETH'),
       mooAssetVaultAddress: BASE_CBETH_VAULT_ADDRESS,
       zapperAddress: BASE_THREE_STEP_ZAPPER,
+    }),
+  },
+  [ChainId.XDAI]: {
+    [XDAI_SDAI_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0xAB91c51b55F7Dd7B34F2FD7217506fD5b632B2B9',
+      perfToken: '0x87A1b336872b710F38C3D99d23624653B2f75088',
+      underlying: new Token(ChainId.XDAI, XDAI_SDAI_ADDRESS, 18, 'sDAI', 'Staked DAI'),
+      mooAssetVaultAddress: XDAI_SDAI_VAULT_ADDRESS,
+      zapperAddress: XDAI_THREE_STEP_ZAPPER,
     }),
   },
 }

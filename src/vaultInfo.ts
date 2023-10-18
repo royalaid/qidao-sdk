@@ -98,7 +98,12 @@ import {
   ZKEVM_WETH_ADDRESS,
   ZKEVM_WMATIC_ADDRESS,
   ZKEVM_WMATIC_VAULT_ADDRESS,
-  BASE_CBETH_VAULT_ADDRESS, BASE_WETH_VAULT_ADDRESS, BASE_CBETH_ADDRESS, BASE_WETH_ADDRESS,
+  BASE_CBETH_VAULT_ADDRESS,
+  BASE_WETH_VAULT_ADDRESS,
+  BASE_CBETH_ADDRESS,
+  BASE_WETH_ADDRESS,
+  XDAI_SDAI_ADDRESS,
+  XDAI_SDAI_VAULT_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -177,6 +182,7 @@ export type SnapshotCanonicalChoiceName =
   | 'WMATIC (ZKEVM)'
   | 'cbEth (Base)'
   | 'WETH (Base)'
+  | 'Savings DAI (Gnosis Chain)'
 
 export type VaultShortName =
   | 'aave'
@@ -270,6 +276,7 @@ export type VaultShortName =
   | 'cbeth'
   | 'steth'
   | 'ldo'
+  | 'sdai'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -1689,6 +1696,21 @@ const XDAI_COLLATERALS = [
     addedAt: MAI_BIRTHDAY,
     deprecated: true,
   },
+  {
+    shortName: 'sdai',
+    vaultAddress: XDAI_SDAI_VAULT_ADDRESS,
+    chainId: ChainId.XDAI,
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    token: new Token(ChainId.XDAI, XDAI_SDAI_ADDRESS, 18, 'sDAI', 'Savings xDAI'),
+    minimumCDR: 110,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Savings DAI (Gnosis Chain)',
+    underlyingIds: ['daidai'],
+    addedAt: 1697608800,
+    deprecated: false,
+  }
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const MATIC_COLLATERALS = [
