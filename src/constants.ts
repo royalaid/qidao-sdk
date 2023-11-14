@@ -57,6 +57,7 @@ export enum ChainId {
   DOGECHAIN = 2000,
   ZKEVM = 1101,
   BASE = 8453,
+  LINEA = 59144,
 }
 
 export enum TradeType {
@@ -131,6 +132,7 @@ export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.DOGECHAIN]: '0xa51317d3365e8Ac0758bf3962A63892F612b942E',
   [ChainId.ZKEVM]: '0xcA11bde05977b3631167028862bE2a173976CA11',
   [ChainId.BASE]: '0xcA11bde05977b3631167028862bE2a173976CA11',
+  [ChainId.LINEA]: '0xcA11bde05977b3631167028862bE2a173976CA11',
 }
 
 export const TOKEN_DESCRIPTIONS = tokenDescriptions
