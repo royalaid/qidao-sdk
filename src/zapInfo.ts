@@ -26,6 +26,9 @@ import {
   ETH_STETH_VAULT_ADDRESS,
   ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
+  LINEA_THREE_STEP_ZAPPER,
+  LINEA_WSTETH_ADDRESS,
+  LINEA_WSTETH_VAULT_ADDRESS,
   MAINNET_ZAPPER,
   MATIC_THREE_STEP_ZAPPER,
   MATIC_WSTETH_VAULT_ADDRESS,
@@ -611,6 +614,15 @@ export const PERF_TOKEN_ZAP_META: {
       underlying: new Token(ChainId.XDAI, XDAI_SDAI_ADDRESS, 18, 'sDAI', 'Staked DAI'),
       mooAssetVaultAddress: XDAI_SDAI_VAULT_ADDRESS,
       zapperAddress: XDAI_THREE_STEP_ZAPPER,
+    }),
+  },
+  [ChainId.LINEA]: {
+    [LINEA_WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0xe333292A460ec04720f62d035Cb93C36bC1c3EDa',
+      perfToken: '0xFf0756582c66D59F3C1bd413F7D0A720c99B9992',
+      underlying: new Token(ChainId.LINEA, LINEA_WSTETH_ADDRESS, 18, 'wstETH', 'Wrapped liquid staked Ether 2.0'),
+      mooAssetVaultAddress: LINEA_WSTETH_VAULT_ADDRESS,
+      zapperAddress: LINEA_THREE_STEP_ZAPPER,
     }),
   },
 }

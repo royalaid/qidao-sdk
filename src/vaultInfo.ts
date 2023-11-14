@@ -103,7 +103,7 @@ import {
   BASE_CBETH_ADDRESS,
   BASE_WETH_ADDRESS,
   XDAI_SDAI_ADDRESS,
-  XDAI_SDAI_VAULT_ADDRESS,
+  XDAI_SDAI_VAULT_ADDRESS, LINEA_WSTETH_VAULT_ADDRESS, LINEA_WSTETH_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -183,6 +183,7 @@ export type SnapshotCanonicalChoiceName =
   | 'cbEth (Base)'
   | 'WETH (Base)'
   | 'Savings DAI (Gnosis Chain)'
+  | 'Wrapped Staked ETH (Linea)'
 
 export type VaultShortName =
   | 'aave'
@@ -2509,6 +2510,25 @@ const BASE_COLLATERALS = [
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
+const LINEA_COLLATERALS = [
+  {
+    shortName: 'wsteth',
+    vaultAddress: LINEA_WSTETH_VAULT_ADDRESS,
+    chainId: ChainId.LINEA,
+    token: new Token(ChainId.LINEA, LINEA_WSTETH_ADDRESS, 18, 'WSTETH', 'Wrapped liquid staked Ether 2.0'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Linea)',
+    underlyingIds: ['lido-staked-ether'],
+    platform: ['Lido'],
+    addedAt: 1699923600,
+    deprecated: false,
+  },
+] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+
 const EMPTY_COLLATERALS = [] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 export const COLLATERALS: {
@@ -2549,7 +2569,7 @@ export const COLLATERALS: {
   [ChainId.DOGECHAIN]: typeof EMPTY_COLLATERALS,
   [ChainId.ZKEVM]: typeof EMPTY_COLLATERALS,
   [ChainId.BASE]: typeof BASE_COLLATERALS,
-  [ChainId.LINEA]: typeof EMPTY_COLLATERALS,
+  [ChainId.LINEA]: typeof LINEA_COLLATERALS,
 } = {
   [ChainId.MAINNET]: MAINNET_COLLATERALS,
   [ChainId.FANTOM]: FANTOM_COLLATERALS,
@@ -2587,7 +2607,7 @@ export const COLLATERALS: {
   [ChainId.DOGECHAIN]: [],
   [ChainId.ZKEVM]: [],
   [ChainId.BASE]: BASE_COLLATERALS,
-  [ChainId.LINEA]: [],
+  [ChainId.LINEA]: LINEA_COLLATERALS,
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
