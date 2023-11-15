@@ -18,6 +18,8 @@ const COINGECKO_ID = {
   [ChainId.MOONRIVER]: 'moonriver',
   [ChainId.MOONBEAM]: 'moonbeam',
   [ChainId.HARMONY]: 'harmony-shard-0',
+  [ChainId.BASE]: 'base',
+  [ChainId.LINEA]: 'linea',
 }
 
 function collateralName(c) {
@@ -25,9 +27,9 @@ function collateralName(c) {
 }
 
 const main = async () => {
-  const queue = new PQueue({concurrency: 1, interval: 5005, intervalCap: 1});
+  const queue = new PQueue({concurrency: 1, interval: 8005, intervalCap: 1});
 
-  const fallBackCollaterals = Object.values(COLLATERALS).flat().filter(c => c.fallbackUnderlyingAddress)
+  const fallBackCollaterals = Object.values(COLLATERALS).flat().filter(c => !c.deprecated && c.fallbackUnderlyingAddress)
 
   const failingTokens = []
   await Promise.all(fallBackCollaterals.map(async c => {
@@ -40,17 +42,20 @@ const main = async () => {
       res = await queue.add(() => fetch(`https://api.coingecko.com/api/v3/coins/${assetPlatform}/contract/${contractAddress?.toLowerCase()}`))
     }
     const json = await res.json()
+    console.log(`Checked ${collateralName(c)}`)
     if(!json.name){
+      console.error(c)
       failingTokens.push({c,json})
     }
-    console.log(`Checked ${collateralName(c)}`)
-    console.log(`Found token ${json.name}`)
+    else {
+      console.log(`Found token ${json.name}`)
+    }
   }))
 
   if(!isEmpty(failingTokens)){
     console.log('Failing Tokens')
     failingTokens.forEach((c) => {
-      console.log(collateralName(c))
+      console.log(c)
     })
     process.exit(1)
   }
