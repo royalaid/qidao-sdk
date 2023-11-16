@@ -1,7 +1,7 @@
 {
   "name": "@qidao/sdk",
   "license": "MIT",
-  "version": "5.3.1",
+  "version": "5.3.5",
   "description": "🛠 An SDK for building applications on top of QiDao Protocol.",
   "main": "./dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -54,7 +54,7 @@
     "@types/jest": "28.1.6",
     "@types/lodash": "^4.14.185",
     "ethers": "5.7.0",
-    "isomorphic-fetch":" ^3.0.0",
+    "isomorphic-fetch": " ^3.0.0",
     "microbundle": "^0.15.1",
     "p-queue": "^7.3.0",
     "typechain": "8.1.0",

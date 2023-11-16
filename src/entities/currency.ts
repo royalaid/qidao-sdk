@@ -100,6 +100,8 @@ export class Currency {
     [ChainId.DOGECHAIN]: Currency.WWDOGE,
     [ChainId.ZKEVM]: Currency.ETHER,
     [ChainId.BASE]: Currency.ETHER,
+    [ChainId.LINEA]: Currency.ETHER,
+    [ChainId.SCROLL]: Currency.ETHER,
   }
 
   /**

@@ -104,6 +104,10 @@ import {
   BASE_WETH_ADDRESS,
   XDAI_SDAI_ADDRESS,
   XDAI_SDAI_VAULT_ADDRESS,
+  LINEA_WSTETH_VAULT_ADDRESS,
+  LINEA_WSTETH_ADDRESS,
+  BASE_WSTETH_VAULT_ADDRESS,
+  BASE_WSTETH_ADDRESS, LINEA_WBTC_VAULT_ADDRESS, LINEA_WBTC_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -183,6 +187,9 @@ export type SnapshotCanonicalChoiceName =
   | 'cbEth (Base)'
   | 'WETH (Base)'
   | 'Savings DAI (Gnosis Chain)'
+  | 'Wrapped Staked ETH (Linea)'
+  | 'Wrapped Staked ETH (Base)'
+  | 'WBTC (Linea)'
 
 export type VaultShortName =
   | 'aave'
@@ -2507,6 +2514,60 @@ const BASE_COLLATERALS = [
     addedAt: 1685365200,
     deprecated: false,
   },
+  {
+    shortName: 'wsteth',
+    vaultAddress: BASE_WSTETH_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_WSTETH_ADDRESS, 18, 'wstETH', 'liquid staked Ether 2.0'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Base)',
+    underlyingIds: ['coinbase-wrapped-staked-eth'],
+    platform: ['Lido'],
+    addedAt: 1700096400,
+    deprecated: false,
+  },
+
+] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+
+const LINEA_COLLATERALS = [
+  {
+    shortName: 'wsteth',
+    vaultAddress: LINEA_WSTETH_VAULT_ADDRESS,
+    chainId: ChainId.LINEA,
+    token: new Token(ChainId.LINEA, LINEA_WSTETH_ADDRESS, 18, 'WSTETH', 'Wrapped liquid staked Ether 2.0'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Linea)',
+    underlyingIds: ['lido-staked-ether'],
+    platform: ['Lido'],
+    addedAt: 1699923600,
+    deprecated: false,
+  },
+  {
+    shortName: 'wbtc',
+    vaultAddress: LINEA_WBTC_VAULT_ADDRESS,
+    chainId: ChainId.LINEA,
+    token: new Token(ChainId.LINEA, LINEA_WBTC_ADDRESS, 8, 'WBTC', 'Wrapped BTC'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'WBTC (Linea)',
+    underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: 1700096400,
+    deprecated: false,
+  }
+] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+const SCROLL_COLLATERALS = [
+
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const EMPTY_COLLATERALS = [] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
@@ -2549,6 +2610,8 @@ export const COLLATERALS: {
   [ChainId.DOGECHAIN]: typeof EMPTY_COLLATERALS,
   [ChainId.ZKEVM]: typeof EMPTY_COLLATERALS,
   [ChainId.BASE]: typeof BASE_COLLATERALS,
+  [ChainId.LINEA]: typeof LINEA_COLLATERALS,
+  [ChainId.SCROLL]: typeof SCROLL_COLLATERALS,
 } = {
   [ChainId.MAINNET]: MAINNET_COLLATERALS,
   [ChainId.FANTOM]: FANTOM_COLLATERALS,
@@ -2586,6 +2649,8 @@ export const COLLATERALS: {
   [ChainId.DOGECHAIN]: [],
   [ChainId.ZKEVM]: [],
   [ChainId.BASE]: BASE_COLLATERALS,
+  [ChainId.LINEA]: LINEA_COLLATERALS,
+  [ChainId.SCROLL]: SCROLL_COLLATERALS,
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }

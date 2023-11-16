@@ -12,6 +12,8 @@ import {
   BASE_CBETH_ADDRESS,
   BASE_CBETH_VAULT_ADDRESS,
   BASE_THREE_STEP_ZAPPER,
+  BASE_WSTETH_ADDRESS,
+  BASE_WSTETH_VAULT_ADDRESS,
   CAMAAVE_VAULT_ADDRESS,
   CAMDAI_VAULT_ADDRESS,
   CAMWBTC_VAULT_ADDRESS,
@@ -26,6 +28,9 @@ import {
   ETH_STETH_VAULT_ADDRESS,
   ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
   GDAI_VAULT_ADDRESS,
+  LINEA_THREE_STEP_ZAPPER,
+  LINEA_WSTETH_ADDRESS,
+  LINEA_WSTETH_VAULT_ADDRESS,
   MAINNET_ZAPPER,
   MATIC_THREE_STEP_ZAPPER,
   MATIC_WSTETH_VAULT_ADDRESS,
@@ -603,6 +608,13 @@ export const PERF_TOKEN_ZAP_META: {
       mooAssetVaultAddress: BASE_CBETH_VAULT_ADDRESS,
       zapperAddress: BASE_THREE_STEP_ZAPPER,
     }),
+    [BASE_WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0x19Cb63CCbfAC2f28B1fd79923f6aDfC096e6EBB4',
+      perfToken: '0x96c8F7D6Ea190df5c5eF2EbAb6ecd2a86262b810',
+      underlying: new Token(ChainId.LINEA, BASE_WSTETH_ADDRESS, 18, 'wstETH', 'Wrapped liquid staked Ether 2.0'),
+      mooAssetVaultAddress: BASE_WSTETH_VAULT_ADDRESS,
+      zapperAddress: BASE_THREE_STEP_ZAPPER,
+    }),
   },
   [ChainId.XDAI]: {
     [XDAI_SDAI_VAULT_ADDRESS]: generateThreeStepZapper({
@@ -611,6 +623,15 @@ export const PERF_TOKEN_ZAP_META: {
       underlying: new Token(ChainId.XDAI, XDAI_SDAI_ADDRESS, 18, 'sDAI', 'Staked DAI'),
       mooAssetVaultAddress: XDAI_SDAI_VAULT_ADDRESS,
       zapperAddress: XDAI_THREE_STEP_ZAPPER,
+    }),
+  },
+  [ChainId.LINEA]: {
+    [LINEA_WSTETH_VAULT_ADDRESS]: generateThreeStepZapper({
+      underlyingPriceSourceAddress: '0xe333292A460ec04720f62d035Cb93C36bC1c3EDa',
+      perfToken: '0xFf0756582c66D59F3C1bd413F7D0A720c99B9992',
+      underlying: new Token(ChainId.LINEA, LINEA_WSTETH_ADDRESS, 18, 'wstETH', 'Wrapped liquid staked Ether 2.0'),
+      mooAssetVaultAddress: LINEA_WSTETH_VAULT_ADDRESS,
+      zapperAddress: LINEA_THREE_STEP_ZAPPER,
     }),
   },
 }
