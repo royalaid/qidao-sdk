@@ -103,7 +103,11 @@ import {
   BASE_CBETH_ADDRESS,
   BASE_WETH_ADDRESS,
   XDAI_SDAI_ADDRESS,
-  XDAI_SDAI_VAULT_ADDRESS, LINEA_WSTETH_VAULT_ADDRESS, LINEA_WSTETH_ADDRESS,
+  XDAI_SDAI_VAULT_ADDRESS,
+  LINEA_WSTETH_VAULT_ADDRESS,
+  LINEA_WSTETH_ADDRESS,
+  BASE_WSTETH_VAULT_ADDRESS,
+  BASE_WSTETH_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -184,6 +188,7 @@ export type SnapshotCanonicalChoiceName =
   | 'WETH (Base)'
   | 'Savings DAI (Gnosis Chain)'
   | 'Wrapped Staked ETH (Linea)'
+  | 'Wrapped Staked ETH (Base)'
 
 export type VaultShortName =
   | 'aave'
@@ -2508,6 +2513,23 @@ const BASE_COLLATERALS = [
     addedAt: 1685365200,
     deprecated: false,
   },
+  {
+    shortName: 'wsteth',
+    vaultAddress: BASE_WSTETH_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_WSTETH_ADDRESS, 18, 'wstETH', 'liquid staked Ether 2.0'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Base)',
+    underlyingIds: ['coinbase-wrapped-staked-eth'],
+    platform: ['Lido'],
+    addedAt: 1700096400,
+    deprecated: false,
+  },
+
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const LINEA_COLLATERALS = [
