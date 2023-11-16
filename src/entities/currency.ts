@@ -101,6 +101,7 @@ export class Currency {
     [ChainId.ZKEVM]: Currency.ETHER,
     [ChainId.BASE]: Currency.ETHER,
     [ChainId.LINEA]: Currency.ETHER,
+    [ChainId.SCROLL]: Currency.ETHER,
   }
 
   /**

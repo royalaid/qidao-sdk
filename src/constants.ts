@@ -22,6 +22,8 @@ export const XDAI_THREE_STEP_ZAPPER = '0xb9e1b02e3a3a58b2c48e5ea3d830007e9d6d2e0
 
 export const LINEA_THREE_STEP_ZAPPER = '0xD7Acff6De10A71710C05132eB771e96630Ae132b'
 
+export const SCROLL_THREE_STEP_ZAPPER = '0xD7Acff6De10A71710C05132eB771e96630Ae132b'
+
 export enum ChainId {
   MAINNET = 1,
   GÖRLI = 5,
@@ -60,6 +62,7 @@ export enum ChainId {
   ZKEVM = 1101,
   BASE = 8453,
   LINEA = 59144,
+  SCROLL = 534352,
 }
 
 export enum TradeType {
@@ -135,6 +138,7 @@ export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.ZKEVM]: '0xcA11bde05977b3631167028862bE2a173976CA11',
   [ChainId.BASE]: '0xcA11bde05977b3631167028862bE2a173976CA11',
   [ChainId.LINEA]: '0xcA11bde05977b3631167028862bE2a173976CA11',
+  [ChainId.SCROLL]: '0xcA11bde05977b3631167028862bE2a173976CA11',
 }
 
 export const TOKEN_DESCRIPTIONS = tokenDescriptions
