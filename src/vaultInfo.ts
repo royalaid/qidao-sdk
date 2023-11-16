@@ -107,7 +107,7 @@ import {
   LINEA_WSTETH_VAULT_ADDRESS,
   LINEA_WSTETH_ADDRESS,
   BASE_WSTETH_VAULT_ADDRESS,
-  BASE_WSTETH_ADDRESS,
+  BASE_WSTETH_ADDRESS, LINEA_WBTC_VAULT_ADDRESS, LINEA_WBTC_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -189,6 +189,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Savings DAI (Gnosis Chain)'
   | 'Wrapped Staked ETH (Linea)'
   | 'Wrapped Staked ETH (Base)'
+  | 'WBTC (Linea)'
 
 export type VaultShortName =
   | 'aave'
@@ -2549,6 +2550,21 @@ const LINEA_COLLATERALS = [
     addedAt: 1699923600,
     deprecated: false,
   },
+  {
+    shortName: 'wbtc',
+    vaultAddress: LINEA_WBTC_VAULT_ADDRESS,
+    chainId: ChainId.LINEA,
+    token: new Token(ChainId.LINEA, LINEA_WBTC_ADDRESS, 8, 'WBTC', 'Wrapped BTC'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'WBTC (Linea)',
+    underlyingIds: ['wrapped-bitcoinwbtc'],
+    addedAt: 1700096400,
+    deprecated: false,
+  }
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const EMPTY_COLLATERALS = [] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
