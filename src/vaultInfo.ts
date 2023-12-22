@@ -107,7 +107,11 @@ import {
   LINEA_WSTETH_VAULT_ADDRESS,
   LINEA_WSTETH_ADDRESS,
   BASE_WSTETH_VAULT_ADDRESS,
-  BASE_WSTETH_ADDRESS, LINEA_WBTC_VAULT_ADDRESS, LINEA_WBTC_ADDRESS,
+  BASE_WSTETH_ADDRESS,
+  LINEA_WBTC_VAULT_ADDRESS,
+  LINEA_WBTC_ADDRESS,
+  LINEA_WETH_ADDRESS,
+  LINEA_WETH_VAULT_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -1019,6 +1023,7 @@ const FANTOM_COLLATERALS = [
     platform: ['Beefy'],
     addedAt: MAI_BIRTHDAY,
     deprecated: true,
+    disabled: true,
   },
   {
     shortName: 'xboo',
@@ -2525,7 +2530,7 @@ const BASE_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Wrapped Staked ETH (Base)',
-    underlyingIds: ['coinbase-wrapped-staked-eth'],
+    underlyingIds: ['lido-staked-ether'],
     platform: ['Lido'],
     addedAt: 1700096400,
     deprecated: false,
@@ -2564,7 +2569,22 @@ const LINEA_COLLATERALS = [
     underlyingIds: ['wrapped-bitcoinwbtc'],
     addedAt: 1700096400,
     deprecated: false,
-  }
+  },
+  {
+    shortName: 'weth',
+    vaultAddress: LINEA_WETH_VAULT_ADDRESS,
+    chainId: ChainId.LINEA,
+    token: new Token(ChainId.LINEA, LINEA_WETH_ADDRESS, 18, 'WETH', 'Wrapped Ether'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Linea)',
+    underlyingIds: ['lido-staked-ether'],
+    addedAt: 1699923600,
+    deprecated: false,
+  },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 const SCROLL_COLLATERALS = [
 
