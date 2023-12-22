@@ -1023,6 +1023,7 @@ const FANTOM_COLLATERALS = [
     platform: ['Beefy'],
     addedAt: MAI_BIRTHDAY,
     deprecated: true,
+    disabled: true,
   },
   {
     shortName: 'xboo',
@@ -2529,7 +2530,7 @@ const BASE_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'Wrapped Staked ETH (Base)',
-    underlyingIds: ['coinbase-wrapped-staked-eth'],
+    underlyingIds: ['lido-staked-ether'],
     platform: ['Lido'],
     addedAt: 1700096400,
     deprecated: false,
