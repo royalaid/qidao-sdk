@@ -43,7 +43,12 @@ const manualOverrides = {
       'Gains Network or GNS is a decentralized trading platform. It provides users with both crypto and forex trading options with leverage.',
     logo: 'https://gainsnetwork.io/images/logo_header.png',
     name: 'Gains Network (GNS)',
-  }
+  },
+  "wrapped-matic": {
+    "shortDescription": "Wrapped Matic (WMATIC) is a token within the Polygon (previously Matic) network that represents MATIC in a wrapped form. This concept is similar to Wrapped Bitcoin (WBTC) or Wrapped Ether (WETH) on the Ethereum blockchain. The main function of this token is to facilitate transactions and interaction between the Ethereum and Polygon blockchains.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/WrappedMatic_WMATIC.jpeg",
+    "name": "Wrapped Matic"
+  },
 }
 
 const fetches = Array.from(tokenInfo.keys()).map((tokenSlug) => {
