@@ -75,7 +75,7 @@
     "name": "GnosisDAO"
   },
   "wrapped-matic": {
-    "shortDescription": "",
+    "shortDescription": "Wrapped Matic (WMATIC) is a token within the Polygon (previously Matic) network that represents MATIC in a wrapped form. This concept is similar to Wrapped Bitcoin (WBTC) or Wrapped Ether (WETH) on the Ethereum blockchain. The main function of this token is to facilitate transactions and interaction between the Ethereum and Polygon blockchains.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/WrappedMatic_WMATIC.jpeg",
     "name": "Wrapped Matic"
   },
