@@ -11,7 +11,7 @@ export interface ScalingInfo {
   liquidationScalingFactor?: ScalingDetails
 }
 
-export default interface ZapMeta {
+export interface ZapMeta {
   vaultType: 'YEARN' | 'BEEFY'
   underlying: Token
   underlyingPriceSourceAddress: string
