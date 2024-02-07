@@ -61,7 +61,7 @@ import {
 } from './constants'
 import { GainsZapper__factory } from './contracts'
 import { Token } from './entities'
-import ZapMeta, { CamMeta, QiZapGainsMeta, QiZapMeta, QiZapThreeStepMeta, ScalingInfo } from './ZapMeta'
+import { ZapMeta, CamMeta, QiZapGainsMeta, QiZapMeta, QiZapThreeStepMeta, ScalingInfo } from './ZapMeta'
 
 const ftmZapperAddress = '0xE2379CB4c4627E5e9dF459Ce08c2342C696C4c1f'
 const avaxZapperAddress = '0x1d0a9E2c445EB8f99767eF289832637921e6F6a5'
