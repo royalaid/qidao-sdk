@@ -221,4 +221,11 @@ export const WNATIVE = {
     'WETH',
     'Wrapped Ether'
   ),
+  [ChainId.FRAXTAL]: new Token(
+    ChainId.FRAXTAL,
+    '0xfc00000000000000000000000000000000000006',
+    18,
+    'wfrxETH',
+    'Wrapped Frax Ether'
+  ),
 }

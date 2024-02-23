@@ -63,6 +63,7 @@ export enum ChainId {
   BASE = 8453,
   LINEA = 59144,
   SCROLL = 534352,
+  FRAXTAL = 252,
 }
 
 export enum TradeType {
@@ -139,6 +140,7 @@ export const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
   [ChainId.BASE]: '0xcA11bde05977b3631167028862bE2a173976CA11',
   [ChainId.LINEA]: '0xcA11bde05977b3631167028862bE2a173976CA11',
   [ChainId.SCROLL]: '0xcA11bde05977b3631167028862bE2a173976CA11',
+  [ChainId.FRAXTAL]: '0xcA11bde05977b3631167028862bE2a173976CA11',
 }
 
 export const TOKEN_DESCRIPTIONS = tokenDescriptions
