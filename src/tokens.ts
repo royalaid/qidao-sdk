@@ -64,4 +64,5 @@ export const MAI: ChainTokenMap = {
   [ChainId.ZKEVM]: makeMaiToken(ChainId.ZKEVM, '0x615B25500403Eb688Be49221b303084D9Cf0E5B4'),
   [ChainId.BASE]: makeMaiToken(ChainId.BASE, '0xbf1aeA8670D2528E08334083616dD9C5F3B087aE'),
   [ChainId.LINEA]: makeMaiToken(ChainId.LINEA, '0xf3B001D64C656e30a62fbaacA003B1336b4ce12A'),
+  [ChainId.FRAXTAL]: makeMaiToken(ChainId.FRAXTAL, '0xb84Df10966a5D7e1ab46D9276F55d57bD336AFC7'),
 }
