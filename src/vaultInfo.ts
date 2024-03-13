@@ -111,7 +111,7 @@ import {
   LINEA_WBTC_VAULT_ADDRESS,
   LINEA_WBTC_ADDRESS,
   LINEA_WETH_ADDRESS,
-  LINEA_WETH_VAULT_ADDRESS,
+  LINEA_WETH_VAULT_ADDRESS, FRAXTAL_SFRXETH_VAULT_ADDRESS, FRAXTAL_SFRXETH_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -288,6 +288,7 @@ export type VaultShortName =
   | 'steth'
   | 'ldo'
   | 'sdai'
+  | 'sfrxETH'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -2586,9 +2587,27 @@ const LINEA_COLLATERALS = [
     deprecated: false,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+
 const SCROLL_COLLATERALS = [
 
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+    //'0xbf1aeA8670D2528E08334083616dD9C5F3B087aE'
+const FRAXTAL_COLLATERALS = [
+  {
+    shortName: 'sfrxETH',
+    vaultAddress: FRAXTAL_SFRXETH_VAULT_ADDRESS,
+    chainId: ChainId.FRAXTAL,
+    token: new Token(ChainId.FRAXTAL, FRAXTAL_SFRXETH_ADDRESS, 18, 'sfrxETH', 'Staked Frax Ether'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Wrapped Staked ETH (Linea)',
+    underlyingIds: ['lido-staked-ether'],
+    addedAt: 1699923600,
+    deprecated: false,
+  }] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
 const EMPTY_COLLATERALS = [] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -2632,7 +2651,7 @@ export const COLLATERALS: {
   [ChainId.BASE]: typeof BASE_COLLATERALS,
   [ChainId.LINEA]: typeof LINEA_COLLATERALS,
   [ChainId.SCROLL]: typeof SCROLL_COLLATERALS,
-  [ChainId.FRAXTAL]: typeof EMPTY_COLLATERALS
+  [ChainId.FRAXTAL]: typeof FRAXTAL_COLLATERALS
 } = {
   [ChainId.MAINNET]: MAINNET_COLLATERALS,
   [ChainId.FANTOM]: FANTOM_COLLATERALS,
@@ -2672,7 +2691,7 @@ export const COLLATERALS: {
   [ChainId.BASE]: BASE_COLLATERALS,
   [ChainId.LINEA]: LINEA_COLLATERALS,
   [ChainId.SCROLL]: SCROLL_COLLATERALS,
-  [ChainId.FRAXTAL]: []
+  [ChainId.FRAXTAL]: FRAXTAL_COLLATERALS
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
