@@ -194,6 +194,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Wrapped Staked ETH (Linea)'
   | 'Wrapped Staked ETH (Base)'
   | 'WBTC (Linea)'
+  | 'Staked Frax Ether (Fraxtal)'
 
 export type VaultShortName =
   | 'aave'
@@ -2603,9 +2604,9 @@ const FRAXTAL_COLLATERALS = [
     minimumCDR: 130,
     frontend: FRONTEND.MAI,
     version: 2,
-    snapshotName: 'Wrapped Staked ETH (Linea)',
-    underlyingIds: ['lido-staked-ether'],
-    addedAt: 1699923600,
+    snapshotName: 'Staked Frax Ether (Fraxtal)',
+    underlyingIds: ['staked-frax-ether'],
+    addedAt: 1709686800,
     deprecated: false,
   }] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 

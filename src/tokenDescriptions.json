@@ -218,5 +218,15 @@
     "shortDescription": "Harmony ($ONE) is an Ethereum-based cross-chain platform designed to facilitate the creation and use of decentralized applications by sharding and scaling.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Harmony_ONE.jpeg",
     "name": "Harmony"
+  },
+  "staked-frax-ether": {
+    "shortDescription": "sfrxETH is a ERC-4626 vault designed to accrue the staking yield of the Frax ETH validators. At any time, frxETH can be exchanged for sfrxETH by depositing it into the sfrxETH vault, which allows users to earn staking yield on their frxETH. Over time, as validators accrue staking yield, an equivalent amount of frxETH is minted and added to the vault, allowing users to redeem their sfrxETH for an greater amount of frxETH than they deposited.\n\nThe exchange rate of frxETH per sfrxETH increases over time as staking rewards are added to the vault. By holding sfrxETH you hold a % claim on an increasing amount of the vault's frxETH, splitting staking rewards up among sfrxETH holders proportional to their share of the total sfrxETH. This is similar to other autocompounding tokens like Aave's aUSDC and Compound's cUSDC.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/StakedFraxEther_SFRXETH.jpeg",
+    "name": "Staked Frax Ether"
+  },
+  "compound": {
+    "shortDescription": "Compound is a decentralized lending protocol built on Ethereum, supporting depositing digital assets to earn interest, or mortgage assets to lend out other assets. The interest rate of both parties is determined by the supply and demand algorithm.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Compound_COMP.png",
+    "name": "Compound"
   }
 }
