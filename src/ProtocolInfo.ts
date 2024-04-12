@@ -20,6 +20,7 @@ export type PLATFORM =
   | 'Coinbase'
   | 'Optimism'
   | 'Arbitrum'
+  | 'Aerodrome'
 
 export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: string } } = {
   Beefy: {
@@ -102,5 +103,10 @@ export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: strin
   Arbitrum: {
     description: TOKEN_DESCRIPTIONS['arbitrum'].shortDescription,
     logo: TOKEN_DESCRIPTIONS['arbitrum'].logo,
+  },
+  Aerodrome: {
+    description:
+      "Aerodrome Finance is a next-generation AMM designed to serve as Base's central liquidity hub, combining a powerful liquidity incentive engine, vote-lock governance model, and friendly user experience.",
+    logo: 'https://icons.llamao.fi/icons/protocols/aerodrome',
   },
 }
