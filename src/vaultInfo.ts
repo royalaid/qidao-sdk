@@ -111,7 +111,11 @@ import {
   LINEA_WBTC_VAULT_ADDRESS,
   LINEA_WBTC_ADDRESS,
   LINEA_WETH_ADDRESS,
-  LINEA_WETH_VAULT_ADDRESS, FRAXTAL_SFRXETH_VAULT_ADDRESS, FRAXTAL_SFRXETH_ADDRESS,
+  LINEA_WETH_VAULT_ADDRESS,
+  FRAXTAL_SFRXETH_VAULT_ADDRESS,
+  FRAXTAL_SFRXETH_ADDRESS,
+  BASE_AERO_VAULT_ADDRESS,
+  BASE_AERO_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -195,6 +199,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Wrapped Staked ETH (Base)'
   | 'WBTC (Linea)'
   | 'Staked Frax Ether (Fraxtal)'
+  | 'Aero (Base)'
 
 export type VaultShortName =
   | 'aave'
@@ -290,6 +295,7 @@ export type VaultShortName =
   | 'ldo'
   | 'sdai'
   | 'sfrxETH'
+  | 'aero'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -2537,6 +2543,23 @@ const BASE_COLLATERALS = [
     addedAt: 1700096400,
     deprecated: false,
   },
+  {
+    shortName: 'aero',
+    vaultAddress: BASE_AERO_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'AERO', 'Aerodrome'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 300,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'Aero (Base)',
+    underlyingIds: ['aerodrome-finance'],
+    platform: ['Aerodrome'],
+    addedAt: 1712941200,
+    deprecated: false,
+  },
+
 
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
