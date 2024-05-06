@@ -21,6 +21,7 @@ export type PLATFORM =
   | 'Optimism'
   | 'Arbitrum'
   | 'Aerodrome'
+  | 'Metapool'
 
 export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: string } } = {
   Beefy: {
@@ -108,5 +109,10 @@ export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: strin
     description:
       "Aerodrome Finance is a next-generation AMM designed to serve as Base's central liquidity hub, combining a powerful liquidity incentive engine, vote-lock governance model, and friendly user experience.",
     logo: 'https://icons.llamao.fi/icons/protocols/aerodrome',
+  },
+  Metapool: {
+    description:
+      'Meta Pool objective is to provide easy and permissionless access to Web3 financial tools for everybody',
+    logo: 'https://www.metapool.app/metalogo.svg',
   },
 }
