@@ -238,5 +238,10 @@
     "shortDescription": "Meta Pool objective is to provide easy and permissionless access to Web3 financial tools for everybody",
     "logo": "https://www.metapool.app/metalogo.svg",
     "name": "MetaPool"
+  },
+  "renzo": {
+    "shortDescription": "Renzo Protocol is a Liquid Restaking Token (LRT) and Strategy Manager for EigenLayer. REZ is the Governance Token for the Renzo Protocol which is backed by Liquid Restaking Token ezETH.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Renzo_REZ.png",
+    "name": "Renzo"
   }
 }

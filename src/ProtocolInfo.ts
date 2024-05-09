@@ -22,6 +22,7 @@ export type PLATFORM =
   | 'Arbitrum'
   | 'Aerodrome'
   | 'Metapool'
+  | 'Renzo'
 
 export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: string } } = {
   Beefy: {
@@ -114,5 +115,10 @@ export const ProtocolInfo: { [k in PLATFORM]: { description: string; logo: strin
     description:
       'Meta Pool objective is to provide easy and permissionless access to Web3 financial tools for everybody',
     logo: 'https://www.metapool.app/metalogo.svg',
+  },
+  Renzo: {
+    description:
+      'Renzo Protocol is a Liquid Restaking Token (LRT) and Strategy Manager for EigenLayer. REZ is the Governance Token for the Renzo Protocol which is backed by Liquid Restaking Token ezETH.',
+    logo: 'https://s2.tokeninsight.com/static/coins/img/currency/Renzo_REZ.png',
   },
 }
