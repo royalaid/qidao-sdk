@@ -116,6 +116,8 @@ import {
   FRAXTAL_SFRXETH_ADDRESS,
   BASE_AERO_VAULT_ADDRESS,
   BASE_AERO_ADDRESS,
+  LINEA_MPETH_VAULT_ADDRESS,
+  LINEA_MPETH_ADDRESS, BASE_EZETH_VAULT_ADDRESS, BASE_EZETH_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -200,6 +202,8 @@ export type SnapshotCanonicalChoiceName =
   | 'WBTC (Linea)'
   | 'Staked Frax Ether (Fraxtal)'
   | 'Aero (Base)'
+  | 'MetaPool ETH (Linea)'
+  | 'ezETH (Base)'
 
 export type VaultShortName =
   | 'aave'
@@ -296,6 +300,8 @@ export type VaultShortName =
   | 'sdai'
   | 'sfrxETH'
   | 'aero'
+  | 'mpETH'
+  | 'ezeth'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -2559,7 +2565,22 @@ const BASE_COLLATERALS = [
     addedAt: 1712941200,
     deprecated: false,
   },
-
+  {
+    shortName: 'ezeth',
+    vaultAddress: BASE_EZETH_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_EZETH_ADDRESS, 18, 'ezETH',  'Renzo Restaked ETH'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'ezETH (Base)',
+    underlyingIds: ['renzo'],
+    platform: ['Renzo'],
+    addedAt: 1715216400,
+    deprecated: false,
+  },
 
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 
@@ -2608,6 +2629,22 @@ const LINEA_COLLATERALS = [
     snapshotName: 'Wrapped Staked ETH (Linea)',
     underlyingIds: ['lido-staked-ether'],
     addedAt: 1699923600,
+    deprecated: false,
+  },
+  {
+    shortName: 'mpETH',
+    vaultAddress: LINEA_MPETH_VAULT_ADDRESS,
+    chainId: ChainId.LINEA,
+    token: new Token(ChainId.LINEA, LINEA_MPETH_ADDRESS, 18, 'mpETH', 'MetaPoolETH'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 130,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'MetaPool ETH (Linea)',
+    underlyingIds: ['metapool'],
+    addedAt: 1714957200,
+    fallbackUnderlyingAddress: LINEA_WETH_ADDRESS,
     deprecated: false,
   },
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
