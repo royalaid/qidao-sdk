@@ -2764,7 +2764,9 @@ export const COLLATERALS: {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
 
-export const PSM = {
+export const PSM:{
+    [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+} = {
   [ChainId.BASE]:[
     {
       chainId: ChainId.BASE,
@@ -2815,6 +2817,4 @@ export const PSM = {
     },
     underlyingIds:['beefy-finance', 'compound'],
   }]
-} satisfies {
-  [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
