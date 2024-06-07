@@ -117,7 +117,12 @@ import {
   BASE_AERO_VAULT_ADDRESS,
   BASE_AERO_ADDRESS,
   LINEA_MPETH_VAULT_ADDRESS,
-  LINEA_MPETH_ADDRESS, BASE_EZETH_VAULT_ADDRESS, BASE_EZETH_ADDRESS,
+  LINEA_MPETH_ADDRESS,
+  BASE_EZETH_VAULT_ADDRESS,
+  BASE_EZETH_ADDRESS,
+  BASE_PSM_ADDRESS,
+  MATIC_PSM_ADDRESS,
+  LINEA_PSM_ADDRESS
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -302,6 +307,8 @@ export type VaultShortName =
   | 'aero'
   | 'mpETH'
   | 'ezeth'
+  | 'dai'
+  | 'usdc'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -2755,4 +2762,59 @@ export const COLLATERALS: {
   [ChainId.FRAXTAL]: FRAXTAL_COLLATERALS
 } satisfies {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+}
+
+export const PSM:{
+    [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
+} = {
+  [ChainId.BASE]:[
+    {
+      chainId: ChainId.BASE,
+      vaultAddress: BASE_PSM_ADDRESS,
+      token: new Token(ChainId.BASE, '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 6, 'USDC', 'USDC'),
+      addedAt: 1706270929,
+      deprecated: false,
+      discriminator: 'StableQiVault',
+      frontend: FRONTEND.MAI,
+      minimumCDR: 200,
+      shortName: 'usdc',
+      version: 2,
+      connect: () => {
+        throw new Error('not implemented')
+      },
+      underlyingIds:['beefy-finance', 'compound'],
+    }],
+  [ChainId.LINEA]: [
+    {
+      chainId: ChainId.LINEA,
+      vaultAddress: LINEA_PSM_ADDRESS,
+      token: new Token(ChainId.LINEA, '0x023617bAbEd6CeF5Da825BEa8363A5a9862E120F', 18, 'WDAI', 'WDAI'),
+      addedAt: 1706270929,
+      deprecated: false,
+      discriminator: 'StableQiVault',
+      frontend: FRONTEND.MAI,
+      minimumCDR: 200,
+      shortName: 'dai',
+      version: 2,
+      connect: () => {
+        throw new Error('not implemented')
+      },
+      underlyingIds:['daidai'],
+    }],
+  [ChainId.MATIC]: [{
+    chainId: ChainId.MATIC,
+    vaultAddress: MATIC_PSM_ADDRESS,
+    token: new Token(ChainId.MATIC, '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174', 6, 'USDC.e', 'USDC.e'),
+    addedAt: 1706270929,
+    deprecated: false,
+    discriminator: 'StableQiVault',
+    frontend: FRONTEND.MAI,
+    minimumCDR: 200,
+    shortName: 'usdc',
+    version: 2,
+    connect: () => {
+      throw new Error('not implemented')
+    },
+    underlyingIds:['beefy-finance', 'compound'],
+  }]
 }

@@ -223,7 +223,7 @@ export const WNATIVE = {
   ),
   [ChainId.FRAXTAL]: new Token(
     ChainId.FRAXTAL,
-    '0xfc00000000000000000000000000000000000006',
+    '0xFC00000000000000000000000000000000000006',
     18,
     'wfrxETH',
     'Wrapped Frax Ether'
