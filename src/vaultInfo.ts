@@ -21,6 +21,8 @@ import {
   Erc20Stablecoin__factory,
   Erc20QiStablecoinwbtc__factory,
   Erc20QiStablecoincamwbtc__factory,
+  GraceQiVault__factory,
+  GraceQiVault,
 } from './contracts'
 import {
   stableQiVault,
@@ -33,7 +35,8 @@ import {
   crosschainQiStablecoinwbtc,
   erc20QiStablecoinwbtc,
   erc20QiStablecoincamwbtc,
-  qiStablecoin
+  qiStablecoin,
+  graceQiVault
 } from './abis'
 //DO NOT SHORTEN THESE IMPORTS, ITS BREAKS EVERYTHING, GOD KNOWS WHY
 import { QiStablecoin__factory } from './contracts/factories/QiStablecoin__factory'
@@ -122,7 +125,7 @@ import {
   BASE_EZETH_ADDRESS,
   BASE_PSM_ADDRESS,
   MATIC_PSM_ADDRESS,
-  LINEA_PSM_ADDRESS
+  LINEA_PSM_ADDRESS, BASE_VE_AERO_VAULT_ADDRESS
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -209,6 +212,7 @@ export type SnapshotCanonicalChoiceName =
   | 'Aero (Base)'
   | 'MetaPool ETH (Linea)'
   | 'ezETH (Base)'
+  | 'VeAero (Base)'
 
 export type VaultShortName =
   | 'aave'
@@ -309,6 +313,7 @@ export type VaultShortName =
   | 'ezeth'
   | 'dai'
   | 'usdc'
+  | 'veaero'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -336,6 +341,7 @@ export type VaultContractDiscriminatorV1 =
 
 export type VaultContractDiscriminatorV2 =
     | 'StableQiVault'
+    | 'GraceQiVault'
 
 export type VaultContractDiscriminator = VaultContractDiscriminatorV1 | VaultContractDiscriminatorV2
 
@@ -392,7 +398,7 @@ export interface GAUGE_VALID_COLLATERAL extends COLLATERAL {
 
 export interface COLLATERAL_V2 extends Omit<COLLATERAL, 'version' | 'connect' | 'contractAbi' | 'rawAbi' | 'discriminator'> {
   version: 2
-  connect(address: string, signerOrProvider: Signer | Provider): StableQiVault
+  connect(address: string, signerOrProvider: Signer | Provider): StableQiVault | GraceQiVault
   discriminator: VaultContractDiscriminatorV2
 }
 
@@ -423,8 +429,8 @@ export const DISCRIMINATOR_TO_ABI = {
   Erc20QiStablecoinwbtc: erc20QiStablecoinwbtc,
   Erc20Stablecoin: erc20Stablecoin,
   StableQiVault: stableQiVault,
+  GraceQiVault: graceQiVault,
   QiStablecoin: qiStablecoin
-
 } satisfies Record<VaultContractDiscriminator, RawVaultContractAbi>
 
 const MAINNET_COLLATERALS = [
@@ -2587,7 +2593,22 @@ const BASE_COLLATERALS = [
     platform: ['Renzo'],
     addedAt: 1715216400,
     deprecated: false,
-  },
+  },{
+    shortName: 'veaero',
+    vaultAddress: BASE_VE_AERO_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'AERO', 'Aerodrome'),
+    connect: GraceQiVault__factory.connect,
+    discriminator: 'GraceQiVault',
+    minimumCDR: 300,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'VeAero (Base)',
+    underlyingIds: ['aerodrome-finance'],
+    platform: ['Aerodrome'],
+    addedAt: 1712941200,
+    deprecated: false,
+  }
 
 ] satisfies (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 

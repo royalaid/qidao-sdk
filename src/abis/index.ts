@@ -13,6 +13,7 @@ import erc20Stablecoin from './toGenerate/erc20Stablecoin.json'
 import gainsZapper from './toGenerate/GainsZapper.json'
 import qiStablecoin from './toGenerate/QiStablecoin.json'
 import stableQiVault from './toGenerate/stableQiVault.json'
+import graceQiVault from './toGenerate/graceQiVault.json'
 
 export {
   ThreeStepQiZapper,
@@ -30,4 +31,5 @@ export {
   gainsZapper,
   qiStablecoin,
   stableQiVault,
+  graceQiVault,
 }
