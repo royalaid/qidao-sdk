@@ -2597,7 +2597,7 @@ const BASE_COLLATERALS = [
     shortName: 'veaero',
     vaultAddress: BASE_VE_AERO_VAULT_ADDRESS,
     chainId: ChainId.BASE,
-    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'AERO', 'Aerodrome'),
+    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'veAERO', 'Voting Escrowed Aerodrome'),
     connect: GraceQiVault__factory.connect,
     discriminator: 'GraceQiVault',
     minimumCDR: 300,
