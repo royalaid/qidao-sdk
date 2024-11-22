@@ -127,9 +127,6 @@ import {
   MATIC_PSM_ADDRESS,
   LINEA_PSM_ADDRESS,
   BASE_VE_AERO_VAULT_ADDRESS,
-  BASE_VE_V2_AERO_VAULT_ADDRESS,
-  BASE_VE_V3_AERO_VAULT_ADDRESS,
-  BASE_VE_V4_AERO_VAULT_ADDRESS
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -217,9 +214,6 @@ export type SnapshotCanonicalChoiceName =
   | 'MetaPool ETH (Linea)'
   | 'ezETH (Base)'
   | 'VeAero (Base)'
-  | 'VeAero V2 (Base)'
-  | 'VeAero V3 (Base)'
-  | 'VeAero V4 (Base)'
 
 export type VaultShortName =
   | 'aave'
@@ -321,9 +315,6 @@ export type VaultShortName =
   | 'dai'
   | 'usdc'
   | 'veaero'
-  | 'veaero-v2'
-  | 'veaero-v3'
-  | 'veaero-v4'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -2620,51 +2611,6 @@ const BASE_COLLATERALS = [
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'VeAero (Base)',
-    underlyingIds: ['aerodrome-finance'],
-    platform: ['Aerodrome'],
-    addedAt: 1712941200,
-    deprecated: false,
-  },{
-    shortName: 'veaero-v2',
-    vaultAddress: BASE_VE_V2_AERO_VAULT_ADDRESS,
-    chainId: ChainId.BASE,
-    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'veAERO', 'Voting Escrowed Aerodrome'),
-    connect: GraceQiVault__factory.connect,
-    discriminator: 'GraceQiVault',
-    minimumCDR: 300,
-    frontend: FRONTEND.MAI,
-    version: 2,
-    snapshotName: 'VeAero V2 (Base)',
-    underlyingIds: ['aerodrome-finance'],
-    platform: ['Aerodrome'],
-    addedAt: 1712941200,
-    deprecated: false,
-  },{
-    shortName: 'veaero-v3',
-    vaultAddress: BASE_VE_V3_AERO_VAULT_ADDRESS,
-    chainId: ChainId.BASE,
-    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'veAERO', 'Voting Escrowed Aerodrome'),
-    connect: GraceQiVault__factory.connect,
-    discriminator: 'GraceQiVault',
-    minimumCDR: 300,
-    frontend: FRONTEND.MAI,
-    version: 2,
-    snapshotName: 'VeAero V3 (Base)',
-    underlyingIds: ['aerodrome-finance'],
-    platform: ['Aerodrome'],
-    addedAt: 1712941200,
-    deprecated: false,
-  },{
-    shortName: 'veaero-v4',
-    vaultAddress: BASE_VE_V4_AERO_VAULT_ADDRESS,
-    chainId: ChainId.BASE,
-    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'veAERO-v4', 'Voting Escrowed Aerodrome'),
-    connect: GraceQiVault__factory.connect,
-    discriminator: 'GraceQiVault',
-    minimumCDR: 300,
-    frontend: FRONTEND.MAI,
-    version: 2,
-    snapshotName: 'VeAero V4 (Base)',
     underlyingIds: ['aerodrome-finance'],
     platform: ['Aerodrome'],
     addedAt: 1712941200,
