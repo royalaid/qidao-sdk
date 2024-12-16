@@ -243,5 +243,10 @@
     "shortDescription": "Renzo Protocol is a Liquid Restaking Token (LRT) and Strategy Manager for EigenLayer. REZ is the Governance Token for the Renzo Protocol which is backed by Liquid Restaking Token ezETH.",
     "logo": "https://s2.tokeninsight.com/static/coins/img/currency/Renzo_REZ.png",
     "name": "Renzo"
+  },
+  "coinbase-wrapped-bitcoin": {
+    "shortDescription": "Coinbase Wrapped BTC is a token backed 1:1 by native Bitcoin held by Coinbase. It is a transferable token that is redeemable for the underlying BTC and is built to be seamlessly compatible with DeFi applications.",
+    "logo": "https://s2.tokeninsight.com/static/coins/img/currency/CoinbaseWrappedBitcoin_WBTC.png",
+    "name": "Coinbase Wrapped Bitcoin"
   }
 }

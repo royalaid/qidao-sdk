@@ -126,7 +126,7 @@ import {
   BASE_PSM_ADDRESS,
   MATIC_PSM_ADDRESS,
   LINEA_PSM_ADDRESS,
-  BASE_VE_AERO_VAULT_ADDRESS,
+  BASE_VE_AERO_VAULT_ADDRESS, BASE_CBBTC_VAULT_ADDRESS, BASE_CBBTC_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -214,6 +214,7 @@ export type SnapshotCanonicalChoiceName =
   | 'MetaPool ETH (Linea)'
   | 'ezETH (Base)'
   | 'VeAero (Base)'
+  | 'cbBTC (Base)'
 
 export type VaultShortName =
   | 'aave'
@@ -315,6 +316,7 @@ export type VaultShortName =
   | 'dai'
   | 'usdc'
   | 'veaero'
+  | 'cbbtc'
 
 export type RawVaultContractAbiV1 =
     | typeof qiStablecoin
@@ -2614,6 +2616,21 @@ const BASE_COLLATERALS = [
     underlyingIds: ['aerodrome-finance'],
     platform: ['Aerodrome'],
     addedAt: 1712941200,
+    deprecated: false,
+  },
+  {
+    shortName: 'cbbtc',
+    vaultAddress: BASE_CBBTC_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_CBBTC_ADDRESS, 8, 'cbBTC', 'Coinbase BTC'),
+    connect: StableQiVault__factory.connect,
+    discriminator: 'StableQiVault',
+    minimumCDR: 125,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'cbBTC (Base)',
+    underlyingIds: ['coinbase-wrapped-bitcoin'],
+    addedAt: 1734310800,
     deprecated: false,
   }
 
