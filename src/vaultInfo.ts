@@ -123,10 +123,14 @@ import {
   LINEA_MPETH_ADDRESS,
   BASE_EZETH_VAULT_ADDRESS,
   BASE_EZETH_ADDRESS,
-  BASE_PSM_ADDRESS,
+  BASE_BEEFY_COMPOUND_PSM_ADDRESS,
   MATIC_PSM_ADDRESS,
   LINEA_PSM_ADDRESS,
-  BASE_VE_AERO_VAULT_ADDRESS, BASE_CBBTC_VAULT_ADDRESS, BASE_CBBTC_ADDRESS,
+  BASE_VE_AERO_VAULT_ADDRESS,
+  BASE_CBBTC_VAULT_ADDRESS,
+  BASE_CBBTC_ADDRESS,
+  BASE_MORPHO_STAKEHOUSE_PSM_ADDRESS,
+  BASE_MORHPO_GAUNTLET_PSM_ADDRESS,
 } from './constants'
 import {PLATFORM} from "./ProtocolInfo";
 
@@ -2809,13 +2813,30 @@ export const COLLATERALS: {
   [chainId in ChainId]: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
 
+
 export const PSM:{
     [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 } = {
   [ChainId.BASE]:[
     {
       chainId: ChainId.BASE,
-      vaultAddress: BASE_PSM_ADDRESS,
+      vaultAddress: BASE_MORPHO_STAKEHOUSE_PSM_ADDRESS,
+      token: new Token(ChainId.BASE, '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 6, 'USDC', 'USDC'),
+      addedAt: 1735952400,
+      deprecated: false,
+      discriminator: 'StableQiVault',
+      frontend: FRONTEND.MAI,
+      minimumCDR: 200,
+      shortName: 'usdc',
+      version: 2,
+      connect: () => {
+        throw new Error('not implemented')
+      },
+      underlyingIds:[],
+    },
+    {
+      chainId: ChainId.BASE,
+      vaultAddress: BASE_BEEFY_COMPOUND_PSM_ADDRESS,
       token: new Token(ChainId.BASE, '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 6, 'USDC', 'USDC'),
       addedAt: 1706270929,
       deprecated: false,
@@ -2828,7 +2849,24 @@ export const PSM:{
         throw new Error('not implemented')
       },
       underlyingIds:['beefy-finance', 'compound'],
-    }],
+    },
+    {
+      chainId: ChainId.BASE,
+      vaultAddress: BASE_MORHPO_GAUNTLET_PSM_ADDRESS,
+      token: new Token(ChainId.BASE, '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 6, 'USDC', 'USDC'),
+      addedAt: 1735952400,
+      deprecated: false,
+      discriminator: 'StableQiVault',
+      frontend: FRONTEND.MAI,
+      minimumCDR: 200,
+      shortName: 'usdc',
+      version: 2,
+      connect: () => {
+        throw new Error('not implemented')
+      },
+      underlyingIds:[],
+    }
+  ],
   [ChainId.LINEA]: [
     {
       chainId: ChainId.LINEA,
