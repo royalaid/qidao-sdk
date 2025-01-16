@@ -1,70 +1,96 @@
-import { Provider } from '@ethersproject/providers'
-import { constants, Signer } from 'ethers'
+import {Provider} from '@ethersproject/providers'
+import {constants, Signer} from 'ethers'
 import {
-  CrosschainNativeQiStablecoin,
-  CrosschainQiStablecoin,
-  CrosschainQiStablecoinSlim,
-  CrosschainQiStablecoinSlimV2,
-  CrosschainQiStablecoinSlimV2__factory,
-  CrosschainQiStablecoinV2,
-  CrosschainQiStablecoinSlim__factory,
-  CrosschainQiStablecoinV2__factory,
-  CrosschainQiStablecoinwbtc,
-  CrosschainQiStablecoin__factory,
-  Erc20QiStablecoincamwbtc,
-  Erc20QiStablecoinwbtc,
-  Erc20Stablecoin,
-  StableQiVault,
-  StableQiVault__factory,
-  CrosschainNativeQiStablecoin__factory,
-  CrosschainQiStablecoinwbtc__factory,
-  Erc20Stablecoin__factory,
-  Erc20QiStablecoinwbtc__factory,
-  Erc20QiStablecoincamwbtc__factory,
-  GraceQiVault__factory,
-  GraceQiVault,
-} from './contracts'
-import {
-  stableQiVault,
+  crosschainNativeQiStablecoin,
   crosschainQiStablecoin,
   crosschainQiStablecoinSlim,
-  erc20Stablecoin,
-  crosschainNativeQiStablecoin,
   crosschainQiStablecoinSlimV2,
   crosschainQiStablecoinV2,
   crosschainQiStablecoinwbtc,
-  erc20QiStablecoinwbtc,
   erc20QiStablecoincamwbtc,
+  erc20QiStablecoinwbtc,
+  erc20Stablecoin,
+  graceQiVault,
   qiStablecoin,
-  graceQiVault
+  stableQiVault
 } from './abis'
-//DO NOT SHORTEN THESE IMPORTS, ITS BREAKS EVERYTHING, GOD KNOWS WHY
-import { QiStablecoin__factory } from './contracts/factories/QiStablecoin__factory'
-import { QiStablecoin } from './contracts/QiStablecoin'
-import { Token } from './entities'
 import {
   AAVE_ADDRESS,
+  ARBI_ARB_ADDRESS,
+  ARBI_ARB_VAULT_ADDRESS,
+  ARBI_GDAI_VAULT_ADDRESS,
+  ARBI_KNC_VAULT_ADDRESS,
+  ARBI_WSTETH_VAULT_ADDRESS,
+  BASE_AERO_ADDRESS,
+  BASE_AERO_VAULT_ADDRESS,
+  BASE_BEEFY_COMPOUND_PSM_ADDRESS,
+  BASE_CBBTC_ADDRESS,
+  BASE_CBBTC_VAULT_ADDRESS,
+  BASE_CBETH_ADDRESS,
+  BASE_CBETH_VAULT_ADDRESS,
+  BASE_EZETH_ADDRESS,
+  BASE_EZETH_VAULT_ADDRESS,
+  BASE_MORHPO_GAUNTLET_PSM_ADDRESS,
+  BASE_MORPHO_STAKEHOUSE_PSM_ADDRESS,
+  BASE_VE_AERO_VAULT_ADDRESS,
+  BASE_WETH_ADDRESS,
+  BASE_WETH_VAULT_ADDRESS,
+  BASE_WSTETH_ADDRESS,
+  BASE_WSTETH_VAULT_ADDRESS,
   CAMAAVE_VAULT_ADDRESS,
   CAMDAI_VAULT_ADDRESS,
   CAMWBTC_VAULT_ADDRESS,
   CAMWETH_VAULT_ADDRESS,
   CAMWMATIC_VAULT_ADDRESS,
   ChainId,
+  ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
+  ETH_CBETH_ADDRESS,
+  ETH_CBETH_VAULT_ADDRESS,
+  ETH_CRV_ADDRESS,
+  ETH_CRV_VAULT_ADDRESS,
+  ETH_LDO_ADDRESS,
+  ETH_LDO_VAULT_ADDRESS,
+  ETH_SDSTECRV_VAULT_ADDRESS,
+  ETH_STETH_ADDRESS,
+  ETH_STETH_VAULT_ADDRESS,
+  ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
+  FRAXTAL_SFRXETH_ADDRESS,
+  FRAXTAL_SFRXETH_VAULT_ADDRESS,
+  GDAI_VAULT_ADDRESS,
+  LINEA_MPETH_ADDRESS,
+  LINEA_MPETH_VAULT_ADDRESS,
+  LINEA_PSM_ADDRESS,
+  LINEA_WBTC_ADDRESS,
+  LINEA_WBTC_VAULT_ADDRESS,
+  LINEA_WETH_ADDRESS,
+  LINEA_WETH_VAULT_ADDRESS,
+  LINEA_WSTETH_ADDRESS,
+  LINEA_WSTETH_VAULT_ADDRESS,
   LINK_ADDRESS,
+  MATIC_PSM_ADDRESS,
+  MATIC_WBTC_I_VAULT_ADDRESS,
+  MATIC_WETH_I_VAULT_ADDRESS,
+  MATIC_WSTETH_VAULT_ADDRESS,
+  MATICX_MAI_VAULT_ADDRESS,
   METIS_WBTC_ADDRESS,
   MOO_BIFI_FTM_VAULT_ADDRESS,
+  MOO_ETH_STETH_CRV_VAULT_ADDRESS,
   MOO_SCREAM_DAI_VAULT_ADDRESS,
   MOO_SCREAM_ETH_VAULT_ADDRESS,
   MOO_SCREAM_LINK_VAULT_ADDRESS,
   MOO_SCREAM_WBTC_VAULT_ADDRESS,
   MOO_SCREAM_WFTM_VAULT_ADDRESS,
-  MOO_ETH_STETH_CRV_VAULT_ADDRESS,
   MOO_WAVAX_VAULT_ADDRESS,
   OG_MATIC_VAULT,
+  OP_KNC_VAULT_ADDRESS,
   STETH_ADDRESS,
+  STMATIC_MAI_VAULT_ADDRESS,
+  TOKEN_DESCRIPTIONS,
   WETH_ADDRESS,
   WFTM_ADDRESS,
   WSTETH_VAULT_ADDRESS,
+  XDAI_SDAI_ADDRESS,
+  XDAI_SDAI_VAULT_ADDRESS,
   YVDAI_VAULT_ADDRESS,
   YVETH_VAULT_ADDRESS,
   YVLINK_VAULT_ADDRESS,
@@ -73,65 +99,39 @@ import {
   YVWETH_VAULT_ADDRESS,
   YVWFTM_VAULT_ADDRESS,
   YVYFI_VAULT_ADDRESS,
-  STMATIC_MAI_VAULT_ADDRESS,
-  GDAI_VAULT_ADDRESS,
-  ARBI_GDAI_VAULT_ADDRESS,
-  MATICX_MAI_VAULT_ADDRESS,
-  TOKEN_DESCRIPTIONS,
-  ARBI_KNC_VAULT_ADDRESS,
-  OP_KNC_VAULT_ADDRESS,
-  MATIC_WSTETH_VAULT_ADDRESS,
-  ARBI_WSTETH_VAULT_ADDRESS,
-  ETH_YVCURVE_STETH_F_VAULT_ADDRESS,
-  ETH_SDSTECRV_VAULT_ADDRESS,
-  ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
-  ETH_CRV_VAULT_ADDRESS,
-  ETH_CRV_ADDRESS,
-  ARBI_ARB_ADDRESS,
-  ARBI_ARB_VAULT_ADDRESS,
-  MATIC_WBTC_I_VAULT_ADDRESS,
-  MATIC_WETH_I_VAULT_ADDRESS,
-  ETH_CBETH_ADDRESS,
-  ETH_CBETH_VAULT_ADDRESS,
-  ETH_STETH_ADDRESS,
-  ETH_STETH_VAULT_ADDRESS,
-  ETH_LDO_VAULT_ADDRESS,
-  ETH_LDO_ADDRESS,
-  ZKEVM_WETH_VAULT_ADDRESS,
   ZKEVM_WETH_ADDRESS,
+  ZKEVM_WETH_VAULT_ADDRESS,
   ZKEVM_WMATIC_ADDRESS,
   ZKEVM_WMATIC_VAULT_ADDRESS,
-  BASE_CBETH_VAULT_ADDRESS,
-  BASE_WETH_VAULT_ADDRESS,
-  BASE_CBETH_ADDRESS,
-  BASE_WETH_ADDRESS,
-  XDAI_SDAI_ADDRESS,
-  XDAI_SDAI_VAULT_ADDRESS,
-  LINEA_WSTETH_VAULT_ADDRESS,
-  LINEA_WSTETH_ADDRESS,
-  BASE_WSTETH_VAULT_ADDRESS,
-  BASE_WSTETH_ADDRESS,
-  LINEA_WBTC_VAULT_ADDRESS,
-  LINEA_WBTC_ADDRESS,
-  LINEA_WETH_ADDRESS,
-  LINEA_WETH_VAULT_ADDRESS,
-  FRAXTAL_SFRXETH_VAULT_ADDRESS,
-  FRAXTAL_SFRXETH_ADDRESS,
-  BASE_AERO_VAULT_ADDRESS,
-  BASE_AERO_ADDRESS,
-  LINEA_MPETH_VAULT_ADDRESS,
-  LINEA_MPETH_ADDRESS,
-  BASE_EZETH_VAULT_ADDRESS,
-  BASE_EZETH_ADDRESS,
-  BASE_BEEFY_COMPOUND_PSM_ADDRESS,
-  MATIC_PSM_ADDRESS,
-  LINEA_PSM_ADDRESS,
-  BASE_VE_AERO_VAULT_ADDRESS,
-  BASE_CBBTC_VAULT_ADDRESS,
-  BASE_CBBTC_ADDRESS,
-  BASE_MORPHO_STAKEHOUSE_PSM_ADDRESS,
-  BASE_MORHPO_GAUNTLET_PSM_ADDRESS,
 } from './constants'
+import {
+  CrosschainNativeQiStablecoin,
+  CrosschainNativeQiStablecoin__factory,
+  CrosschainQiStablecoin,
+  CrosschainQiStablecoin__factory,
+  CrosschainQiStablecoinSlim,
+  CrosschainQiStablecoinSlim__factory,
+  CrosschainQiStablecoinSlimV2,
+  CrosschainQiStablecoinSlimV2__factory,
+  CrosschainQiStablecoinV2,
+  CrosschainQiStablecoinV2__factory,
+  CrosschainQiStablecoinwbtc,
+  CrosschainQiStablecoinwbtc__factory,
+  Erc20QiStablecoincamwbtc,
+  Erc20QiStablecoincamwbtc__factory,
+  Erc20QiStablecoinwbtc,
+  Erc20QiStablecoinwbtc__factory,
+  Erc20Stablecoin,
+  Erc20Stablecoin__factory,
+  GraceQiVault,
+  GraceQiVault__factory,
+  StableQiVault,
+  StableQiVault__factory,
+} from './contracts'
+//DO NOT SHORTEN THESE IMPORTS, ITS BREAKS EVERYTHING, GOD KNOWS WHY
+import {QiStablecoin__factory} from './contracts/factories/QiStablecoin__factory'
+import {QiStablecoin} from './contracts/QiStablecoin'
+import {Token} from './entities'
 import {PLATFORM} from "./ProtocolInfo";
 
 export type SnapshotCanonicalChoiceName =
@@ -392,7 +392,7 @@ export interface COLLATERAL {
   frontend: FRONTEND
   version: 1
   fallbackUnderlyingAddress?: string
-  underlyingIds: (keyof typeof TOKEN_DESCRIPTIONS)[]
+  underlyingIds: readonly (keyof typeof TOKEN_DESCRIPTIONS)[]
   addedAt: number
   platform?: PLATFORM[]
   deprecated: boolean
@@ -2814,10 +2814,8 @@ export const COLLATERALS: {
 }
 
 
-export const PSM:{
-    [chainId in ChainId]?: (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
-} = {
-  [ChainId.BASE]:[
+export const PSM = {
+  [ChainId.BASE]: [
     {
       chainId: ChainId.BASE,
       vaultAddress: BASE_MORPHO_STAKEHOUSE_PSM_ADDRESS,
@@ -2864,7 +2862,7 @@ export const PSM:{
       connect: () => {
         throw new Error('not implemented')
       },
-      underlyingIds:[],
+      underlyingIds: [],
     }
   ],
   [ChainId.LINEA]: [
@@ -2900,4 +2898,6 @@ export const PSM:{
     },
     underlyingIds:['beefy-finance', 'compound'],
   }]
+} as const satisfies {
+  [chainId in ChainId]?: readonly (COLLATERAL | GAUGE_VALID_COLLATERAL | COLLATERAL_V2 | GAUGE_VALID_COLLATERAL_V2)[]
 }
