@@ -1,7 +1,7 @@
 {
   "name": "@qidao/sdk",
   "license": "MIT",
-  "version": "5.3.27-3",
+  "version": "5.3.28",
   "description": "🛠 An SDK for building applications on top of QiDao Protocol.",
   "main": "./dist/index.js",
   "umd:main": "dist/index.umd.js",
@@ -17,7 +17,10 @@
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/royalaid/sushiswap-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/royalaid/sushiswap-sdk.git"
+  },
   "keywords": [],
   "scripts": {
     "checkTokens": "node src/scripts/validateCoinGeckoFallbackTokens.mjs",
@@ -27,13 +30,15 @@
     "start": "microbundle watch"
   },
   "dependencies": {
+    "@types/node": "^22.12.0",
     "big.js": "5.2.2",
     "decimal.js-light": "2.5.1",
     "jsbi": "3.2.5",
     "lodash": "^4.17.21",
     "tiny-invariant": "1.2.0",
     "tiny-warning": "1.0.3",
-    "toformat": "2.0.0"
+    "toformat": "2.0.0",
+    "ts-node": "^10.9.2"
   },
   "peerDependencies": {
     "@ethersproject/address": "5.7.0",
@@ -53,12 +58,13 @@
     "@types/big.js": "4.0.5",
     "@types/jest": "28.1.6",
     "@types/lodash": "^4.14.185",
+    "bun-types": "^1.2.1",
     "ethers": "5.7.0",
     "isomorphic-fetch": " ^3.0.0",
     "microbundle": "^0.15.1",
     "p-queue": "^7.3.0",
     "typechain": "8.1.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.7.3"
   },
   "engines": {
     "node": ">= 16"
@@ -67,5 +73,13 @@
     "printWidth": 120,
     "semi": false,
     "singleQuote": true
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/royalaid/sushiswap-sdk/issues"
+  },
+  "homepage": "https://github.com/royalaid/sushiswap-sdk#readme",
+  "directories": {
+    "test": "test"
+  },
+  "author": ""
 }
