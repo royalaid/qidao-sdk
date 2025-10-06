@@ -3012,7 +3012,7 @@ export const PSM = {
     {
       chainId: ChainId.MATIC,
       vaultAddress: MATIC_PSM_ADDRESS,
-      token: new Token(ChainId.MATIC, '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174', 6, 'USDC.e', 'USDC.e'),
+      token: new Token(ChainId.MATIC, '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', 6, 'USDC', 'USDC'),
       addedAt: 1706270929,
       deprecated: false,
       discriminator: 'StableQiVault',
