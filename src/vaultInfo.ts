@@ -111,6 +111,7 @@ import {
   BASE_CLAIM_OUTDATE_VE_AERO_VAULT_ADDRESS,
   BASE_OUTDATE_OWNERSHIP_VE_AERO_VAULT_ADDRESS,
   BASE_VE_AERO_NO_FUND_RESCUE_VAULT_ADDRESS,
+  BASE_VE_AERO_UNREFACTORED_GRACEFUL_LIQUIDATION_VAULT_ADDRESS,
 } from './constants'
 import {
   CrosschainNativeQiStablecoin,
@@ -336,6 +337,7 @@ export type VaultShortName =
   | 'veaero-outdated-claim'
   | 'veaero-outdated-ownership'
   | 'veaero-no-fund-rescue'
+  | 'veaero-unrefactored-graceful-liquidation'
   | 'cbbtc'
   | 'lbtc'
 
@@ -2654,6 +2656,22 @@ const BASE_COLLATERALS = [
     connect: GraceQiVault__factory.connect,
     discriminator: 'GraceQiVault',
     minimumCDR: 300,
+    frontend: FRONTEND.MAI,
+    version: 2,
+    snapshotName: 'VeAero (Base)',
+    underlyingIds: ['aerodrome-finance'],
+    platform: ['Aerodrome'],
+    addedAt: 1712941200,
+    deprecated: false,
+  },
+  {
+    shortName: 'veaero-unrefactored-graceful-liquidation',
+    vaultAddress: BASE_VE_AERO_UNREFACTORED_GRACEFUL_LIQUIDATION_VAULT_ADDRESS,
+    chainId: ChainId.BASE,
+    token: new Token(ChainId.BASE, BASE_AERO_ADDRESS, 18, 'veAERO', 'Voting Escrowed Aerodrome'),
+    connect: GraceQiVault__factory.connect,
+    discriminator: 'GraceQiVault',
+    minimumCDR: 250,
     frontend: FRONTEND.MAI,
     version: 2,
     snapshotName: 'VeAero (Base)',
