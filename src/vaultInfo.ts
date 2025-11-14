@@ -2678,7 +2678,7 @@ const BASE_COLLATERALS = [
     underlyingIds: ['aerodrome-finance'],
     platform: ['Aerodrome'],
     addedAt: 1712941200,
-    deprecated: false,
+    deprecated: true
   },
   {
     shortName: 'veaero-no-fund-rescue',
