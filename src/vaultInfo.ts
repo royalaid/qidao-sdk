@@ -76,6 +76,8 @@ import {
   METIS_WBTC_ADDRESS,
   METIS_PSM_ADDRESS,
   METIS_USDC_ADDRESS,
+  ZKEVM_PSM_ADDRESS,
+  ZKEVM_USDC_ADDRESS,
   MOO_BIFI_FTM_VAULT_ADDRESS,
   MOO_ETH_STETH_CRV_VAULT_ADDRESS,
   MOO_SCREAM_DAI_VAULT_ADDRESS,
@@ -414,6 +416,7 @@ export interface COLLATERAL {
   platform?: PLATFORM[]
   deprecated: boolean
   disabled?: boolean
+  type?: 'oneWay' | 'twoWay'
 }
 
 export interface GAUGE_VALID_COLLATERAL extends COLLATERAL {
@@ -3060,6 +3063,25 @@ export const PSM = {
         throw new Error('not implemented')
       },
       underlyingIds: [],
+    },
+  ],
+  [ChainId.ZKEVM]: [
+    {
+      chainId: ChainId.ZKEVM,
+      vaultAddress: ZKEVM_PSM_ADDRESS,
+      token: new Token(ChainId.ZKEVM, ZKEVM_USDC_ADDRESS, 6, 'USDC', 'USDC'),
+      addedAt: 1741392000,
+      deprecated: false,
+      discriminator: 'StableQiVault',
+      frontend: FRONTEND.MAI,
+      minimumCDR: 200,
+      shortName: 'usdc',
+      version: 2,
+      connect: () => {
+        throw new Error('not implemented')
+      },
+      underlyingIds: [],
+      type: 'oneWay',
     },
   ],
 } as const satisfies {
