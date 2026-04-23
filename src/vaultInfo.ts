@@ -3148,7 +3148,10 @@ export const PSM = {
       vaultAddress: MATIC_PSM_ADDRESS,
       token: new Token(ChainId.MATIC, '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', 6, 'USDC', 'USDC'),
       addedAt: 1706270929,
-      deprecated: false,
+      // Beefy Compound USDC PSM superseded by the Aave V3 USDC PSM below;
+      // deposits are blocked on the Beefy vault (Compound rewards paused),
+      // so it no longer belongs in the active PSM picker.
+      deprecated: true,
       discriminator: 'StableQiVault',
       frontend: FRONTEND.MAI,
       minimumCDR: 200,
