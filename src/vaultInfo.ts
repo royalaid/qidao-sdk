@@ -3021,13 +3021,12 @@ export const PSM = {
       underlyingIds: ['beefy-finance'],
       type: 'twoWay' as const,
     },
-    // Deprecated V1 PSMs (indices 3-5)
     {
       chainId: ChainId.BASE,
       vaultAddress: BASE_MORPHO_STEAKHOUSE_PSM_ADDRESS,
       token: new Token(ChainId.BASE, '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 6, 'USDC', 'USDC'),
       addedAt: 1735952400,
-      deprecated: true,
+      deprecated: false,
       discriminator: 'StableQiVault',
       frontend: FRONTEND.MAI,
       minimumCDR: 200,
@@ -3043,7 +3042,7 @@ export const PSM = {
       vaultAddress: BASE_BEEFY_COMPOUND_PSM_ADDRESS,
       token: new Token(ChainId.BASE, '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 6, 'USDC', 'USDC'),
       addedAt: 1706270929,
-      deprecated: true,
+      deprecated: false,
       discriminator: 'StableQiVault',
       frontend: FRONTEND.MAI,
       minimumCDR: 200,
@@ -3059,7 +3058,7 @@ export const PSM = {
       vaultAddress: BASE_MORHPO_GAUNTLET_PSM_ADDRESS,
       token: new Token(ChainId.BASE, '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', 6, 'USDC', 'USDC'),
       addedAt: 1735952400,
-      deprecated: true,
+      deprecated: false,
       discriminator: 'StableQiVault',
       frontend: FRONTEND.MAI,
       minimumCDR: 200,
@@ -3090,7 +3089,6 @@ export const PSM = {
       underlyingIds: ['beefy-finance'],
       type: 'twoWay' as const,
     },
-    // Deprecated PSMs (indices 1-2)
     {
       chainId: ChainId.MAINNET,
       vaultAddress: ETH_BEEFY_GAUNTLET_PSM_ADDRESS,
@@ -3148,10 +3146,7 @@ export const PSM = {
       vaultAddress: MATIC_PSM_ADDRESS,
       token: new Token(ChainId.MATIC, '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', 6, 'USDC', 'USDC'),
       addedAt: 1706270929,
-      // Beefy Compound USDC PSM superseded by the Aave V3 USDC PSM below;
-      // deposits are blocked on the Beefy vault (Compound rewards paused),
-      // so it no longer belongs in the active PSM picker.
-      deprecated: true,
+      deprecated: false,
       discriminator: 'StableQiVault',
       frontend: FRONTEND.MAI,
       minimumCDR: 200,
