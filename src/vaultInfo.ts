@@ -75,7 +75,6 @@ import {
   LINEA_WSTETH_VAULT_ADDRESS,
   LINK_ADDRESS,
   MATIC_PSM_ADDRESS,
-  POLYGON_AAVE_USDC_PSM_ADDRESS,
   MATIC_WBTC_I_VAULT_ADDRESS,
   MATIC_WETH_I_VAULT_ADDRESS,
   MATIC_WSTETH_VAULT_ADDRESS,
@@ -3156,22 +3155,6 @@ export const PSM = {
         throw new Error('not implemented')
       },
       underlyingIds: ['beefy-finance', 'compound'],
-    },
-    {
-      chainId: ChainId.MATIC,
-      vaultAddress: POLYGON_AAVE_USDC_PSM_ADDRESS,
-      token: new Token(ChainId.MATIC, '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', 6, 'USDC', 'USDC'),
-      addedAt: 1776816000,
-      deprecated: false,
-      discriminator: 'StableQiVault',
-      frontend: FRONTEND.MAI,
-      minimumCDR: 200,
-      shortName: 'usdc',
-      version: 2,
-      connect: () => {
-        throw new Error('not implemented')
-      },
-      underlyingIds: ['aave'],
     },
   ],
   [ChainId.METIS]: [
