@@ -3182,7 +3182,7 @@ export const PSM = {
       vaultAddress: ZKEVM_PSM_ADDRESS,
       token: new Token(ChainId.ZKEVM, ZKEVM_USDC_ADDRESS, 6, 'USDC', 'USDC'),
       addedAt: 1741392000,
-      deprecated: false,
+      deprecated: true,
       discriminator: 'StableQiVault',
       frontend: FRONTEND.MAI,
       minimumCDR: 200,
