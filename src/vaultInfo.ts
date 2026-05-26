@@ -49,6 +49,7 @@ import {
   ChainId,
   ETH_BEEFY_CONVEX_STETH_VAULT_ADDRESS,
   ETH_BEEFY_GAUNTLET_PSM_ADDRESS,
+  ETH_BEEFY_STEAKHOUSE_PRIME_PSM_ADDRESS,
   ETH_BEEFY_STEAKHOUSE_PSM_ADDRESS,
   ETH_BEEFY_STEAKHOUSE_V2_PSM_ADDRESS,
   ETH_CBETH_ADDRESS,
@@ -3071,13 +3072,31 @@ export const PSM = {
     },
   ],
   [ChainId.MAINNET]: [
-    // Active V2 Beefy PSM (index 0)
+    // Active V2 Beefy PSM (index 0) — Steakhouse Prime USDC
+    {
+      chainId: ChainId.MAINNET,
+      vaultAddress: ETH_BEEFY_STEAKHOUSE_PRIME_PSM_ADDRESS,
+      token: new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USDC'),
+      addedAt: 1779753600,
+      deprecated: false,
+      discriminator: 'StableQiVault',
+      frontend: FRONTEND.MAI,
+      minimumCDR: 200,
+      shortName: 'usdc',
+      version: 2,
+      connect: () => {
+        throw new Error('not implemented')
+      },
+      underlyingIds: ['beefy-finance'],
+      type: 'twoWay' as const,
+    },
+    // Deprecated — superseded by the Steakhouse Prime PSM above
     {
       chainId: ChainId.MAINNET,
       vaultAddress: ETH_BEEFY_STEAKHOUSE_V2_PSM_ADDRESS,
       token: new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USDC'),
       addedAt: 1744416000,
-      deprecated: false,
+      deprecated: true,
       discriminator: 'StableQiVault',
       frontend: FRONTEND.MAI,
       minimumCDR: 200,
