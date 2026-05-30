@@ -20,9 +20,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      # Install layer is pnpm.
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.4.0
+      # Node is required for the build (typechain + microbundle).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: pnpm
+      # Bun is kept only for the checkTokens runtime script (#!/usr/bin/env bun).
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun install
-      - run: bun run build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
       - run: bun run checkTokens

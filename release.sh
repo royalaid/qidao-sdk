@@ -58,17 +58,41 @@ else
   fi
 fi
 
-# Run the yarn pack command
-yarn pack
+# The consumer-facing asset name (do NOT change — qidao, mai-api, maicron fetch this URL)
+ASSET="qidao-sdk-v${VERSION}.tgz"
 
-# Check if the yarn pack command was successful
-if [ $? -ne 0 ]; then
-  echo "yarn pack command failed. Exiting."
+# Remove any stale tarball so we can unambiguously detect the one pnpm emits
+rm -f "${ASSET}"
+
+# Run the pack command. pnpm emits a tarball named "<scope>-<name>-<version>.tgz"
+# (for @qidao/sdk that is "qidao-sdk-<version>.tgz" — note: NO leading "v"), whereas
+# the published GitHub-release asset URL is "qidao-sdk-v<version>.tgz". Capture pnpm's
+# exit status first, then rename the freshly emitted tarball to the consumer-facing name.
+pnpm pack
+PACK_STATUS=$?
+
+# Check if the pnpm pack command was successful
+if [ ${PACK_STATUS} -ne 0 ]; then
+  echo "pnpm pack command failed. Exiting."
   exit 1
 fi
 
+# Locate the tarball pnpm just emitted (newest *.tgz in the repo root) and rename it
+# to the consumer-facing asset name, preserving the existing release-asset URL.
+EMITTED_TARBALL=$(ls -t ./*.tgz 2>/dev/null | head -n 1)
+
+if [ -z "${EMITTED_TARBALL}" ]; then
+  echo "pnpm pack did not produce a .tgz file. Exiting."
+  exit 1
+fi
+
+if [ "${EMITTED_TARBALL}" != "./${ASSET}" ]; then
+  mv -f "${EMITTED_TARBALL}" "./${ASSET}"
+  echo "Renamed ${EMITTED_TARBALL} -> ./${ASSET}"
+fi
+
 # Create the GitHub release with custom parameters
-gh release create "v${VERSION}" "./qidao-sdk-v${VERSION}.tgz" --title "v${VERSION}" --notes "" --prerelease
+gh release create "v${VERSION}" "./${ASSET}" --title "v${VERSION}" --notes "" --prerelease
 
 # Check if the gh release command was successful
 if [ $? -ne 0 ]; then
